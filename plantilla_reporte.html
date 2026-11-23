@@ -35,31 +35,39 @@
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.5; -webkit-font-smoothing: antialiased; }
-    .container { max-width: 1120px; margin: 0 auto; padding: 16px 16px 64px; }
+    .container { max-width: 1140px; margin: 0 auto; padding: 16px 16px 64px; }
 
-    .top-bar {
-      display: flex; justify-content: space-between; align-items: center;
-      margin-bottom: 12px; font-size: 13px;
-    }
-    .back-link {
-      text-decoration: none; color: var(--primary); font-weight: 700;
-      background: var(--surface); border: 1px solid var(--border);
-      padding: 6px 12px; border-radius: 8px; transition: all 0.15s ease;
-    }
+    .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; font-size: 13px; flex-wrap: wrap; gap: 8px; }
+    .back-link { text-decoration: none; color: var(--primary); font-weight: 700; background: var(--surface); border: 1px solid var(--border); padding: 6px 12px; border-radius: 8px; transition: all 0.15s ease; }
     .back-link:hover { background: var(--primary-soft); border-color: var(--primary); }
 
-    .hero {
-      background: linear-gradient(135deg, #0b1f3f 0%, #153a6e 100%);
-      color: #ffffff; border-radius: 16px; padding: 26px 26px 22px;
-      box-shadow: 0 10px 28px rgba(11, 31, 63, 0.18); margin-bottom: 22px;
+    /* Global Season Switcher Bar */
+    .season-bar {
+      position: sticky; top: 8px; z-index: 60;
+      background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(10px);
+      border: 1px solid var(--border-strong); border-radius: 14px;
+      padding: 10px 14px; margin-bottom: 18px; box-shadow: 0 6px 20px rgba(15, 44, 89, 0.09);
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;
     }
+    .season-bar-left { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .season-label { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.6px; color: var(--primary); }
+    .season-pills { display: inline-flex; flex-wrap: wrap; gap: 6px; }
+    .season-btn {
+      border: 1px solid var(--border-strong); background: var(--surface-alt); color: var(--text-muted);
+      padding: 6px 13px; border-radius: 999px; font-size: 12.5px; font-weight: 700; cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .season-btn:hover { border-color: var(--primary); color: var(--primary); background: var(--primary-soft); }
+    .season-btn.active { background: var(--primary); border-color: var(--primary); color: #ffffff; box-shadow: 0 2px 8px rgba(15, 44, 89, 0.25); }
+    .season-btn.all-btn.active { background: #334155; border-color: #334155; }
+
+    .season-indicator { font-size: 12px; color: var(--text-muted); font-weight: 600; }
+    .season-indicator strong { color: var(--primary); }
+    .season-warn-pill { background: var(--warn-soft); color: var(--warn-text); padding: 3px 9px; border-radius: 999px; font-size: 11.5px; font-weight: 700; }
+
+    .hero { background: linear-gradient(135deg, #0b1f3f 0%, #153a6e 100%); color: #ffffff; border-radius: 16px; padding: 26px 26px 22px; box-shadow: 0 10px 28px rgba(11, 31, 63, 0.18); margin-bottom: 16px; }
     .hero-top { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; margin-bottom: 18px; }
-    .monogram {
-      width: 58px; height: 58px; border-radius: 14px;
-      background: rgba(255, 255, 255, 0.14); border: 1px solid rgba(255, 255, 255, 0.25);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 21px; font-weight: 800; letter-spacing: 0.5px; flex-shrink: 0;
-    }
+    .monogram { width: 58px; height: 58px; border-radius: 14px; background: rgba(255, 255, 255, 0.14); border: 1px solid rgba(255, 255, 255, 0.25); display: flex; align-items: center; justify-content: center; font-size: 21px; font-weight: 800; letter-spacing: 0.5px; flex-shrink: 0; }
     .hero-meta-top { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #93c5fd; font-weight: 700; margin-bottom: 4px; }
     .hero h1 { font-size: clamp(22px, 3vw, 30px); font-weight: 800; line-height: 1.15; margin-bottom: 6px; }
     .hero-sub { font-size: 13px; color: #cbd5e1; }
@@ -71,18 +79,17 @@
     .hero-summary { font-size: 13.5px; color: #e2e8f0; background: rgba(0, 0, 0, 0.18); border-radius: 10px; padding: 12px 16px; border-left: 3px solid #60a5fa; }
 
     .quick-nav {
-      position: sticky; top: 10px; z-index: 50;
-      background: rgba(255, 255, 255, 0.94); backdrop-filter: blur(8px);
-      border: 1px solid var(--border); border-radius: 999px;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 999px;
       padding: 6px 10px; display: flex; gap: 6px; overflow-x: auto;
-      box-shadow: var(--shadow); margin-bottom: 22px; scrollbar-width: none;
+      box-shadow: var(--shadow); margin-bottom: 20px; scrollbar-width: none;
     }
     .quick-nav::-webkit-scrollbar { display: none; }
     .quick-nav a { text-decoration: none; color: var(--text-muted); font-size: 12.5px; font-weight: 600; padding: 6px 12px; border-radius: 999px; white-space: nowrap; }
     .quick-nav a:hover { background: var(--primary-soft); color: var(--primary); }
+    .quick-nav a.nav-cta { background: var(--accent-soft); color: var(--accent-text); font-weight: 700; }
 
     .section { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px 24px; margin-bottom: 20px; box-shadow: var(--shadow); }
-    .section-header { margin-bottom: 16px; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 8px; }
+    .section-header { margin-bottom: 16px; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 10px; }
     .section h2 { font-size: 19px; font-weight: 800; color: var(--primary); letter-spacing: -0.2px; }
     .section-subtitle { font-size: 13px; color: var(--text-light); margin-top: 2px; }
 
@@ -96,7 +103,48 @@
     .insight-body { font-size: 13px; color: var(--text-muted); line-height: 1.45; }
 
     .tactical-box { background: #f8fafc; border: 1px solid var(--border); border-left: 4px solid var(--primary); border-radius: 10px; padding: 16px 18px; display: flex; flex-direction: column; gap: 10px; font-size: 14px; }
+    .alert-banner { background: var(--warn-soft); border: 1px solid #fcd34d; color: var(--warn-text); border-radius: 10px; padding: 12px 15px; font-size: 13.5px; margin-bottom: 16px; }
 
+    /* Matchup Predictor & Simulator */
+    .probable-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 20px; }
+    .prob-card { background: var(--surface-alt); border: 1px solid var(--border); border-radius: 10px; padding: 12px; display: flex; flex-direction: column; gap: 6px; border-top: 3px solid var(--primary); }
+    .prob-card.threat-high { border-top-color: var(--danger); }
+    .prob-card.threat-mid { border-top-color: var(--warn); }
+    .prob-card.threat-low { border-top-color: var(--accent); }
+    .prob-top { display: flex; justify-content: space-between; align-items: center; }
+    .prob-pair { font-size: 13.5px; font-weight: 800; color: var(--text); line-height: 1.25; }
+    .prob-meta { font-size: 11.5px; color: var(--text-muted); }
+    .prob-alt { font-size: 11px; color: var(--text-light); border-top: 1px dashed var(--border); padding-top: 6px; margin-top: auto; }
+
+    .sim-box { background: #f8fafc; border: 1px solid var(--border-strong); border-radius: 12px; padding: 18px; }
+    .sim-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 14px; }
+    .sim-summary-pill { background: var(--primary); color: #fff; padding: 10px 16px; border-radius: 10px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+    .sim-score-big { font-size: 20px; font-weight: 800; font-variant-numeric: tabular-nums; }
+    .sim-controls { display: flex; gap: 8px; flex-wrap: wrap; }
+    .btn { border: 1px solid var(--border-strong); background: var(--surface); color: var(--text); padding: 7px 12px; border-radius: 8px; font-size: 12.5px; font-weight: 700; cursor: pointer; transition: all 0.15s ease; }
+    .btn:hover { background: var(--primary-soft); border-color: var(--primary); color: var(--primary); }
+    .btn-primary { background: var(--primary); color: #fff; border-color: var(--primary); }
+    .btn-primary:hover { background: #153a6e; color: #fff; }
+    .btn-green { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .btn-green:hover { background: #15803d; color: #fff; }
+
+    .sim-row { display: grid; grid-template-columns: 52px 1.15fr 1.35fr 165px; gap: 10px; align-items: center; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; }
+    .sim-select { width: 100%; padding: 6px 8px; border: 1px solid var(--border-strong); border-radius: 7px; font-size: 12.5px; font-family: var(--font); background: #fff; }
+    .sim-pair-selectors { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+    .sim-pred { text-align: right; font-size: 12px; }
+    .sim-prob-bar { height: 7px; background: var(--danger-soft); border-radius: 999px; overflow: hidden; margin: 4px 0; }
+    .sim-prob-fill { height: 100%; background: var(--accent); border-radius: 999px; transition: width 0.2s ease; }
+    .h2h-mini { font-size: 11px; color: var(--info); font-weight: 600; margin-top: 2px; }
+
+    /* Mini Bracket Strip */
+    .bracket-strip { display: flex; gap: 12px; overflow-x: auto; padding-bottom: 6px; }
+    .bk-card { min-width: 220px; background: var(--surface-alt); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; flex-shrink: 0; }
+    .bk-card.bk-own { border: 2px solid var(--accent); background: #f0fdf4; }
+    .bk-stage { font-size: 11px; font-weight: 800; text-transform: uppercase; color: var(--primary); display: flex; justify-content: space-between; margin-bottom: 6px; }
+    .bk-team { display: flex; justify-content: space-between; font-size: 13px; padding: 3px 0; }
+    .bk-team.win { font-weight: 800; color: var(--accent-text); }
+
+    /* Match Cards */
     .h2h-grid { display: grid; grid-template-columns: 1fr; gap: 16px; margin-bottom: 14px; }
     .match-card { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--surface); }
     .match-card-head { background: var(--surface-alt); border-bottom: 1px solid var(--border); padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
@@ -145,10 +193,6 @@
     .jornada-tab.active .tab-pill.V { background: rgba(34, 197, 94, 0.28); color: #dcfce7; }
     .jornada-tab.active .tab-pill.D { background: rgba(239, 68, 68, 0.28); color: #fee2e2; }
 
-    .filter-pills { display: inline-flex; gap: 6px; background: var(--surface-alt); padding: 4px; border-radius: 8px; border: 1px solid var(--border); }
-    .filter-btn { border: none; background: transparent; padding: 6px 12px; font-size: 12.5px; font-weight: 600; color: var(--text-muted); border-radius: 6px; cursor: pointer; }
-    .filter-btn.active { background: var(--primary); color: #ffffff; }
-
     .search-bar { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 14px; }
     .search-input { flex: 1; min-width: 220px; padding: 9px 14px; border: 1px solid var(--border-strong); border-radius: 8px; font-size: 13.5px; font-family: var(--font); outline: none; }
     .search-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(15, 44, 89, 0.1); }
@@ -188,25 +232,30 @@
     .tag { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
     .tag-fixed { background: var(--primary-soft); color: var(--primary); }
     .tag-unbeaten { background: var(--accent-soft); color: var(--accent-text); }
+    .tag-danger { background: var(--danger-soft); color: var(--danger-text); }
+    .tag-warn { background: var(--warn-soft); color: var(--warn-text); }
     .tag-rot { background: #f1f5f9; color: var(--text-muted); }
     .tag-cta { background: var(--info-soft); color: #0369a1; }
     .hm-cell { text-align: center; font-weight: 700; font-size: 12.5px; border-radius: 6px; }
     .footnote { font-size: 12.5px; color: var(--text-light); margin-top: 10px; }
     .footer { text-align: center; font-size: 12px; color: var(--text-light); margin-top: 32px; }
 
-    @media (max-width: 900px) {
+    @media (max-width: 960px) {
       .kpi-grid { grid-template-columns: repeat(2, 1fr); }
       .insight-grid { grid-template-columns: 1fr 1fr; }
+      .probable-grid { grid-template-columns: repeat(2, 1fr); }
+      .sim-row { grid-template-columns: 1fr; }
+      .sim-pred { text-align: left; }
       .two-col { grid-template-columns: 1fr; }
     }
     @media (max-width: 640px) {
       .hero { padding: 20px 16px; }
       .section { padding: 18px 14px; }
-      .insight-grid { grid-template-columns: 1fr; }
+      .insight-grid, .probable-grid { grid-template-columns: 1fr; }
       .history-item { grid-template-columns: 28px 1fr; gap: 6px; }
       .doubles-list td { padding: 8px 6px; font-size: 12px; }
     }
-    @media print { .quick-nav, .search-bar, .top-bar { display: none !important; } body { background: #fff; } .section { box-shadow: none; break-inside: avoid; } }
+    @media print { .quick-nav, .search-bar, .top-bar, .sim-controls, .season-bar { display: none !important; } body { background: #fff; } .section { box-shadow: none; break-inside: avoid; } }
   </style>
 </head>
 <body>
@@ -215,10 +264,26 @@
   <script>
     const REPORT_DATA = /*__REPORT_DATA__*/ {};
 
-    (function renderReport(data) {
+    (function initReport(data) {
       const app = document.getElementById("app");
       const esc = (s) => String(s ?? "").replace(/[&<>"']/g, m => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
       const pctClass = (p) => p >= 65 ? "" : (p >= 45 ? "mid" : "low");
+
+      const m = data.meta;
+      const availableSeasons = m.available_seasons || [m.current_season];
+      const params = new URLSearchParams(window.location.search);
+      const urlSeason = params.get("season");
+
+      // Por defecto SIEMPRE arranca en la temporada actual (no mezcla temporadas)
+      let activeSeason = (urlSeason && data.by_season[urlSeason]) ? urlSeason : m.current_season;
+      if (!data.by_season[activeSeason]) activeSeason = Object.keys(data.by_season)[0];
+
+      // Estado persistente entre re-renders dentro de la misma temporada
+      let activeJornadaIdx = 0;
+      let playerSearchText = "";
+      let playerSortField = "eff";
+      let playerSortAsc = false;
+      const expandedPlayers = new Set();
 
       function renderSetsChips(sets, walkover) {
         if (walkover) return `<span class="set-chip">W/O</span>`;
@@ -265,338 +330,595 @@
         `;
       }
 
-      const m = data.meta;
-      const k = data.kpis_current;
+      function renderAll() {
+        const view = data.by_season[activeSeason];
+        const k = view.kpis;
+        const seasonLbl = view.label;
+        const isHistorical = activeSeason === "ALL";
+        const isOwnReport = m.team_name.toLowerCase() === m.our_team.toLowerCase();
+        const matchup = view.matchup_intel || { positions: [], all_rival_pairs: [], tactical_alert: "" };
+        const teamPlayoffs = view.team_playoffs || [];
+        const backHref = `../index.html?season=${encodeURIComponent(activeSeason)}`;
 
-      app.innerHTML = `
-        <div class="top-bar">
-          <a class="back-link" href="../index.html">← Todos los equipos (${esc(m.category)})</a>
-          <span style="color:var(--text-light)">Actualizado: ${esc(m.generated_date)}</span>
-        </div>
+        const seasonButtonsHtml = [
+          ...availableSeasons.map(s => `<button class="season-btn ${s === activeSeason ? "active" : ""}" data-gseason="${esc(s)}">${esc(s)}${s === m.current_season ? " (Actual)" : ""}</button>`),
+          ...(availableSeasons.length > 1 ? [`<button class="season-btn all-btn ${activeSeason === "ALL" ? "active" : ""}" data-gseason="ALL">Histórico (${availableSeasons.length} temp.)</button>`] : [])
+        ].join("");
 
-        <header class="hero">
-          <div class="hero-top">
-            <div class="monogram">${esc(m.monogram)}</div>
-            <div>
-              <div class="hero-meta-top">${esc(m.authors)}</div>
-              <h1>${esc(m.team_name)} — ${esc(m.category)}</h1>
-              <div class="hero-sub">${esc(m.club)} · ${data.roster_count} jugadores en roster · ${esc(m.version)}</div>
+        app.innerHTML = `
+          <div class="top-bar">
+            <a class="back-link" href="${backHref}">← Portal Principal &amp; Brackets (${esc(m.category)})</a>
+            <span style="color:var(--text-light)">Actualizado: ${esc(m.generated_date)}</span>
+          </div>
+
+          <!-- FILTRO MAESTRO DE TEMPORADA -->
+          <div class="season-bar">
+            <div class="season-bar-left">
+              <span class="season-label">📅 Temporada:</span>
+              <div class="season-pills" id="global-season-pills">${seasonButtonsHtml}</div>
+            </div>
+            <div class="season-indicator">
+              ${isHistorical
+                ? `<span class="season-warn-pill">Vista histórica acumulada (todas las temporadas)</span>`
+                : `Mostrando datos exclusivos de <strong>${esc(seasonLbl)}</strong>`
+              }
             </div>
           </div>
-          <div class="kpi-grid">
-            <div class="kpi-card"><div class="kpi-value">${k.jornadas_w}–${k.jornadas_l}</div><div class="kpi-label">${esc(m.current_season)} · Récord de jornadas</div></div>
-            <div class="kpi-card"><div class="kpi-value">${k.indiv_eff.toFixed(1)}%</div><div class="kpi-label">${esc(m.current_season)} · Efectividad individual (${k.matches_w}–${k.matches_l})</div></div>
-            <div class="kpi-card"><div class="kpi-value">${k.sets_w}–${k.sets_l}</div><div class="kpi-label">${esc(m.current_season)} · Sets G–P (${k.set_ave.toFixed(1)}%)</div></div>
-            <div class="kpi-card"><div class="kpi-value">${k.games_w}–${k.games_l}</div><div class="kpi-label">${esc(m.current_season)} · Games G–P (${k.game_ave.toFixed(1)}%)</div></div>
-          </div>
-          ${data.hero_summary ? `<div class="hero-summary">${esc(data.hero_summary)}</div>` : ""}
-        </header>
 
-        <nav class="quick-nav">
-          <a href="#sec-esencial">En 30 segundos</a>
-          <a href="#sec-tactica">Qué esperar</a>
-          <a href="#sec-h2h">Enfrentamientos Directos</a>
-          <a href="#sec-tabla">Tabla</a>
-          <a href="#sec-jornadas">Historial por Jornada</a>
-          <a href="#sec-jugadores">Estadísticas Individuales</a>
-          <a href="#sec-detallado">Análisis Detallado</a>
-          <a href="#sec-parejas">Parejas y Rotaciones</a>
-        </nav>
-
-        <section class="section" id="sec-esencial">
-          <div class="section-header"><div><h2>Lo esencial en 30 segundos</h2><div class="section-subtitle">Claves ejecutivas para preparar la alineación D1–D5</div></div></div>
-          <div class="insight-grid">
-            ${data.insights_30s.map(card => `
-              <div class="insight-card tone-${esc(card.tone || "default")}">
-                <div class="insight-kicker">${esc(card.kicker)}</div>
-                <div class="insight-headline">${esc(card.headline)}</div>
-                <div class="insight-body">${esc(card.body)}</div>
+          <header class="hero">
+            <div class="hero-top">
+              <div class="monogram">${esc(m.monogram)}</div>
+              <div>
+                <div class="hero-meta-top">${esc(m.authors)}</div>
+                <h1>${esc(m.team_name)} — ${esc(m.category)}</h1>
+                <div class="hero-sub">${esc(m.club)} · ${view.roster_count} jugadores activos en ${esc(seasonLbl)} · ${esc(m.version)}</div>
               </div>
-            `).join("")}
-          </div>
-        </section>
-
-        <section class="section" id="sec-tactica">
-          <div class="section-header"><div><h2>Qué esperar de ${esc(m.team_name)}</h2><div class="section-subtitle">Patrones de alineación, parejas fijas y movimientos recientes</div></div></div>
-          <div class="tactical-box">${data.tactical_notes.map(p => `<p>${p}</p>`).join("")}</div>
-        </section>
-
-        <section class="section" id="sec-h2h">
-          <div class="section-header"><div><h2>Enfrentamientos Directos</h2><div class="section-subtitle">vs ${esc(m.our_team)} (${esc(m.category)})${m.next_match ? ` · Próximo cruce: ${esc(m.next_match)}` : ""}</div></div></div>
-          <div class="h2h-grid">
-            ${data.h2h_matches.length ? data.h2h_matches.map(hm => renderMatchCard(hm, m.team_name)).join("") : `<p class="footnote">No se registran enfrentamientos directos previos contra ${esc(m.our_team)}.</p>`}
-          </div>
-          ${data.h2h_summary ? `<p class="footnote">${esc(data.h2h_summary)}</p>` : ""}
-        </section>
-
-        <section class="section" id="sec-tabla">
-          <div class="section-header"><div><h2>Tabla de posiciones — ${esc(m.current_season)}</h2><div class="section-subtitle">${esc(m.group_name)} · ${data.standings.length} equipos</div></div></div>
-          <div class="table-wrap">
-            <table class="data-table">
-              <thead><tr><th class="center">Pos</th><th>Equipo</th><th class="num">Pts</th><th class="num">Set Ave.</th><th class="num">Game Ave.</th></tr></thead>
-              <tbody>
-                ${data.standings.map(row => {
-                  const cls = row.team === m.team_name ? "highlight-scout" : (row.team === m.our_team ? "highlight-own" : "");
-                  return `<tr class="${cls}"><td class="center">${row.pos}</td><td>${esc(row.team)}${row.team === m.our_team ? ' <span class="tag tag-unbeaten">Nuestro equipo</span>' : ""}</td><td class="num">${row.pts}</td><td class="num">${row.set_ave.toFixed(1)}%</td><td class="num">${row.game_ave.toFixed(1)}%</td></tr>`;
-                }).join("")}
-              </tbody>
-            </table>
-          </div>
-          ${m.standings_note ? `<p class="footnote">${esc(m.standings_note)}</p>` : ""}
-        </section>
-
-        <section class="section" id="sec-jornadas">
-          <div class="section-header">
-            <div><h2>Historial por Jornada — ${esc(m.current_season)}</h2><div class="section-subtitle">Selecciona una jornada o playoff para ver la alineación D1–D5 y el marcador</div></div>
-            <div class="filter-pills" id="jornada-season-filter"></div>
-          </div>
-          <div class="tabs-bar" id="jornada-tabs"></div>
-          <div id="jornada-detail"></div>
-        </section>
-
-        <section class="section" id="sec-jugadores">
-          <div class="section-header"><div><h2>Estadísticas individuales</h2><div class="section-subtitle">TOL = Tennis Open League · CTA = Competencias de Tenis Amateur · Haz clic sobre un jugador para ver su ficha</div></div></div>
-          <div class="search-bar">
-            <input type="text" id="player-search" class="search-input" placeholder="Buscar por nombre, cédula, club CTA o compañero..." />
-            <div class="filter-pills" id="player-season-filter">
-              <button class="filter-btn active" data-season="ALL">Todas las temporadas</button>
-              <button class="filter-btn" data-season="${esc(m.current_season)}">Solo ${esc(m.current_season)}</button>
             </div>
-          </div>
-          <div class="table-wrap">
-            <table class="data-table">
-              <thead>
-                <tr>
-                  <th class="sortable" data-sort="name">Jugador ⇅</th>
-                  <th>Cédula</th>
-                  <th>CTA</th>
-                  <th class="num sortable" data-sort="pj">PJ ⇅</th>
-                  <th class="num sortable" data-sort="v">V ⇅</th>
-                  <th class="sortable" data-sort="eff">Efectividad ⇅</th>
-                  <th class="num sortable" data-sort="elo">ELO ⇅</th>
-                  <th class="center"></th>
-                </tr>
-              </thead>
-              <tbody id="players-tbody"></tbody>
-            </table>
-          </div>
-        </section>
+            <div class="kpi-grid">
+              <div class="kpi-card"><div class="kpi-value">${k.jornadas_w}–${k.jornadas_l}</div><div class="kpi-label">${esc(seasonLbl)} · Récord de jornadas</div></div>
+              <div class="kpi-card"><div class="kpi-value">${k.indiv_eff.toFixed(1)}%</div><div class="kpi-label">${esc(seasonLbl)} · Efectividad individual (${k.matches_w}–${k.matches_l})</div></div>
+              <div class="kpi-card"><div class="kpi-value">${k.sets_w}–${k.sets_l}</div><div class="kpi-label">${esc(seasonLbl)} · Sets G–P (${k.set_ave.toFixed(1)}%)</div></div>
+              <div class="kpi-card"><div class="kpi-value">${k.games_w}–${k.games_l}</div><div class="kpi-label">${esc(seasonLbl)} · Games G–P (${k.game_ave.toFixed(1)}%)</div></div>
+            </div>
+            ${view.hero_summary ? `<div class="hero-summary">${esc(view.hero_summary)}</div>` : ""}
+          </header>
 
-        <section class="section" id="sec-detallado">
-          <div class="section-header"><div><h2>Análisis Detallado</h2><div class="section-subtitle">Rendimiento por posición D1–D5 y comparativa entre temporadas</div></div></div>
-          <div class="two-col">
-            <div class="subcard">
-              <h3>Rendimiento por posición (${esc(m.current_season)})</h3>
-              ${data.position_stats.map(ps => `
-                <div class="pos-bar-row">
-                  <div class="pos-bar-meta">
-                    <span><span class="pos-badge">${ps.pos}</span> <strong>${ps.w}–${ps.l}</strong> (${ps.eff.toFixed(1)}%)</span>
-                    <span style="color:var(--text-light);font-size:12px">${ps.unique_pairs} pareja(s)</span>
-                  </div>
-                  <div class="pos-track"><div class="pos-fill" style="width:${ps.eff.toFixed(1)}%"></div></div>
-                  <div class="pos-note">Pareja más usada: <strong>${esc(ps.top_pair)}</strong> (${ps.top_pair_record})</div>
+          <nav class="quick-nav">
+            <a href="#sec-esencial">En 30 segundos</a>
+            <a class="nav-cta" href="#sec-matchup">🎯 Posibles Parejas</a>
+            ${teamPlayoffs.length ? `<a href="#sec-playoffs">🏆 Playoffs</a>` : ""}
+            <a href="#sec-tactica">Qué esperar</a>
+            <a href="#sec-h2h">H2H</a>
+            <a href="#sec-tabla">Tabla</a>
+            <a href="#sec-jornadas">Jornadas</a>
+            <a href="#sec-jugadores">Jugadores</a>
+            <a href="#sec-detallado">Posiciones</a>
+            <a href="#sec-parejas">Parejas</a>
+          </nav>
+
+          <!-- 30 SEGUNDOS -->
+          <section class="section" id="sec-esencial">
+            <div class="section-header"><div><h2>Lo esencial en 30 segundos — ${esc(seasonLbl)}</h2><div class="section-subtitle">Claves ejecutivas filtradas exclusivamente para ${esc(seasonLbl)}</div></div></div>
+            <div class="insight-grid">
+              ${view.insights_30s.map(card => `
+                <div class="insight-card tone-${esc(card.tone || "default")}">
+                  <div class="insight-kicker">${esc(card.kicker)}</div>
+                  <div class="insight-headline">${esc(card.headline)}</div>
+                  <div class="insight-body">${esc(card.body)}</div>
                 </div>
               `).join("")}
             </div>
-            <div class="subcard">
-              <h3>Comparativa por temporada (TOL)</h3>
+          </section>
+
+          <!-- POSIBLES PAREJAS Y SIMULADOR D1-D5 -->
+          <section class="section" id="sec-matchup">
+            <div class="section-header">
+              <div>
+                <h2>🎯 Posibles parejas si jugamos vs ${esc(m.team_name)} (${esc(seasonLbl)})</h2>
+                <div class="section-subtitle">Alineación probable calculada con los datos de ${esc(seasonLbl)} + simulador interactivo D1–D5</div>
+              </div>
+            </div>
+
+            ${matchup.tactical_alert ? `<div class="alert-banner">⚠️ <strong>Alerta táctica de rotación:</strong> ${esc(matchup.tactical_alert)}</div>` : ""}
+
+            <div class="probable-grid">
+              ${(matchup.positions || []).map(slot => {
+                const threatCls = slot.threat === "Alta" ? "threat-high" : (slot.threat === "Media" ? "threat-mid" : "threat-low");
+                const threatTag = slot.threat === "Alta" ? `<span class="tag tag-danger">Amenaza Alta</span>`
+                  : (slot.threat === "Media" ? `<span class="tag tag-warn">Parejo</span>` : `<span class="tag tag-unbeaten">Atacable</span>`);
+                const planB = (slot.alternatives || []).slice(0, 2).map(a => `${esc(a.pair_name)} (${a.w}–${a.l})`).join(" · ");
+                return `
+                  <div class="prob-card ${threatCls}">
+                    <div class="prob-top">
+                      <span class="pos-badge">${esc(slot.pos)}</span>
+                      ${threatTag}
+                    </div>
+                    <div class="prob-pair">${esc(slot.primary_pair)}</div>
+                    <div class="prob-meta">
+                      Prob. en ${esc(slot.pos)}: <strong>${slot.prob_pct}%</strong><br>
+                      Récord dupla: <strong>${slot.primary_record}</strong> · ELO prom: <strong>${slot.avg_elo ? slot.avg_elo.toFixed(1) : "—"}</strong>
+                    </div>
+                    <div class="prob-alt"><strong>Plan B:</strong> ${planB || "Sin alternativa fija"}</div>
+                  </div>
+                `;
+              }).join("")}
+            </div>
+
+            ${!isOwnReport ? `
+              <div class="sim-box">
+                <div class="sim-header">
+                  <div>
+                    <h3 style="font-size:15.5px;font-weight:800;color:var(--primary)">Simulador de Alineación: ${esc(m.our_team)} vs ${esc(m.team_name)}</h3>
+                    <div class="section-subtitle">Combina nuestro roster real de ${esc(m.our_team)} contra sus parejas probables de ${esc(seasonLbl)}</div>
+                  </div>
+                  <div class="sim-controls">
+                    <button class="btn btn-primary" id="btn-mirror">⚔️ Sugerencia Espejo</button>
+                    <button class="btn" id="btn-sacrifice">🧠 Sacrificio Táctico</button>
+                    <button class="btn btn-green" id="btn-copy-wa">📋 Copiar para WhatsApp</button>
+                  </div>
+                </div>
+                <div class="sim-summary-pill" id="sim-summary"></div>
+                <div id="sim-rows" style="margin-top:12px"></div>
+              </div>
+            ` : `<p class="footnote">Este es el reporte de nuestro propio equipo (${esc(m.our_team)}). Abre cualquier equipo rival desde el portal principal para usar el simulador D1–D5.</p>`}
+          </section>
+
+          <!-- CAMINO EN PLAYOFFS -->
+          ${teamPlayoffs.length ? `
+            <section class="section" id="sec-playoffs">
+              <div class="section-header">
+                <div>
+                  <h2>🏆 Camino en Playoffs — ${esc(seasonLbl)}</h2>
+                  <div class="section-subtitle">Cruces de eliminatoria en ${esc(seasonLbl)} (<a href="${backHref}#sec-brackets" style="color:var(--primary);font-weight:700">ver cuadro completo</a>)</div>
+                </div>
+              </div>
+              <div class="bracket-strip">
+                ${teamPlayoffs.map(po => {
+                  const involvesOwn = po.local_team.toLowerCase() === m.our_team.toLowerCase() || po.visitor_team.toLowerCase() === m.our_team.toLowerCase();
+                  const stBadge = po.status === "completed" ? "Finalizado" : (po.status === "in_progress" ? "En curso" : "Por jugar");
+                  const lWin = po.status === "completed" && po.local_score > po.visitor_score;
+                  const vWin = po.status === "completed" && po.visitor_score > po.local_score;
+                  return `
+                    <div class="bk-card ${involvesOwn ? "bk-own" : ""}">
+                      <div class="bk-stage"><span>${esc(po.round)}</span><span>${stBadge}</span></div>
+                      <div class="bk-team ${lWin ? "win" : ""}"><span>${esc(po.local_team)}</span><strong>${po.status === "completed" || po.status === "in_progress" ? po.local_score : "—"}</strong></div>
+                      <div class="bk-team ${vWin ? "win" : ""}"><span>${esc(po.visitor_team)}</span><strong>${po.status === "completed" || po.status === "in_progress" ? po.visitor_score : "—"}</strong></div>
+                      <div style="font-size:11px;color:var(--text-light);margin-top:4px">${esc(po.date)}${po.venue_name ? " · " + esc(po.venue_name) : ""}</div>
+                    </div>
+                  `;
+                }).join("")}
+              </div>
+            </section>
+          ` : ""}
+
+          <!-- QUE ESPERAR -->
+          <section class="section" id="sec-tactica">
+            <div class="section-header"><div><h2>Qué esperar de ${esc(m.team_name)} (${esc(seasonLbl)})</h2><div class="section-subtitle">Patrones de alineación, parejas fijas y movimientos recientes</div></div></div>
+            <div class="tactical-box">${view.tactical_notes.map(p => `<p>${p}</p>`).join("")}</div>
+          </section>
+
+          <!-- ENFRENTAMIENTOS DIRECTOS -->
+          <section class="section" id="sec-h2h">
+            <div class="section-header"><div><h2>Enfrentamientos Directos — ${esc(seasonLbl)}</h2><div class="section-subtitle">vs ${esc(m.our_team)} (${esc(m.category)})</div></div></div>
+            <div class="h2h-grid">
+              ${view.h2h_matches.length ? view.h2h_matches.map(hm => renderMatchCard(hm, m.team_name)).join("") : `<p class="footnote">No se registran enfrentamientos directos contra ${esc(m.our_team)} en ${esc(seasonLbl)}.</p>`}
+            </div>
+          </section>
+
+          <!-- TABLA DE POSICIONES -->
+          <section class="section" id="sec-tabla">
+            <div class="section-header"><div><h2>Tabla de posiciones — ${esc(seasonLbl)}</h2><div class="section-subtitle">${esc(view.group_name)} · ${view.standings.length} equipos</div></div></div>
+            ${view.standings.length ? `
               <div class="table-wrap">
                 <table class="data-table">
-                  <thead><tr><th>Métrica</th>${data.season_comparison.map(sc => `<th class="num">${esc(sc.season)}</th>`).join("")}</tr></thead>
+                  <thead><tr><th class="center">Pos</th><th>Equipo</th><th class="center">G–P</th><th class="num">Pts</th><th class="num">Set Ave.</th><th class="num">Game Ave.</th></tr></thead>
                   <tbody>
-                    <tr><td>Jornadas (G–P)</td>${data.season_comparison.map(sc => `<td class="num"><strong>${sc.jornadas_w}–${sc.jornadas_l}</strong></td>`).join("")}</tr>
-                    <tr><td>Dobles (G–P)</td>${data.season_comparison.map(sc => `<td class="num">${sc.matches_w}–${sc.matches_l}</td>`).join("")}</tr>
-                    <tr><td>Efectividad</td>${data.season_comparison.map(sc => `<td class="num"><strong>${sc.indiv_eff.toFixed(1)}%</strong></td>`).join("")}</tr>
-                    <tr><td>Sets (G–P · %)</td>${data.season_comparison.map(sc => `<td class="num">${sc.sets_w}–${sc.sets_l} (${sc.set_ave.toFixed(1)}%)</td>`).join("")}</tr>
-                    <tr><td>Games (G–P · %)</td>${data.season_comparison.map(sc => `<td class="num">${sc.games_w}–${sc.games_l} (${sc.game_ave.toFixed(1)}%)</td>`).join("")}</tr>
-                    <tr><td>Súper Tie-Breaks</td>${data.season_comparison.map(sc => `<td class="num">${sc.stb_w}–${sc.stb_l} (${sc.stb_eff.toFixed(0)}%)</td>`).join("")}</tr>
-                    <tr><td>Jornadas 3–2 (G–P)</td>${data.season_comparison.map(sc => `<td class="num">${sc.close_w}–${sc.close_l}</td>`).join("")}</tr>
+                    ${view.standings.map(row => {
+                      const cls = row.team === m.team_name ? "highlight-scout" : (row.team === m.our_team ? "highlight-own" : "");
+                      const gp = (row.jw !== undefined && row.jl !== undefined) ? `${row.jw}–${row.jl}` : "—";
+                      return `<tr class="${cls}"><td class="center">${row.pos}</td><td>${esc(row.team)}${row.team === m.our_team ? ' <span class="tag tag-unbeaten">Nuestro equipo</span>' : ""}</td><td class="center">${gp}</td><td class="num"><strong>${row.pts}</strong></td><td class="num">${row.set_ave.toFixed(1)}%</td><td class="num">${row.game_ave.toFixed(1)}%</td></tr>`;
+                    }).join("")}
                   </tbody>
                 </table>
               </div>
+              ${view.standings_note ? `<p class="footnote">${esc(view.standings_note)}</p>` : ""}
+            ` : `<p class="footnote">En vista histórica combinada selecciona una temporada específica arriba para ver su tabla de posiciones de grupo.</p>`}
+          </section>
+
+          <!-- HISTORIAL POR JORNADA -->
+          <section class="section" id="sec-jornadas">
+            <div class="section-header">
+              <div><h2>Historial por Jornada — ${esc(seasonLbl)}</h2><div class="section-subtitle">Selecciona una jornada o playoff para ver la alineación D1–D5 y el marcador</div></div>
             </div>
-          </div>
-        </section>
+            <div class="tabs-bar" id="jornada-tabs"></div>
+            <div id="jornada-detail"></div>
+          </section>
 
-        <section class="section" id="sec-parejas">
-          <div class="section-header">
-            <div><h2>Parejas y Rotaciones</h2><div class="section-subtitle">Química de duplas y mapa de calor de posiciones por jugador</div></div>
-            <div class="filter-pills" id="pairs-season-filter">
-              <button class="filter-btn active" data-season="${esc(m.current_season)}">${esc(m.current_season)}</button>
-              <button class="filter-btn" data-season="ALL">Todas</button>
+          <!-- ESTADISTICAS INDIVIDUALES -->
+          <section class="section" id="sec-jugadores">
+            <div class="section-header"><div><h2>Estadísticas individuales — ${esc(seasonLbl)}</h2><div class="section-subtitle">TOL = Tennis Open League · CTA = Competencias de Tenis Amateur · Haz clic en un jugador para desplegar su ficha</div></div></div>
+            <div class="search-bar">
+              <input type="text" id="player-search" class="search-input" value="${esc(playerSearchText)}" placeholder="Buscar por nombre, cédula, club CTA o compañero..." />
             </div>
-          </div>
-          <div class="table-wrap" style="margin-bottom:20px">
-            <table class="data-table">
-              <thead><tr><th>Pareja</th><th>Posiciones</th><th class="num">PJ</th><th class="num">G–P</th><th>Efectividad</th><th class="num">Dif. Games</th><th>Perfil</th></tr></thead>
-              <tbody id="pairs-tbody"></tbody>
-            </table>
-          </div>
-          <h3 style="font-size:15px;font-weight:800;color:var(--primary);margin-bottom:10px">Mapa de posiciones por jugador (${esc(m.current_season)})</h3>
-          <div class="table-wrap">
-            <table class="data-table">
-              <thead><tr><th>Jugador</th><th class="center">D1</th><th class="center">D2</th><th class="center">D3</th><th class="center">D4</th><th class="center">D5</th><th class="num">Total</th></tr></thead>
-              <tbody>
-                ${data.position_heatmap.map(row => {
-                  const cell = (val) => {
-                    if (!val) return `<td class="center" style="color:#cbd5e1">—</td>`;
-                    const alpha = Math.min(0.15 + val * 0.16, 0.85);
-                    const color = alpha > 0.48 ? "#ffffff" : "#0f2c59";
-                    return `<td class="center"><span class="hm-cell" style="display:inline-block;min-width:30px;padding:3px 7px;background:rgba(15,44,89,${alpha.toFixed(2)});color:${color}">${val}</span></td>`;
-                  };
-                  return `<tr><td><strong>${esc(row.name)}</strong></td>${cell(row.D1)}${cell(row.D2)}${cell(row.D3)}${cell(row.D4)}${cell(row.D5)}<td class="num"><strong>${row.total}</strong></td></tr>`;
-                }).join("")}
-              </tbody>
-            </table>
-          </div>
-        </section>
+            <div class="table-wrap">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th class="sortable" data-sort="name">Jugador ⇅</th>
+                    <th>Cédula</th>
+                    <th>CTA</th>
+                    <th class="num sortable" data-sort="pj">PJ ⇅</th>
+                    <th class="num sortable" data-sort="v">V ⇅</th>
+                    <th class="sortable" data-sort="eff">Efectividad ⇅</th>
+                    <th class="num sortable" data-sort="elo">ELO ⇅</th>
+                    <th class="center"></th>
+                  </tr>
+                </thead>
+                <tbody id="players-tbody"></tbody>
+              </table>
+            </div>
+          </section>
 
-        <footer class="footer">Reporte standalone generado automáticamente · Fuentes: TOL (EpicenterSport) &amp; CTA</footer>
-      `;
+          <!-- ANALISIS DETALLADO -->
+          <section class="section" id="sec-detallado">
+            <div class="section-header"><div><h2>Análisis Detallado</h2><div class="section-subtitle">Rendimiento por posición en ${esc(seasonLbl)} y comparativa entre todas las temporadas</div></div></div>
+            <div class="two-col">
+              <div class="subcard">
+                <h3>Rendimiento por posición (${esc(seasonLbl)})</h3>
+                ${view.position_stats.map(ps => `
+                  <div class="pos-bar-row">
+                    <div class="pos-bar-meta">
+                      <span><span class="pos-badge">${ps.pos}</span> <strong>${ps.w}–${ps.l}</strong> (${ps.eff.toFixed(1)}%)</span>
+                      <span style="color:var(--text-light);font-size:12px">${ps.unique_pairs} pareja(s)</span>
+                    </div>
+                    <div class="pos-track"><div class="pos-fill" style="width:${ps.eff.toFixed(1)}%"></div></div>
+                    <div class="pos-note">Pareja más usada: <strong>${esc(ps.top_pair)}</strong> (${ps.top_pair_record})</div>
+                  </div>
+                `).join("")}
+              </div>
+              <div class="subcard">
+                <h3>Comparativa entre temporadas (TOL)</h3>
+                <div class="table-wrap">
+                  <table class="data-table">
+                    <thead><tr><th>Métrica</th>${data.season_comparison.map(sc => `<th class="num" style="${sc.season===activeSeason?'color:var(--primary);background:var(--primary-soft)':''}">${esc(sc.season)}</th>`).join("")}</tr></thead>
+                    <tbody>
+                      <tr><td>Jornadas (G–P)</td>${data.season_comparison.map(sc => `<td class="num"><strong>${sc.jornadas_w}–${sc.jornadas_l}</strong></td>`).join("")}</tr>
+                      <tr><td>Dobles (G–P)</td>${data.season_comparison.map(sc => `<td class="num">${sc.matches_w}–${sc.matches_l}</td>`).join("")}</tr>
+                      <tr><td>Efectividad</td>${data.season_comparison.map(sc => `<td class="num"><strong>${sc.indiv_eff.toFixed(1)}%</strong></td>`).join("")}</tr>
+                      <tr><td>Sets (G–P · %)</td>${data.season_comparison.map(sc => `<td class="num">${sc.sets_w}–${sc.sets_l} (${sc.set_ave.toFixed(1)}%)</td>`).join("")}</tr>
+                      <tr><td>Games (G–P · %)</td>${data.season_comparison.map(sc => `<td class="num">${sc.games_w}–${sc.games_l} (${sc.game_ave.toFixed(1)}%)</td>`).join("")}</tr>
+                      <tr><td>Súper Tie-Breaks</td>${data.season_comparison.map(sc => `<td class="num">${sc.stb_w}–${sc.stb_l} (${sc.stb_eff.toFixed(0)}%)</td>`).join("")}</tr>
+                      <tr><td>Jornadas 3–2 (G–P)</td>${data.season_comparison.map(sc => `<td class="num">${sc.close_w}–${sc.close_l}</td>`).join("")}</tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </section>
 
-      // Interactivity 1: Jornadas Tabs
-      const allSeasons = [...new Set(data.jornadas.map(j => j.season))];
-      let activeJornadaSeason = allSeasons.includes(m.current_season) ? m.current_season : (allSeasons[0] || "");
-      let activeJornadaIdx = 0;
+          <!-- PAREJAS Y ROTACIONES -->
+          <section class="section" id="sec-parejas">
+            <div class="section-header">
+              <div><h2>Parejas y Rotaciones — ${esc(seasonLbl)}</h2><div class="section-subtitle">Química de duplas y mapa de calor de posiciones por jugador en ${esc(seasonLbl)}</div></div>
+            </div>
+            <div class="table-wrap" style="margin-bottom:20px">
+              <table class="data-table">
+                <thead><tr><th>Pareja</th><th>Posiciones</th><th class="num">PJ</th><th class="num">G–P</th><th>Efectividad</th><th class="num">Dif. Games</th><th>Perfil</th></tr></thead>
+                <tbody>
+                  ${view.pairs.map(pr => {
+                    const tags = [];
+                    if (pr.pj >= 3) tags.push(`<span class="tag tag-fixed">Pareja Fija</span>`);
+                    if (pr.pj >= 2 && pr.l === 0) tags.push(`<span class="tag tag-unbeaten">Invicta</span>`);
+                    if (!tags.length) tags.push(`<span class="tag tag-rot">Rotación</span>`);
+                    const gd = pr.game_diff >= 0 ? `+${pr.game_diff}` : `${pr.game_diff}`;
+                    return `<tr><td><strong>${esc(pr.pair_name)}</strong></td><td>${pr.positions.map(pos => `<span class="pos-badge" style="margin-right:4px">${esc(pos)}</span>`).join("")}</td><td class="num">${pr.pj}</td><td class="num"><strong>${pr.w}–${pr.l}</strong></td><td><div class="eff-bar-wrap"><div class="eff-bar-track"><div class="eff-bar-fill ${pctClass(pr.eff)}" style="width:${pr.eff.toFixed(0)}%"></div></div><strong>${pr.eff.toFixed(0)}%</strong></div></td><td class="num" style="color:${pr.game_diff >= 0 ? "var(--accent-text)" : "var(--danger-text)"};font-weight:700">${gd}</td><td>${tags.join(" ")}</td></tr>`;
+                  }).join("") || `<tr><td colspan="7" class="center" style="color:var(--text-light)">Sin datos de parejas en ${esc(seasonLbl)}.</td></tr>`}
+                </tbody>
+              </table>
+            </div>
 
-      const jFilterEl = document.getElementById("jornada-season-filter");
-      jFilterEl.innerHTML = allSeasons.map(s => `<button class="filter-btn ${s === activeJornadaSeason ? "active" : ""}" data-season="${esc(s)}">${esc(s)}</button>`).join("");
+            <h3 style="font-size:15px;font-weight:800;color:var(--primary);margin-bottom:10px">Mapa de posiciones por jugador (${esc(seasonLbl)})</h3>
+            <div class="table-wrap">
+              <table class="data-table">
+                <thead><tr><th>Jugador</th><th class="center">D1</th><th class="center">D2</th><th class="center">D3</th><th class="center">D4</th><th class="center">D5</th><th class="num">Total</th></tr></thead>
+                <tbody>
+                  ${view.position_heatmap.map(row => {
+                    const cell = (val) => {
+                      if (!val) return `<td class="center" style="color:#cbd5e1">—</td>`;
+                      const alpha = Math.min(0.15 + val * 0.16, 0.85);
+                      const color = alpha > 0.48 ? "#ffffff" : "#0f2c59";
+                      return `<td class="center"><span class="hm-cell" style="display:inline-block;min-width:30px;padding:3px 7px;background:rgba(15,44,89,${alpha.toFixed(2)});color:${color}">${val}</span></td>`;
+                    };
+                    return `<tr><td><strong>${esc(row.name)}</strong></td>${cell(row.D1)}${cell(row.D2)}${cell(row.D3)}${cell(row.D4)}${cell(row.D5)}<td class="num"><strong>${row.total}</strong></td></tr>`;
+                  }).join("") || `<tr><td colspan="7" class="center" style="color:var(--text-light)">Sin partidos registrados en ${esc(seasonLbl)}.</td></tr>`}
+                </tbody>
+              </table>
+            </div>
+          </section>
 
-      function renderJornadasUI() {
-        const filtered = data.jornadas.filter(j => j.season === activeJornadaSeason);
-        if (activeJornadaIdx >= filtered.length) activeJornadaIdx = 0;
-        const tabsEl = document.getElementById("jornada-tabs");
-        tabsEl.innerHTML = filtered.map((j, idx) => `
-          <button class="jornada-tab ${idx === activeJornadaIdx ? "active" : ""}" data-idx="${idx}">
-            <div class="jornada-tab-top"><span>${esc(j.round)}</span><span class="tab-pill ${j.result}">${j.result} ${j.score_for}–${j.score_against}</span></div>
-            <div class="jornada-tab-opp">vs ${esc(j.opponent)}</div>
-            <div class="jornada-tab-date">${esc(j.date)}</div>
-          </button>
-        `).join("");
-        tabsEl.querySelectorAll(".jornada-tab").forEach(btn => btn.addEventListener("click", () => { activeJornadaIdx = Number(btn.dataset.idx); renderJornadasUI(); }));
-        const detailEl = document.getElementById("jornada-detail");
-        detailEl.innerHTML = filtered[activeJornadaIdx] ? renderMatchCard(filtered[activeJornadaIdx], m.team_name) : `<p class="footnote">No hay jornadas registradas.</p>`;
-      }
-      jFilterEl.querySelectorAll(".filter-btn").forEach(btn => btn.addEventListener("click", () => {
-        activeJornadaSeason = btn.dataset.season; activeJornadaIdx = 0;
-        jFilterEl.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
-        btn.classList.add("active"); renderJornadasUI();
-      }));
-      renderJornadasUI();
+          <footer class="footer">Reporte standalone generado automáticamente · Fuentes: TOL (EpicenterSport) &amp; CTA</footer>
+        `;
 
-      // Interactivity 2: Players Accordion + Search + Sort
-      let playerSeasonMode = "ALL", playerSearchText = "", playerSortField = "eff", playerSortAsc = false;
-      const expandedPlayers = new Set();
-
-      function getPlayerMetrics(p) {
-        if (playerSeasonMode === "ALL") return { pj: p.pj_all, v: p.v_all, eff: p.eff_all, history: p.history };
-        const h = p.history.filter(x => x.season === playerSeasonMode);
-        const pj = h.length, v = h.filter(x => x.result === "V").length;
-        return { pj, v, eff: pj ? (v / pj) * 100 : 0, history: h };
-      }
-
-      function renderPlayersTable() {
-        const tbody = document.getElementById("players-tbody");
-        const q = playerSearchText.trim().toLowerCase();
-        let rows = data.players.map(p => ({ p, st: getPlayerMetrics(p) }));
-        if (playerSeasonMode !== "ALL") rows = rows.filter(x => x.st.pj > 0);
-        if (q) {
-          rows = rows.filter(({ p }) => [p.name, p.cedula, p.cta ? `${p.cta.club} ${p.cta.category}` : "", p.fixed_partner_note || "", p.tactical_note || ""].join(" ").toLowerCase().includes(q));
-        }
-        rows.sort((a, b) => {
-          let va, vb;
-          if (playerSortField === "name") { va = a.p.name; vb = b.p.name; }
-          else if (playerSortField === "pj") { va = a.st.pj; vb = b.st.pj; }
-          else if (playerSortField === "v") { va = a.st.v; vb = b.st.v; }
-          else if (playerSortField === "elo") { va = a.p.elo || 0; vb = b.p.elo || 0; }
-          else { va = a.st.eff; vb = b.st.eff; }
-          if (va === vb) return (b.p.elo || 0) - (a.p.elo || 0);
-          if (typeof va === "string") return playerSortAsc ? va.localeCompare(vb) : vb.localeCompare(va);
-          return playerSortAsc ? va - vb : vb - va;
+        // Wire Global Season Buttons
+        document.querySelectorAll("#global-season-pills .season-btn").forEach(btn => {
+          btn.addEventListener("click", () => {
+            activeSeason = btn.dataset.gseason;
+            activeJornadaIdx = 0;
+            expandedPlayers.clear();
+            const u = new URL(window.location.href);
+            u.searchParams.set("season", activeSeason);
+            window.history.replaceState({}, "", u.toString());
+            renderAll();
+          });
         });
 
-        tbody.innerHTML = rows.map(({ p, st }) => {
-          const isOpen = expandedPlayers.has(p.id);
-          const ctaBadge = p.cta && p.cta.verified ? `<span class="tag tag-cta">${esc(p.cta.category)} · #${p.cta.ranking}</span>` : `<span class="tag tag-rot">Sin cruce</span>`;
-          const ctaDetail = p.cta && p.cta.verified
-            ? `<div class="cta-box"><h4>CTA · Perfil verificado (${esc(p.cta.match_method)})</h4><div><strong>Club:</strong> ${esc(p.cta.club)} · <strong>Categoría:</strong> ${esc(p.cta.category)} · <strong>Ranking CTA:</strong> #${p.cta.ranking} (${p.cta.points} pts)</div>${p.tactical_note ? `<div style="margin-top:6px;color:var(--text-muted)">${esc(p.tactical_note)}</div>` : ""}</div>`
-            : `<div class="cta-box unverified"><h4>CTA · Club actual</h4><div>Cruce con CTA no verificado para este jugador.${p.tactical_note ? " " + esc(p.tactical_note) : ""}</div></div>`;
-          const historyHtml = st.history.map(h => `
-            <div class="history-item">
-              <span class="res-badge ${h.result}">${h.result}</span>
-              <div><strong>${esc(h.round)}</strong><br><span style="color:var(--text-light)">${esc(h.date)} · ${esc(h.season)}</span></div>
-              <div style="font-family:var(--mono);font-weight:700">${esc(h.score_str)}</div>
-              <div><strong>vs ${esc(h.opp_pair)}</strong><div style="color:var(--text-light)">Compañero: <strong>${esc(h.partner)}</strong> · Rival: ${esc(h.rival_team)}</div></div>
-              <span class="pos-badge">${esc(h.pos)}</span>
-            </div>
+        // Wire Jornadas Tabs
+        const jornadas = view.jornadas || [];
+        if (activeJornadaIdx >= jornadas.length) activeJornadaIdx = 0;
+        function drawJornadas() {
+          const tabsEl = document.getElementById("jornada-tabs");
+          const detailEl = document.getElementById("jornada-detail");
+          tabsEl.innerHTML = jornadas.map((j, idx) => `
+            <button class="jornada-tab ${idx === activeJornadaIdx ? "active" : ""}" data-idx="${idx}">
+              <div class="jornada-tab-top"><span>${esc(j.round)}</span><span class="tab-pill ${j.result}">${j.result} ${j.score_for}–${j.score_against}</span></div>
+              <div class="jornada-tab-opp">vs ${esc(j.opponent)}</div>
+              <div class="jornada-tab-date">${esc(j.date)}${isHistorical ? " · " + esc(j.season) : ""}</div>
+            </button>
           `).join("");
+          tabsEl.querySelectorAll(".jornada-tab").forEach(b => b.addEventListener("click", () => {
+            activeJornadaIdx = Number(b.dataset.idx);
+            drawJornadas();
+          }));
+          detailEl.innerHTML = jornadas[activeJornadaIdx]
+            ? renderMatchCard(jornadas[activeJornadaIdx], m.team_name)
+            : `<p class="footnote">No hay jornadas registradas en ${esc(seasonLbl)}.</p>`;
+        }
+        drawJornadas();
 
-          return `
-            <tr class="player-row ${isOpen ? "expanded" : ""}" data-pid="${esc(p.id)}">
-              <td><strong>${esc(p.name)}</strong>${p.is_debutant ? ' <span class="tag tag-fixed">Debut</span>' : ""}</td>
-              <td style="font-family:var(--mono);color:var(--text-muted)">${esc(p.cedula)}</td>
-              <td>${ctaBadge}</td>
-              <td class="num">${st.pj}</td>
-              <td class="num">${st.v}</td>
-              <td><div class="eff-bar-wrap"><div class="eff-bar-track"><div class="eff-bar-fill ${pctClass(st.eff)}" style="width:${st.eff.toFixed(0)}%"></div></div><strong>${st.eff.toFixed(0)}%</strong></div></td>
-              <td class="num"><strong>${p.elo ? p.elo.toFixed(2) : "—"}</strong></td>
-              <td class="center"><span class="chevron">›</span></td>
-            </tr>
-            <tr class="player-detail-row ${isOpen ? "open" : ""}">
-              <td colspan="8" class="player-detail-cell">
-                <div class="player-drawer">
-                  ${ctaDetail}
-                  ${p.fixed_partner_note ? `<div class="partner-pill">🤝 ${esc(p.fixed_partner_note)}</div>` : ""}
+        // Wire Players Table
+        function drawPlayers() {
+          const tbody = document.getElementById("players-tbody");
+          const q = playerSearchText.trim().toLowerCase();
+          let rows = [...(view.players || [])];
+          if (q) {
+            rows = rows.filter(p => [p.name, p.cedula, p.cta ? `${p.cta.club} ${p.cta.category}` : "", p.fixed_partner_note || "", p.tactical_note || ""].join(" ").toLowerCase().includes(q));
+          }
+          rows.sort((a, b) => {
+            let va, vb;
+            if (playerSortField === "name") { va = a.name; vb = b.name; }
+            else if (playerSortField === "pj") { va = a.pj; vb = b.pj; }
+            else if (playerSortField === "v") { va = a.v; vb = b.v; }
+            else if (playerSortField === "elo") { va = a.elo || 0; vb = b.elo || 0; }
+            else { va = a.eff; vb = b.eff; }
+            if (va === vb) return (b.elo || 0) - (a.elo || 0);
+            if (typeof va === "string") return playerSortAsc ? va.localeCompare(vb) : vb.localeCompare(va);
+            return playerSortAsc ? va - vb : vb - va;
+          });
+
+          tbody.innerHTML = rows.map(p => {
+            const isOpen = expandedPlayers.has(p.id);
+            const ctaBadge = p.cta && p.cta.verified ? `<span class="tag tag-cta">${esc(p.cta.category)} · #${p.cta.ranking}</span>` : `<span class="tag tag-rot">Sin cruce</span>`;
+            const ctaDetail = p.cta && p.cta.verified
+              ? `<div class="cta-box"><h4>CTA · Perfil verificado (${esc(p.cta.match_method)})</h4><div><strong>Club:</strong> ${esc(p.cta.club)} · <strong>Categoría:</strong> ${esc(p.cta.category)} · <strong>Ranking CTA:</strong> #${p.cta.ranking} (${p.cta.points} pts)</div>${p.tactical_note ? `<div style="margin-top:6px;color:var(--text-muted)">${esc(p.tactical_note)}</div>` : ""}</div>`
+              : `<div class="cta-box unverified"><h4>CTA · Club actual</h4><div>Cruce con CTA no verificado para este jugador.${p.tactical_note ? " " + esc(p.tactical_note) : ""}</div></div>`;
+            const historyHtml = (p.history || []).map(h => `
+              <div class="history-item">
+                <span class="res-badge ${h.result}">${h.result}</span>
+                <div><strong>${esc(h.round)}</strong><br><span style="color:var(--text-light)">${esc(h.date)} · ${esc(h.season)}</span></div>
+                <div style="font-family:var(--mono);font-weight:700">${esc(h.score_str)}</div>
+                <div><strong>vs ${esc(h.opp_pair)}</strong><div style="color:var(--text-light)">Compañero: <strong>${esc(h.partner)}</strong> · Rival: ${esc(h.rival_team)}</div></div>
+                <span class="pos-badge">${esc(h.pos)}</span>
+              </div>
+            `).join("");
+
+            return `
+              <tr class="player-row ${isOpen ? "expanded" : ""}" data-pid="${esc(p.id)}">
+                <td><strong>${esc(p.name)}</strong>${p.is_debutant ? ' <span class="tag tag-fixed">Debut</span>' : ""}</td>
+                <td style="font-family:var(--mono);color:var(--text-muted)">${esc(p.cedula)}</td>
+                <td>${ctaBadge}</td>
+                <td class="num">${p.pj}</td>
+                <td class="num">${p.v}</td>
+                <td><div class="eff-bar-wrap"><div class="eff-bar-track"><div class="eff-bar-fill ${pctClass(p.eff)}" style="width:${p.eff.toFixed(0)}%"></div></div><strong>${p.eff.toFixed(0)}%</strong></div></td>
+                <td class="num"><strong>${p.elo ? p.elo.toFixed(2) : "—"}</strong></td>
+                <td class="center"><span class="chevron">›</span></td>
+              </tr>
+              <tr class="player-detail-row ${isOpen ? "open" : ""}">
+                <td colspan="8" class="player-detail-cell">
+                  <div class="player-drawer">
+                    ${ctaDetail}
+                    ${p.fixed_partner_note ? `<div class="partner-pill">🤝 ${esc(p.fixed_partner_note)}</div>` : ""}
+                    <div>
+                      <h4 style="font-size:12px;text-transform:uppercase;letter-spacing:0.5px;color:var(--text-light);margin-bottom:8px">TOL — Historial en ${esc(seasonLbl)} (${(p.history||[]).length})</h4>
+                      <div class="history-list">${historyHtml || '<p class="footnote">Sin partidos registrados en esta temporada.</p>'}</div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            `;
+          }).join("") || `<tr><td colspan="8" class="center" style="color:var(--text-light)">No hay jugadores que coincidan con el filtro en ${esc(seasonLbl)}.</td></tr>`;
+
+          tbody.querySelectorAll(".player-row").forEach(tr => tr.addEventListener("click", () => {
+            const pid = tr.dataset.pid;
+            if (expandedPlayers.has(pid)) expandedPlayers.delete(pid); else expandedPlayers.add(pid);
+            drawPlayers();
+          }));
+        }
+        drawPlayers();
+
+        document.getElementById("player-search").addEventListener("input", (e) => { playerSearchText = e.target.value; drawPlayers(); });
+        document.querySelectorAll("th.sortable").forEach(th => th.addEventListener("click", () => {
+          const f = th.dataset.sort;
+          if (playerSortField === f) playerSortAsc = !playerSortAsc; else { playerSortField = f; playerSortAsc = (f === "name"); }
+          drawPlayers();
+        }));
+
+        // Wire Lineup Simulator
+        if (!isOwnReport && document.getElementById("sim-rows")) {
+          const ourRoster = (view.our_team_profile && view.our_team_profile.roster) || [];
+          const ourPairsMap = (view.our_team_profile && view.our_team_profile.pair_stats) || {};
+          const rivalPairs = matchup.all_rival_pairs || [];
+          const slots = matchup.positions || [];
+
+          const eloOf = (rosterArr, name) => {
+            const found = rosterArr.find(x => x.name === name);
+            return found ? (found.elo || 200) : 200;
+          };
+          const sortedOurs = [...ourRoster].sort((a, b) => (b.elo || 0) - (a.elo || 0) || (b.eff || 0) - (a.eff || 0));
+          const makeTop5Pairs = () => {
+            const res = [];
+            for (let i = 0; i < 5; i++) {
+              const p1 = sortedOurs[i * 2]?.name || sortedOurs[0]?.name || "Jugador A";
+              const p2 = sortedOurs[i * 2 + 1]?.name || sortedOurs[1]?.name || "Jugador B";
+              res.push([p1, p2]);
+            }
+            return res;
+          };
+
+          const basePairs = makeTop5Pairs();
+          const simState = slots.map((slot, idx) => ({
+            pos: slot.pos,
+            rivalPair: slot.primary_pair,
+            ourP1: basePairs[idx]?.[0] || "",
+            ourP2: basePairs[idx]?.[1] || "",
+          }));
+
+          const rivalPairElo = (pairName) => {
+            const found = rivalPairs.find(r => r.pair_name === pairName);
+            if (found && found.avg_elo) return found.avg_elo;
+            const sl = slots.find(s => s.primary_pair === pairName);
+            return (sl && sl.avg_elo) ? sl.avg_elo : 210;
+          };
+          const rivalPairEff = (pairName) => {
+            const found = rivalPairs.find(r => r.pair_name === pairName);
+            return found ? found.eff : 50;
+          };
+
+          function winProb(ourP1, ourP2, rivPair) {
+            const ourAvgElo = (eloOf(ourRoster, ourP1) + eloOf(ourRoster, ourP2)) / 2;
+            const rivAvgElo = rivalPairElo(rivPair);
+            const diff = ourAvgElo - rivAvgElo;
+            let p = 1 / (1 + Math.pow(10, -diff / 110));
+            const pk = [ourP1, ourP2].sort().join(" / ");
+            if (ourPairsMap[pk] && ourPairsMap[pk].pj >= 2) {
+              p = Math.max(0.08, Math.min(0.92, p + ((ourPairsMap[pk].eff - 50) / 100) * 0.08));
+            }
+            const rEff = rivalPairEff(rivPair);
+            if (rEff >= 80) p = Math.max(0.08, p - 0.05);
+            else if (rEff <= 35) p = Math.min(0.92, p + 0.05);
+            return { prob: p, ourElo: ourAvgElo, rivElo: rivAvgElo, diff };
+          }
+
+          function seriesWinProb(probs) {
+            let dp = [1, 0, 0, 0, 0, 0];
+            for (const p of probs) {
+              const next = [0, 0, 0, 0, 0, 0];
+              for (let k = 0; k <= 5; k++) {
+                next[k] += dp[k] * (1 - p);
+                if (k + 1 <= 5) next[k + 1] += dp[k] * p;
+              }
+              dp = next;
+            }
+            return dp[3] + dp[4] + dp[5];
+          }
+
+          function checkH2H(ourP1, ourP2, rivPair) {
+            const rivPlayers = rivPair.split(" / ").map(s => s.trim().toLowerCase());
+            for (const hm of (view.h2h_matches || [])) {
+              for (const d of (hm.doubles || [])) {
+                const ourIn = (d.opp_pair || "").toLowerCase();
+                const rivIn = (d.team_pair || "").toLowerCase();
+                if ((ourIn.includes(ourP1.toLowerCase()) || ourIn.includes(ourP2.toLowerCase())) &&
+                    rivPlayers.some(rp => rp && rivIn.includes(rp))) {
+                  return `${d.result === "D" ? "Ganamos" : "Perdimos"} (${d.score_str})`;
+                }
+              }
+            }
+            return "";
+          }
+
+          function applySuggestion(mode) {
+            const pairs = makeTop5Pairs();
+            pairs.sort((a, b) => (eloOf(ourRoster, b[0]) + eloOf(ourRoster, b[1])) - (eloOf(ourRoster, a[0]) + eloOf(ourRoster, a[1])));
+            const idxByThreat = [0, 1, 2, 3, 4].sort((i, j) => rivalPairElo(simState[j].rivalPair) - rivalPairElo(simState[i].rivalPair));
+            if (mode === "mirror") {
+              idxByThreat.forEach((slotIdx, rank) => { simState[slotIdx].ourP1 = pairs[rank][0]; simState[slotIdx].ourP2 = pairs[rank][1]; });
+            } else {
+              simState[idxByThreat[0]].ourP1 = pairs[4][0]; simState[idxByThreat[0]].ourP2 = pairs[4][1];
+              for (let r = 1; r < 5; r++) { simState[idxByThreat[r]].ourP1 = pairs[r - 1][0]; simState[idxByThreat[r]].ourP2 = pairs[r - 1][1]; }
+            }
+            drawSim();
+          }
+
+          function drawSim() {
+            const rowsEl = document.getElementById("sim-rows");
+            const sumEl = document.getElementById("sim-summary");
+            const rivalOpts = [...new Set([...slots.map(s => s.primary_pair), ...rivalPairs.map(r => r.pair_name)])].filter(Boolean);
+            const probs = [];
+            let expectedPts = 0;
+
+            rowsEl.innerHTML = simState.map((st, idx) => {
+              const calc = winProb(st.ourP1, st.ourP2, st.rivalPair);
+              probs.push(calc.prob);
+              expectedPts += calc.prob;
+              const pct = Math.round(calc.prob * 100);
+              const h2hTxt = checkH2H(st.ourP1, st.ourP2, st.rivalPair);
+              const diffStr = calc.diff >= 0 ? `+${calc.diff.toFixed(0)}` : `${calc.diff.toFixed(0)}`;
+              return `
+                <div class="sim-row">
+                  <div><span class="pos-badge">${esc(st.pos)}</span></div>
                   <div>
-                    <h4 style="font-size:12px;text-transform:uppercase;letter-spacing:0.5px;color:var(--text-light);margin-bottom:8px">TOL — Historial de partidos (${st.history.length})</h4>
-                    <div class="history-list">${historyHtml || '<p class="footnote">Sin partidos registrados.</p>'}</div>
+                    <div style="font-size:11px;font-weight:700;color:var(--text-light);margin-bottom:3px">RIVAL (${esc(m.team_name)})</div>
+                    <select class="sim-select" data-sim-rival="${idx}">
+                      ${rivalOpts.map(rp => `<option value="${esc(rp)}" ${rp === st.rivalPair ? "selected" : ""}>${esc(rp)} (ELO ${rivalPairElo(rp).toFixed(0)})</option>`).join("")}
+                    </select>
+                  </div>
+                  <div>
+                    <div style="font-size:11px;font-weight:700;color:var(--accent-text);margin-bottom:3px">NUESTRA PAREJA (${esc(m.our_team)})</div>
+                    <div class="sim-pair-selectors">
+                      <select class="sim-select" data-sim-p1="${idx}">${sortedOurs.map(p => `<option value="${esc(p.name)}" ${p.name === st.ourP1 ? "selected" : ""}>${esc(p.name)} (${(p.elo||0).toFixed(0)})</option>`).join("")}</select>
+                      <select class="sim-select" data-sim-p2="${idx}">${sortedOurs.map(p => `<option value="${esc(p.name)}" ${p.name === st.ourP2 ? "selected" : ""}>${esc(p.name)} (${(p.elo||0).toFixed(0)})</option>`).join("")}</select>
+                    </div>
+                  </div>
+                  <div class="sim-pred">
+                    <div><strong>${pct}%</strong> prob. ganar · <span style="color:${calc.diff >= 0 ? "var(--accent-text)" : "var(--danger-text)"};font-weight:700">Δ ${diffStr} ELO</span></div>
+                    <div class="sim-prob-bar"><div class="sim-prob-fill" style="width:${pct}%"></div></div>
+                    <div style="font-size:11px;color:var(--text-light)">Nosotros ${calc.ourElo.toFixed(0)} vs ${calc.rivElo.toFixed(0)}</div>
+                    ${h2hTxt ? `<div class="h2h-mini">H2H: ${esc(h2hTxt)}</div>` : ""}
                   </div>
                 </div>
-              </td>
-            </tr>
-          `;
-        }).join("");
+              `;
+            }).join("");
 
-        tbody.querySelectorAll(".player-row").forEach(tr => tr.addEventListener("click", () => {
-          const pid = tr.dataset.pid;
-          if (expandedPlayers.has(pid)) expandedPlayers.delete(pid); else expandedPlayers.add(pid);
-          renderPlayersTable();
-        }));
+            const winSeriePct = Math.round(seriesWinProb(probs) * 100);
+            sumEl.innerHTML = `
+              <div><div style="font-size:11px;text-transform:uppercase;color:#93c5fd;font-weight:700">Proyección (${esc(seasonLbl)})</div><div class="sim-score-big">${esc(m.our_team)} ${expectedPts.toFixed(1)} – ${(5 - expectedPts).toFixed(1)} ${esc(m.team_name)}</div></div>
+              <div style="margin-left:auto;text-align:right"><div style="font-size:11px;text-transform:uppercase;color:#93c5fd;font-weight:700">Probabilidad de ganar (≥3 pts)</div><div class="sim-score-big" style="color:${winSeriePct >= 50 ? "#86efac" : "#fca5a5"}">${winSeriePct}%</div></div>
+            `;
+
+            rowsEl.querySelectorAll("[data-sim-rival]").forEach(sel => sel.addEventListener("change", (e) => { simState[Number(e.target.dataset.simRival)].rivalPair = e.target.value; drawSim(); }));
+            rowsEl.querySelectorAll("[data-sim-p1]").forEach(sel => sel.addEventListener("change", (e) => { simState[Number(e.target.dataset.simP1)].ourP1 = e.target.value; drawSim(); }));
+            rowsEl.querySelectorAll("[data-sim-p2]").forEach(sel => sel.addEventListener("change", (e) => { simState[Number(e.target.dataset.simP2)].ourP2 = e.target.value; drawSim(); }));
+          }
+
+          document.getElementById("btn-mirror").addEventListener("click", () => applySuggestion("mirror"));
+          document.getElementById("btn-sacrifice").addEventListener("click", () => applySuggestion("sacrifice"));
+          document.getElementById("btn-copy-wa").addEventListener("click", () => {
+            const lines = [`🎾 *Alineación propuesta ${m.our_team} vs ${m.team_name}* (${m.category} · ${seasonLbl})`, ""];
+            simState.forEach(st => {
+              const c = winProb(st.ourP1, st.ourP2, st.rivalPair);
+              lines.push(`*${st.pos}:* ${st.ourP1} / ${st.ourP2}  🆚  _${st.rivalPair}_ (${Math.round(c.prob*100)}%)`);
+            });
+            navigator.clipboard?.writeText(lines.join("\n"));
+            const btn = document.getElementById("btn-copy-wa");
+            const prev = btn.textContent;
+            btn.textContent = "✅ ¡Copiada!";
+            setTimeout(() => btn.textContent = prev, 1800);
+          });
+          drawSim();
+        }
       }
 
-      document.getElementById("player-search").addEventListener("input", (e) => { playerSearchText = e.target.value; renderPlayersTable(); });
-      document.querySelectorAll("#player-season-filter .filter-btn").forEach(btn => btn.addEventListener("click", () => {
-        playerSeasonMode = btn.dataset.season;
-        document.querySelectorAll("#player-season-filter .filter-btn").forEach(b => b.classList.remove("active"));
-        btn.classList.add("active"); renderPlayersTable();
-      }));
-      document.querySelectorAll("th.sortable").forEach(th => th.addEventListener("click", () => {
-        const f = th.dataset.sort;
-        if (playerSortField === f) playerSortAsc = !playerSortAsc; else { playerSortField = f; playerSortAsc = (f === "name"); }
-        renderPlayersTable();
-      }));
-      renderPlayersTable();
-
-      // Interactivity 3: Pairs
-      let pairsSeasonMode = m.current_season;
-      function renderPairsTable() {
-        const list = pairsSeasonMode === "ALL" ? data.pairs_all : data.pairs_current;
-        const tbody = document.getElementById("pairs-tbody");
-        tbody.innerHTML = list.map(pr => {
-          const tags = [];
-          if (pr.pj >= 3) tags.push(`<span class="tag tag-fixed">Pareja Fija</span>`);
-          if (pr.pj >= 2 && pr.l === 0) tags.push(`<span class="tag tag-unbeaten">Invicta</span>`);
-          if (!tags.length) tags.push(`<span class="tag tag-rot">Rotación</span>`);
-          const gd = pr.game_diff >= 0 ? `+${pr.game_diff}` : `${pr.game_diff}`;
-          return `<tr><td><strong>${esc(pr.pair_name)}</strong></td><td>${pr.positions.map(pos => `<span class="pos-badge" style="margin-right:4px">${esc(pos)}</span>`).join("")}</td><td class="num">${pr.pj}</td><td class="num"><strong>${pr.w}–${pr.l}</strong></td><td><div class="eff-bar-wrap"><div class="eff-bar-track"><div class="eff-bar-fill ${pctClass(pr.eff)}" style="width:${pr.eff.toFixed(0)}%"></div></div><strong>${pr.eff.toFixed(0)}%</strong></div></td><td class="num" style="color:${pr.game_diff >= 0 ? "var(--accent-text)" : "var(--danger-text)"};font-weight:700">${gd}</td><td>${tags.join(" ")}</td></tr>`;
-        }).join("") || `<tr><td colspan="7" class="center" style="color:var(--text-light)">Sin datos de parejas.</td></tr>`;
-      }
-      document.querySelectorAll("#pairs-season-filter .filter-btn").forEach(btn => btn.addEventListener("click", () => {
-        pairsSeasonMode = btn.dataset.season;
-        document.querySelectorAll("#pairs-season-filter .filter-btn").forEach(b => b.classList.remove("active"));
-        btn.classList.add("active"); renderPairsTable();
-      }));
-      renderPairsTable();
+      renderAll();
     })(REPORT_DATA);
   </script>
 </body>

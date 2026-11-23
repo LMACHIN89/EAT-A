@@ -1,16 +1,18 @@
 #!/usr/bin/env python3
 """
-Extractor automático de Tennis Open League (EpicenterSport API v1) — v2
+Extractor automático de Tennis Open League (EpicenterSport API v1) — v4
 =======================================================================
-Mejoras v2:
-  - Detecta automáticamente ligas/temporadas (T1, T2, etc.) probando rutas reales de categories
-  - Corrige el filtro de encuentros (soporta id / league_match_id / match_id / objetos anidados)
-  - Auto-descubre la ruta exacta de dobles, standings y ELO (bulk o perfil individual)
-  - Imprime diagnóstico limpio (sin datos sensibles) en el log de GitHub Actions
+Novedades v4:
+  - Detecta TODAS las temporadas de tu categoría (ej. T2 2026, T1 2026, etc.) usando
+    tanto el nombre como division + gender (ej. division=6, gender="male").
+  - Descarga grupos y tablas de posiciones POR TEMPORADA (`standings_by_season`).
+  - Descarga partidos completados y playoffs (jugados, en curso y programados)
+    separados limpiamente por temporada para el filtro global del portal.
 """
 
 import json
 import os
+import re
 import sys
 import time
 import urllib.error
@@ -26,7 +28,7 @@ DEFAULT_HEADERS = {
     "Content-Type": "application/json",
     "Origin": "https://www.epicentersport.com",
     "Referer": "https://www.epicentersport.com/",
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) ScoutingBot/2.0",
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) ScoutingBot/4.0",
 }
 
 
@@ -65,7 +67,7 @@ class TOLClient:
             except Exception:
                 pass
             raise RuntimeError(f"HTTP {e.code} en {method} {url}: {body}") from e
-        except Exception as e:
+        except Exception:
             if allow_error:
                 return None
             raise
@@ -93,10 +95,10 @@ class TOLClient:
         if isinstance(d, list):
             return d
         if isinstance(d, dict):
-            for k in ("data", "items", "results", "records", "doubles", "players", "teams", "matches", "rankings", "standings"):
+            for k in ("data", "items", "results", "records", "doubles", "players", "teams", "matches", "rankings", "standings", "groups", "rounds"):
                 if isinstance(d.get(k), list):
                     return d[k]
-        for k in ("items", "results", "doubles", "players", "teams", "matches", "rankings", "standings"):
+        for k in ("items", "results", "doubles", "players", "teams", "matches", "rankings", "standings", "groups", "rounds"):
             if isinstance(resp.get(k), list):
                 return resp[k]
         return []
@@ -125,7 +127,7 @@ class TOLClient:
                     break
             if len(batch) < per_page:
                 break
-            time.sleep(0.08)
+            time.sleep(0.06)
         return results
 
     def fetch_categories_for_league(self, league_id: str) -> List[Dict[str, Any]]:
@@ -141,7 +143,7 @@ class TOLClient:
         return []
 
     def fetch_all_categories(self) -> List[Dict[str, Any]]:
-        return self.get_paginated("categories", {}, per_page=100, max_pages=10)
+        return self.get_paginated("categories", {}, per_page=100, max_pages=15)
 
     def fetch_match_doubles(self, match_id: str) -> List[Dict[str, Any]]:
         candidates = [
@@ -180,7 +182,6 @@ class TOLClient:
         return self.unwrap_list(resp) if resp else []
 
     def fetch_bulk_elo(self, category_id: str, league_id: str) -> Dict[str, float]:
-        """Intenta descargar el ranking ELO completo de la categoría en bloque (rápido)."""
         bulk_candidates = [
             f"elo-ranking?category_id={category_id}&per_page=500",
             f"elo-rankings?category_id={category_id}&per_page=500",
@@ -195,7 +196,6 @@ class TOLClient:
             items = self.unwrap_list(resp)
             if not items:
                 continue
-            sample = items[0] if isinstance(items[0], dict) else {}
             elo_map: Dict[str, float] = {}
             for r in items:
                 if not isinstance(r, dict):
@@ -209,12 +209,11 @@ class TOLClient:
                     except (TypeError, ValueError):
                         pass
             if elo_map:
-                print(f"[INFO] Ranking ELO en bloque obtenido desde '{path}' ({len(elo_map)} jugadores). Keys[0]={list(sample.keys())[:10]}")
+                print(f"[INFO] Ranking ELO en bloque desde '{path}' ({len(elo_map)} jugadores).")
                 return elo_map
         return {}
 
     def discover_and_fetch_player_profile(self, player_id: str) -> Dict[str, Any]:
-        """Descubre la ruta real del perfil de jugador en el primer intento y la reutiliza."""
         templates = [
             "players/{id}?rankings=true&teams=true",
             "player/{id}?rankings=true&teams=true",
@@ -229,19 +228,16 @@ class TOLClient:
             resp = self._request("GET", self.player_url_template.format(id=player_id), allow_error=True)
             return self._unwrap_profile(resp)
 
-        # Descubrimiento en el primer jugador
         for tpl in templates:
             resp = self._request("GET", tpl.format(id=player_id), allow_error=True)
             prof = self._unwrap_profile(resp)
             if prof and ("rankings" in prof or "elo_points" in prof):
                 self.player_url_template = tpl
-                print(f"[INFO] Endpoint de perfil/ELO detectado: {tpl} | Keys={list(prof.keys())[:12]}")
+                print(f"[INFO] Endpoint de perfil/ELO detectado: {tpl}")
                 return prof
-            elif prof:
-                print(f"[DEBUG] '{tpl}' respondió pero sin rankings. Keys={list(prof.keys())[:12]}")
 
         self.player_url_template = "__NONE__"
-        print("[WARN] Ninguna ruta estándar devolvió rankings individuales; se omiten consultas restantes para no perder tiempo.")
+        print("[WARN] Sin endpoint de perfil individual de ELO disponible.")
         return {}
 
     @staticmethod
@@ -270,23 +266,6 @@ def pick(obj: Any, *keys: str, default: Any = None) -> Any:
         if k in obj and obj[k] is not None:
             return obj[k]
     return default
-
-
-def safe_schema_preview(obj: Any, max_keys: int = 20) -> str:
-    """Devuelve solo los nombres de campos y sus tipos (sin exponer datos sensibles)."""
-    if not isinstance(obj, dict):
-        return f"<{type(obj).__name__}>"
-    parts = []
-    for k in list(obj.keys())[:max_keys]:
-        v = obj[k]
-        if isinstance(v, dict):
-            subk = list(v.keys())[:6]
-            parts.append(f"{k}:dict({subk})")
-        elif isinstance(v, list):
-            parts.append(f"{k}:list[{len(v)}]")
-        else:
-            parts.append(f"{k}:{type(v).__name__}")
-    return ", ".join(parts)
 
 
 def extract_player_name(p: Any) -> str:
@@ -398,33 +377,33 @@ def determine_double_winner(dbl: Dict[str, Any], sets_from_local: List[List[int]
     return None
 
 
-def parse_standings_from_groups(groups_raw: List[Dict[str, Any]], client: TOLClient, cur_cid: str) -> Dict[str, List[Dict[str, Any]]]:
-    """Extrae tabla de posiciones desde /standings o desde groups[].teams/alignments."""
+def parse_standings_for_category(client: TOLClient, cid: str) -> Dict[str, List[Dict[str, Any]]]:
+    """Descarga grupos/tablas de posiciones para una categoría/temporada específica."""
+    groups_resp = client._request("GET", f"groups?category_id={cid}", allow_error=True)
+    groups_raw = client.unwrap_list(groups_resp) if groups_resp else []
     tables: Dict[str, List[Dict[str, Any]]] = {}
 
-    # 1. Probar endpoint dedicado de standings si existe
-    for spath in (
-        f"standings?category_id={cur_cid}",
-        f"categories/{cur_cid}/standings",
-        f"league-categories/{cur_cid}/standings",
-    ):
+    for spath in (f"standings?category_id={cid}", f"categories/{cid}/standings"):
         sresp = client._request("GET", spath, allow_error=True)
         if sresp:
             s_items = client.unwrap_list(sresp)
-            if s_items:
-                print(f"[INFO] Standings dedicado encontrado en '{spath}' ({len(s_items)} bloques). Keys[0]={list(s_items[0].keys())[:10]}")
-                # Si devuelve grupos con tabla adentro, usarlos
-                if isinstance(s_items[0], dict) and any(k in s_items[0] for k in ("standings", "teams", "positions", "rows")):
-                    groups_raw = s_items
+            if s_items and isinstance(s_items[0], dict) and any(k in s_items[0] for k in ("standings", "teams", "positions", "rows", "alignments")):
+                groups_raw = s_items
                 break
 
     for g in groups_raw:
         if not isinstance(g, dict):
             continue
+        gid = str(g.get("id") or "")
         gname = str(pick(g, "name", "group_name", default="Grupo")).strip()
         rows_raw = pick(g, "standings", "positions", "rankings", "alignments", "teams", default=[])
-        if rows_raw and isinstance(rows_raw[0], dict):
-            print(f"[DEBUG] {gname} rows[0]: {safe_schema_preview(rows_raw[0], 12)}")
+        if gid:
+            for gpath in (f"groups/{gid}/standings", f"standings?group_id={gid}"):
+                gresp = client._request("GET", gpath, allow_error=True)
+                g_items = client.unwrap_list(gresp) if gresp else []
+                if g_items:
+                    rows_raw = g_items
+                    break
 
         parsed_rows = []
         for idx, r in enumerate(rows_raw, start=1):
@@ -435,22 +414,10 @@ def parse_standings_from_groups(groups_raw: List[Dict[str, Any]], client: TOLCli
             stats = r.get("stats") if isinstance(r.get("stats"), dict) else {}
 
             tname = str(pick(team_obj, "name", "team_name", default="Equipo")).strip()
-            pts = pick(r, "points", "pts", "total_points", default=pick(pivot, "points", "pts", default=pick(stats, "points", "pts", default=0)))
-            set_ave = pick(r, "set_average", "set_ave", "sets_percentage", "set_pct", default=pick(pivot, "set_average", "set_ave", default=pick(stats, "set_average", default=0.0)))
-            game_ave = pick(r, "game_average", "game_ave", "games_percentage", "game_pct", default=pick(pivot, "game_average", "game_ave", default=pick(stats, "game_average", default=0.0)))
+            pts = pick(r, "points", "pts", "total_points", "score", default=pick(pivot, "points", "pts", default=pick(stats, "points", "pts", default=0)))
+            set_ave = pick(r, "set_average", "set_ave", "sets_percentage", "set_pct", "sets_avg", default=pick(pivot, "set_average", "set_ave", default=pick(stats, "set_average", default=0.0)))
+            game_ave = pick(r, "game_average", "game_ave", "games_percentage", "game_pct", "games_avg", default=pick(pivot, "game_average", "game_ave", default=pick(stats, "game_average", default=0.0)))
             pos = pick(r, "position", "pos", "rank", default=pick(pivot, "position", default=idx))
-
-            # Calcular set_ave / game_ave si vienen sets_won / sets_lost
-            if not set_ave:
-                sw = float(pick(r, "sets_won", default=pick(pivot, "sets_won", default=0)) or 0)
-                sl = float(pick(r, "sets_lost", default=pick(pivot, "sets_lost", default=0)) or 0)
-                if sw + sl > 0:
-                    set_ave = (sw / (sw + sl)) * 100.0
-            if not game_ave:
-                gw = float(pick(r, "games_won", default=pick(pivot, "games_won", default=0)) or 0)
-                gl = float(pick(r, "games_lost", default=pick(pivot, "games_lost", default=0)) or 0)
-                if gw + gl > 0:
-                    game_ave = (gw / (gw + gl)) * 100.0
 
             sa_f = float(set_ave or 0)
             if 0 < sa_f <= 1.0:
@@ -475,25 +442,84 @@ def parse_standings_from_groups(groups_raw: List[Dict[str, Any]], client: TOLCli
 
 
 def extract_match_id_and_body(raw_item: Dict[str, Any]) -> Tuple[str, Dict[str, Any]]:
-    """Soporta tanto objetos planos como envueltos (league_match / match / item)."""
     if not isinstance(raw_item, dict):
         return "", {}
-
-    # Desenvolver si el encuentro viene dentro de una sub-llave
     body = raw_item
     for wrap_key in ("league_match", "match", "tournament_match"):
         if isinstance(raw_item.get(wrap_key), dict):
-            # Combinar llaves externas con internas sin perder nada
             merged = dict(raw_item)
             merged.update(raw_item[wrap_key])
             body = merged
             break
-
     mid = str(
         pick(body, "league_match_id", "id", "match_id", "uuid", "tournament_match_id", default="")
         or pick(raw_item, "league_match_id", "id", "match_id", "uuid", default="")
     )
     return mid, body
+
+
+def detect_playoff_stage(round_lbl: str, phase_lbl: str, j_num: Any, is_elim_source: bool) -> Tuple[bool, str]:
+    blob = f"{round_lbl} {phase_lbl}".lower()
+    if any(k in blob for k in ("tercer", "3er", "3ro", "third")):
+        return True, "3er Lugar"
+    if "semi" in blob:
+        return True, "Semifinal"
+    if "cuarto" in blob or "quarter" in blob:
+        return True, "Cuartos"
+    if "octavo" in blob or "round of 16" in blob or "dieciseis" in blob:
+        return True, "Octavos"
+    if "final" in blob:
+        return True, "Final"
+    if any(k in blob for k in ("playoff", "play off", "play-off", "eliminat", "llave", "bracket")):
+        return True, round_lbl or "Playoffs"
+    try:
+        if j_num is not None and int(j_num) >= 100:
+            return True, round_lbl or f"Playoffs (J{j_num})"
+    except (TypeError, ValueError):
+        pass
+    if is_elim_source:
+        return True, round_lbl or "Playoffs"
+    return False, ""
+
+
+def category_matches_target(c: Dict[str, Any], cat_target: str, current_cat_id: str) -> bool:
+    cid = str(c.get("id") or "")
+    if cid and cid == current_cat_id:
+        return True
+    cname = str(pick(c, "name", "alias", default="")).lower()
+    if cat_target and cat_target in cname:
+        return True
+    # Detección por división y género (ej. "6ta Masculino" -> division=6, gender="male")
+    div_match = re.search(r"(\d)", cat_target)
+    want_div = int(div_match.group(1)) if div_match else None
+    want_gender = "male" if "masc" in cat_target else ("female" if "fem" in cat_target else ("mixed" if "mixt" in cat_target else None))
+    c_div = c.get("division")
+    c_gen = str(c.get("gender") or "").lower()
+    if want_div is not None and c_div is not None and int(c_div) == want_div:
+        if want_gender is None or c_gen == want_gender:
+            return True
+    return False
+
+
+def format_season_label(lg: Dict[str, Any], used_labels: set) -> str:
+    raw = str(pick(lg, "season_name", "short_name", "name", "title", default="Temporada")).strip()
+    if " - " in raw:
+        label = raw.split(" - ")[-1].strip()
+    elif "–" in raw:
+        label = raw.split("–")[-1].strip()
+    else:
+        label = raw
+    # Si el nombre es demasiado genérico (ej. "Tennis Open League"), añadir año de inicio
+    start = str(lg.get("start_date") or lg.get("created_at") or "")[:4]
+    if label.lower() == "tennis open league" and start:
+        label = f"TOL {start}"
+    base = label
+    idx = 2
+    while label in used_labels:
+        label = f"{base} ({idx})"
+        idx += 1
+    used_labels.add(label)
+    return label
 
 
 # ==============================================================================
@@ -512,24 +538,22 @@ def run_extraction(config_path: Path, output_path: Path) -> None:
     client = TOLClient(email, password)
     client.login()
 
-    # 1. Ligas y categorías (actual + temporadas previas)
+    # 1. Ligas y todas las temporadas de la categoría
     leagues_resp = client._request("GET", "leagues/?include_finalized=true")
     leagues = client.unwrap_list(leagues_resp)
     print(f"[INFO] Ligas encontradas: {len(leagues)}")
-    if leagues:
-        print(f"[DEBUG] Ligas disponibles: {[(str(pick(l, 'name', 'title', default='?'))[:40], str(l.get('id'))[:8]) for l in leagues]}")
 
     league_kw = cfg.get("league_keyword", "Tennis Open League").lower()
     cat_target = cfg.get("category_name", "6ta Masculino").lower()
     current_cat_id = cfg.get("current_category_id", "")
     current_league_id = cfg.get("current_league_id", "")
 
-    # Intentar primero obtener todas las categorías de golpe
     all_cats_cache = client.fetch_all_categories()
-    print(f"[INFO] Categorías en listado general: {len(all_cats_cache)}")
+    print(f"[INFO] Categorías globales cargadas: {len(all_cats_cache)}")
 
     target_seasons: List[Dict[str, Any]] = []
     seen_cids: set = set()
+    used_labels: set = set()
 
     for lg in leagues:
         lg_name = str(pick(lg, "name", "title", default="")).strip()
@@ -544,31 +568,26 @@ def run_extraction(config_path: Path, output_path: Path) -> None:
             cats = client.fetch_categories_for_league(lg_id)
 
         for c in cats:
-            cname = str(pick(c, "name", "alias", default="")).strip()
             cid = str(c.get("id") or "")
             if not cid or cid in seen_cids:
                 continue
-            if cid == current_cat_id or cat_target in cname.lower() or ("6ta" in cname.lower() and "masc" in cname.lower()):
+            if category_matches_target(c, cat_target, current_cat_id):
                 seen_cids.add(cid)
-                season_label = str(pick(lg, "season_name", "short_name", "name", default=lg_name)).strip()
-                if " - " in season_label:
-                    season_label = season_label.split(" - ")[-1].strip()
+                s_lbl = format_season_label(lg, used_labels)
                 target_seasons.append({
                     "league_id": lg_id,
                     "league_name": lg_name,
-                    "season_label": season_label,
+                    "season_label": s_lbl,
                     "category_id": cid,
-                    "category_name": cname,
+                    "category_name": str(pick(c, "name", "alias", default=cfg.get("category_name", "6ta Masculino"))).strip(),
                     "elimination_tournament_id": c.get("elimination_tournament_id"),
                     "is_current": (cid == current_cat_id or lg_id == current_league_id),
-                    "start_date": str(c.get("start_date") or lg.get("start_date") or ""),
+                    "start_date": str(c.get("start_date") or lg.get("start_date") or lg.get("created_at") or ""),
                 })
 
     if not target_seasons and current_cat_id:
         cur_lg = next((l for l in leagues if str(l.get("id")) == current_league_id), {})
-        s_lbl = str(pick(cur_lg, "season_name", "short_name", "name", default="T2 2026")).strip()
-        if " - " in s_lbl:
-            s_lbl = s_lbl.split(" - ")[-1].strip()
+        s_lbl = format_season_label(cur_lg, used_labels) if cur_lg else "T2 2026"
         target_seasons.append({
             "league_id": current_league_id,
             "league_name": cfg.get("league_keyword", "Tennis Open League"),
@@ -580,82 +599,92 @@ def run_extraction(config_path: Path, output_path: Path) -> None:
             "start_date": "",
         })
 
-    target_seasons.sort(key=lambda x: (0 if x["is_current"] else 1, x["start_date"]))
+    # Ordenar: temporada actual primero, luego las demás de más reciente a más antigua
+    target_seasons.sort(key=lambda x: (0 if x["is_current"] else 1, x["start_date"]), reverse=False)
+    # Reordenar las no actuales de más reciente a más antigua
+    cur_list = [s for s in target_seasons if s["is_current"]]
+    past_list = sorted([s for s in target_seasons if not s["is_current"]], key=lambda x: x["start_date"], reverse=True)
+    target_seasons = cur_list + past_list
+
     current_season_obj = target_seasons[0]
-    print(f"[INFO] Temporadas objetivo ({len(target_seasons)}): {[s['season_label'] for s in target_seasons]}")
+    seasons_order = [s["season_label"] for s in target_seasons]
+    print(f"[INFO] Temporadas detectadas ({len(seasons_order)}): {seasons_order}")
 
-    # 2. Equipos y Grupos
-    cur_cid = current_season_obj["category_id"]
-    cur_lid = current_season_obj["league_id"]
-    teams_resp = client._request("GET", f"teams?per_page=200&category_id={cur_cid}")
-    teams_raw = client.unwrap_list(teams_resp)
-    print(f"[INFO] Equipos en {current_season_obj['category_name']}: {len(teams_raw)}")
-
-    groups_resp = client._request("GET", f"groups?category_id={cur_cid}", allow_error=True)
-    groups_raw = client.unwrap_list(groups_resp) if groups_resp else []
-    standings_by_group = parse_standings_from_groups(groups_raw, client, cur_cid)
-
-    # 3. Rosters por equipo (con cédula ced_id)
+    # 2. Equipos, Rosters y Grupos POR TEMPORADA
+    standings_by_season: Dict[str, Dict[str, List[Dict[str, Any]]]] = {}
     rosters_by_team: Dict[str, List[Dict[str, Any]]] = {}
-    all_player_ids: set = set()
     teams_meta: Dict[str, Dict[str, Any]] = {}
+    all_player_ids: set = set()
 
-    for t in teams_raw:
-        tid = str(t.get("id") or "")
-        tname = str(pick(t, "name", "team_name", default="Equipo")).strip()
-        club = str(pick(t, "venue_name", "club_name", "location", default="Sede TOL"))
-        if isinstance(t.get("venue"), dict):
-            club = str(pick(t["venue"], "name", "address", default=club))
-        teams_meta[tname] = {"id": tid, "name": tname, "club": club}
+    for s_obj in target_seasons:
+        s_lbl = s_obj["season_label"]
+        cid = s_obj["category_id"]
+        standings_by_season[s_lbl] = parse_standings_for_category(client, cid)
 
-        raw_players = client.fetch_team_players(tid)
-        roster_clean = []
-        for item in raw_players:
-            u = item.get("user") if isinstance(item.get("user"), dict) else item
-            pid = str(pick(u, "id", default=item.get("user_id") or ""))
-            pname = extract_player_name(u)
-            ced = str(pick(u, "ced_id", "cedula", "document", "username", default="—"))
-            if pid:
-                all_player_ids.add(pid)
-            roster_clean.append({
-                "id": pid,
-                "name": pname,
-                "cedula": ced,
-                "elo": 0.0,
-                "tactical_note": "",
-            })
-        rosters_by_team[tname] = roster_clean
-        time.sleep(0.04)
+        teams_resp = client._request("GET", f"teams?per_page=200&category_id={cid}", allow_error=True)
+        teams_raw = client.unwrap_list(teams_resp) if teams_resp else []
+        print(f"[INFO] {s_lbl}: {len(teams_raw)} equipos, {len(standings_by_season[s_lbl])} grupos.")
 
-    # 4. Partidos completados de todas las temporadas objetivo
+        for t in teams_raw:
+            tid = str(t.get("id") or "")
+            tname = str(pick(t, "name", "team_name", default="Equipo")).strip()
+            club = str(pick(t, "venue_name", "club_name", "location", default="Sede TOL"))
+            if isinstance(t.get("venue"), dict):
+                club = str(pick(t["venue"], "name", "address", default=club))
+
+            if tname not in teams_meta:
+                teams_meta[tname] = {"id": tid, "name": tname, "club": club, "seasons": []}
+            if s_lbl not in teams_meta[tname]["seasons"]:
+                teams_meta[tname]["seasons"].append(s_lbl)
+
+            # Cargar roster (combinando jugadores si el equipo jugó en múltiples temporadas)
+            raw_players = client.fetch_team_players(tid)
+            existing_by_name = {p["name"].lower(): p for p in rosters_by_team.get(tname, [])}
+            for item in raw_players:
+                u = item.get("user") if isinstance(item.get("user"), dict) else item
+                pid = str(pick(u, "id", default=item.get("user_id") or ""))
+                pname = extract_player_name(u)
+                ced = str(pick(u, "ced_id", "cedula", "document", "username", default="—"))
+                if pid:
+                    all_player_ids.add(pid)
+                if pname.lower() not in existing_by_name:
+                    existing_by_name[pname.lower()] = {
+                        "id": pid,
+                        "name": pname,
+                        "cedula": ced,
+                        "elo": 0.0,
+                        "seasons": [s_lbl],
+                        "tactical_note": "",
+                    }
+                else:
+                    if s_lbl not in existing_by_name[pname.lower()].setdefault("seasons", []):
+                        existing_by_name[pname.lower()]["seasons"].append(s_lbl)
+            rosters_by_team[tname] = list(existing_by_name.values())
+            time.sleep(0.02)
+
+    # 3. Partidos completados + playoffs próximos de TODAS las temporadas
     all_raw_matches: List[Dict[str, Any]] = []
+    upcoming_playoffs: List[Dict[str, Any]] = []
     seen_match_ids: set = set()
-    logged_match_schema = False
-    logged_double_schema = False
+    seen_upcoming_ids: set = set()
 
     for s_obj in target_seasons:
         cid = s_obj["category_id"]
         s_label = s_obj["season_label"]
-        matches_batch = client.get_paginated(
-            "matches",
-            {"status": "completed", "type": "league", "category_id": cid},
-            per_page=50,
-        )
+        is_cur = s_obj["is_current"]
+
+        completed_batch: List[Tuple[Dict[str, Any], bool]] = [
+            (m, False)
+            for m in client.get_paginated("matches", {"status": "completed", "type": "league", "category_id": cid}, per_page=50)
+        ]
         elim_id = s_obj.get("elimination_tournament_id")
         if elim_id:
-            elim_batch = client.get_paginated(
-                "matches",
-                {"status": "completed", "type": "tournament", "tournament_id": elim_id},
-                per_page=50,
-            )
-            matches_batch.extend(elim_batch)
+            for m in client.get_paginated("matches", {"status": "completed", "type": "tournament", "tournament_id": elim_id}, per_page=50):
+                completed_batch.append((m, True))
 
-        print(f"[INFO] {s_label}: {len(matches_batch)} encuentros descargados.")
-        if matches_batch and not logged_match_schema:
-            print(f"[DEBUG] Estructura matches[0]: {safe_schema_preview(matches_batch[0], 25)}")
-            logged_match_schema = True
+        print(f"[INFO] {s_label}: {len(completed_batch)} encuentros completados descargados.")
 
-        for raw_m in matches_batch:
+        for raw_m, is_elim_src in completed_batch:
             mid, m = extract_match_id_and_body(raw_m)
             if not mid or mid in seen_match_ids:
                 continue
@@ -669,30 +698,29 @@ def run_extraction(config_path: Path, output_path: Path) -> None:
             vis_id = str(pick(vis_obj, "id", default=pick(m, "visitor_team_id", "away_team_id", default="")))
 
             raw_date = str(pick(m, "date", "scheduled_at", "match_date", "played_at", "start_date", "created_at", default=""))[:10]
-            round_lbl = str(pick(m, "round_name", "phase_name", "stage", "journey_name", default=""))
             j_num = pick(m, "journey_number", "matchday", "round", "jornada")
+            round_lbl = str(pick(m, "round_name", "phase_name", "stage", "journey_name", default=""))
             if not round_lbl:
                 if isinstance(m.get("journey"), dict):
                     round_lbl = str(pick(m["journey"], "name", default=""))
                     if not round_lbl and m["journey"].get("number"):
-                        round_lbl = f"Jornada {m['journey']['number']}"
+                        j_num = m["journey"]["number"]
+                        round_lbl = f"Jornada {j_num}"
                 if not round_lbl:
                     round_lbl = f"Jornada {j_num}" if j_num else "Jornada"
 
-            phase_lbl = str(pick(m, "phase", "stage_name", "match_type", default="Playoffs" if any(w in round_lbl.lower() for w in ("final", "cuarto", "octavo", "semi")) else "Fase Regular"))
+            phase_lbl = str(pick(m, "phase", "stage_name", "match_type", default=""))
+            is_playoff, bracket_stage = detect_playoff_stage(round_lbl, phase_lbl, j_num, is_elim_src)
+            if not phase_lbl:
+                phase_lbl = f"Playoffs · {bracket_stage}" if is_playoff else "Fase Regular"
 
+            venue_name = m["venue"].get("name", "") if isinstance(m.get("venue"), dict) else str(pick(m, "venue_name", "location", default=""))
             loc_score = int(float(pick(m, "local_score", "home_score", "local_points", "local_wins", "score_local", default=0) or 0))
             vis_score = int(float(pick(m, "visitor_score", "away_score", "visitor_points", "visitor_wins", "score_visitor", default=0) or 0))
 
-            # Traer detalle de dobles (primero revisar si ya vinieron embebidos en el match)
             doubles_raw = pick(m, "doubles", "match_doubles", default=[])
             if not doubles_raw:
                 doubles_raw = client.fetch_match_doubles(mid)
-            if doubles_raw and not logged_double_schema:
-                print(f"[DEBUG] Estructura doubles[0]: {safe_schema_preview(doubles_raw[0], 20)}")
-                if isinstance(doubles_raw[0], dict) and isinstance(doubles_raw[0].get("sets"), list) and doubles_raw[0]["sets"]:
-                    print(f"[DEBUG] Estructura doubles[0].sets[0]: {safe_schema_preview(doubles_raw[0]['sets'][0], 12)}")
-                logged_double_schema = True
 
             doubles_norm = []
             for idx, dbl in enumerate(doubles_raw, start=1):
@@ -722,7 +750,11 @@ def run_extraction(config_path: Path, output_path: Path) -> None:
                 "id": mid,
                 "season": s_label,
                 "phase": phase_lbl,
-                "round": round_lbl,
+                "round": bracket_stage if is_playoff and bracket_stage else round_lbl,
+                "is_playoff": is_playoff,
+                "bracket_stage": bracket_stage,
+                "status": "completed",
+                "venue_name": venue_name,
                 "date": raw_date or "2026-01-01",
                 "local_team": loc_name,
                 "visitor_team": vis_name,
@@ -730,12 +762,58 @@ def run_extraction(config_path: Path, output_path: Path) -> None:
                 "visitor_score": vis_score,
                 "doubles": doubles_norm,
             })
-            time.sleep(0.04)
+            time.sleep(0.02)
 
-    # 5. Obtener ELOs (primero en bloque; si no existe ruta bulk, autodescubrir perfil individual)
+        if is_cur:
+            upcoming_raw: List[Tuple[Dict[str, Any], bool, str]] = []
+            for st_key in ("in_progress", "scheduled", "pending", "upcoming"):
+                for m in client.get_paginated("matches", {"status": st_key, "type": "league", "category_id": cid}, per_page=50, max_pages=3):
+                    upcoming_raw.append((m, False, st_key))
+                if elim_id:
+                    for m in client.get_paginated("matches", {"status": st_key, "type": "tournament", "tournament_id": elim_id}, per_page=50, max_pages=3):
+                        upcoming_raw.append((m, True, st_key))
+
+            for raw_m, is_elim_src, st_key in upcoming_raw:
+                mid, m = extract_match_id_and_body(raw_m)
+                if not mid or mid in seen_match_ids or mid in seen_upcoming_ids:
+                    continue
+                seen_upcoming_ids.add(mid)
+
+                loc_obj = pick(m, "local_team", "home_team", "team_local", "team1", default={})
+                vis_obj = pick(m, "visitor_team", "away_team", "team_visitor", "team2", default={})
+                loc_name = str(pick(loc_obj, "name", "team_name", default=pick(m, "local_team_name", default="Por definir"))).strip()
+                vis_name = str(pick(vis_obj, "name", "team_name", default=pick(m, "visitor_team_name", default="Por definir"))).strip()
+                raw_date = str(pick(m, "date", "scheduled_at", "match_date", "start_date", default="Por confirmar"))[:10]
+                j_num = pick(m, "journey_number", "matchday", "round", "jornada")
+                round_lbl = str(pick(m, "round_name", "phase_name", "stage", "journey_name", default=""))
+                phase_lbl = str(pick(m, "phase", "stage_name", "match_type", default=""))
+                is_po, b_stage = detect_playoff_stage(round_lbl, phase_lbl, j_num, is_elim_src)
+                if not is_po:
+                    continue
+
+                venue_name = m["venue"].get("name", "") if isinstance(m.get("venue"), dict) else str(pick(m, "venue_name", default=""))
+                upcoming_playoffs.append({
+                    "id": mid,
+                    "season": s_label,
+                    "phase": f"Playoffs · {b_stage}",
+                    "round": b_stage or round_lbl or "Playoffs",
+                    "is_playoff": True,
+                    "bracket_stage": b_stage or "Playoffs",
+                    "status": st_key,
+                    "venue_name": venue_name,
+                    "date": raw_date,
+                    "local_team": loc_name,
+                    "visitor_team": vis_name,
+                    "local_score": int(float(pick(m, "local_score", "home_score", default=0) or 0)),
+                    "visitor_score": int(float(pick(m, "visitor_score", "away_score", default=0) or 0)),
+                })
+
+    # 4. ELOs
+    cur_cid = current_season_obj["category_id"]
+    cur_lid = current_season_obj["league_id"]
     elo_by_player_id = client.fetch_bulk_elo(cur_cid, cur_lid)
     if not elo_by_player_id and all_player_ids:
-        print(f"[INFO] Consultando ELO individual (autodescubrimiento sobre {len(all_player_ids)} jugadores)...")
+        print(f"[INFO] Consultando ELO individual ({len(all_player_ids)} jugadores)...")
         for pid in sorted(all_player_ids):
             prof = client.discover_and_fetch_player_profile(pid)
             if client.player_url_template == "__NONE__":
@@ -758,30 +836,33 @@ def run_extraction(config_path: Path, output_path: Path) -> None:
             if best_elo == 0.0 and prof.get("elo_points"):
                 best_elo = float(prof.get("elo_points") or 0.0)
             elo_by_player_id[pid] = best_elo
-            time.sleep(0.03)
+            time.sleep(0.02)
 
     elo_hits = 0
-    for tname, rlist in rosters_by_team.items():
+    for rlist in rosters_by_team.values():
         for p in rlist:
             if p["id"] in elo_by_player_id and elo_by_player_id[p["id"]] > 0:
                 p["elo"] = elo_by_player_id[p["id"]]
                 elo_hits += 1
 
-    print(f"[INFO] Jugadores con ELO cargado: {elo_hits} / {sum(len(v) for v in rosters_by_team.values())}")
+    print(f"[INFO] Jugadores con ELO cargado: {elo_hits}")
 
     snapshot = {
         "extracted_at": datetime.now().strftime("%d/%m/%Y %H:%M"),
         "current_season": current_season_obj["season_label"],
+        "seasons": seasons_order,
         "category_name": current_season_obj["category_name"],
         "teams_meta": teams_meta,
         "rosters_by_team": rosters_by_team,
-        "standings_by_group": standings_by_group,
+        "standings_by_season": standings_by_season,
+        "standings_by_group": standings_by_season.get(current_season_obj["season_label"], {}),
         "matches": all_raw_matches,
+        "upcoming_playoffs": upcoming_playoffs,
     }
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(json.dumps(snapshot, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"[OK] Snapshot guardado en {output_path} ({len(teams_meta)} equipos, {len(all_raw_matches)} encuentros).")
+    print(f"[OK] Snapshot v4 guardado: {len(seasons_order)} temporadas, {len(teams_meta)} equipos, {len(all_raw_matches)} encuentros.")
 
 
 if __name__ == "__main__":
