@@ -1,0 +1,43 @@
+name: Actualizar Scouting TOL
+
+on:
+  # Se ejecuta automáticamente todos los lunes a las 7:00 AM hora de Caracas (11:00 UTC)
+  schedule:
+    - cron: '0 11 * * 1'
+  # Permite ejecutarlo manualmente con un clic desde la pestaña "Actions"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  actualizar-reportes:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar archivos del repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Extraer datos actualizados de TOL (EpicenterSport)
+        env:
+          TOL_EMAIL: ${{ secrets.TOL_EMAIL }}
+          TOL_PASSWORD: ${{ secrets.TOL_PASSWORD }}
+        run: |
+          python extraer_tol.py config.json data/tol_snapshot.json
+
+      - name: Generar portal web y reportes standalone por equipo
+        run: |
+          python generar_portal.py --config config.json --snapshot data/tol_snapshot.json --template plantilla_reporte.html
+
+      - name: Publicar cambios en GitHub Pages (carpeta docs/)
+        run: |
+          git config user.name "Scouting Bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add docs/ data/tol_snapshot.json
+          git diff --staged --quiet || git commit -m "Actualización automática de scouting TOL"
+          git push

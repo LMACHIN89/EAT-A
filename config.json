@@ -1,0 +1,12 @@
+{
+  "our_team": "Andrew Tennis A",
+  "our_team_id": "20cb9518-fc3c-4808-a737-09240b8dfdb6",
+  "league_keyword": "Tennis Open League",
+  "category_name": "6ta Masculino",
+  "current_league_id": "01a05daa-53cf-7314-9cf2-a416337a7efb",
+  "current_category_id": "01a05daa-53f3-708b-b8d0-41e94a5e78b5",
+  "include_previous_seasons": true,
+  "authors": "Leonardo Machín · Scouting Andrew Tennis A",
+  "cta_csv_path": "data/cta_ranking.csv",
+  "output_dir": "docs"
+}
