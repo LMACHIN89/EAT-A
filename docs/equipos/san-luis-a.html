@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>San Luis A — 6ta Masculino | Scouting</title>
+  <style>
+    :root {
+      --bg: #f4f6f9;
+      --surface: #ffffff;
+      --surface-alt: #f8fafc;
+      --border: #e2e8f0;
+      --border-strong: #cbd5e1;
+      --text: #0f172a;
+      --text-muted: #475569;
+      --text-light: #64748b;
+      --primary: #0f2c59;
+      --primary-soft: #e8eef8;
+      --accent: #16a34a;
+      --accent-soft: #dcfce7;
+      --accent-text: #166534;
+      --danger: #dc2626;
+      --danger-soft: #fee2e2;
+      --danger-text: #991b1b;
+      --warn: #d97706;
+      --warn-soft: #fef3c7;
+      --warn-text: #92400e;
+      --info: #0284c7;
+      --info-soft: #e0f2fe;
+      --radius: 12px;
+      --shadow: 0 1px 3px rgba(15, 23, 42, 0.06), 0 4px 12px rgba(15, 23, 42, 0.04);
+      --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.5; -webkit-font-smoothing: antialiased; }
+    .container { max-width: 1120px; margin: 0 auto; padding: 16px 16px 64px; }
+
+    .top-bar {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 12px; font-size: 13px;
+    }
+    .back-link {
+      text-decoration: none; color: var(--primary); font-weight: 700;
+      background: var(--surface); border: 1px solid var(--border);
+      padding: 6px 12px; border-radius: 8px; transition: all 0.15s ease;
+    }
+    .back-link:hover { background: var(--primary-soft); border-color: var(--primary); }
+
+    .hero {
+      background: linear-gradient(135deg, #0b1f3f 0%, #153a6e 100%);
+      color: #ffffff; border-radius: 16px; padding: 26px 26px 22px;
+      box-shadow: 0 10px 28px rgba(11, 31, 63, 0.18); margin-bottom: 22px;
+    }
+    .hero-top { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; margin-bottom: 18px; }
+    .monogram {
+      width: 58px; height: 58px; border-radius: 14px;
+      background: rgba(255, 255, 255, 0.14); border: 1px solid rgba(255, 255, 255, 0.25);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 21px; font-weight: 800; letter-spacing: 0.5px; flex-shrink: 0;
+    }
+    .hero-meta-top { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #93c5fd; font-weight: 700; margin-bottom: 4px; }
+    .hero h1 { font-size: clamp(22px, 3vw, 30px); font-weight: 800; line-height: 1.15; margin-bottom: 6px; }
+    .hero-sub { font-size: 13px; color: #cbd5e1; }
+
+    .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 16px; }
+    .kpi-card { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.16); border-radius: 10px; padding: 13px 15px; }
+    .kpi-value { font-size: clamp(22px, 2.5vw, 28px); font-weight: 800; line-height: 1.1; margin-bottom: 4px; font-variant-numeric: tabular-nums; }
+    .kpi-label { font-size: 12px; color: #cbd5e1; }
+    .hero-summary { font-size: 13.5px; color: #e2e8f0; background: rgba(0, 0, 0, 0.18); border-radius: 10px; padding: 12px 16px; border-left: 3px solid #60a5fa; }
+
+    .quick-nav {
+      position: sticky; top: 10px; z-index: 50;
+      background: rgba(255, 255, 255, 0.94); backdrop-filter: blur(8px);
+      border: 1px solid var(--border); border-radius: 999px;
+      padding: 6px 10px; display: flex; gap: 6px; overflow-x: auto;
+      box-shadow: var(--shadow); margin-bottom: 22px; scrollbar-width: none;
+    }
+    .quick-nav::-webkit-scrollbar { display: none; }
+    .quick-nav a { text-decoration: none; color: var(--text-muted); font-size: 12.5px; font-weight: 600; padding: 6px 12px; border-radius: 999px; white-space: nowrap; }
+    .quick-nav a:hover { background: var(--primary-soft); color: var(--primary); }
+
+    .section { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px 24px; margin-bottom: 20px; box-shadow: var(--shadow); }
+    .section-header { margin-bottom: 16px; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 8px; }
+    .section h2 { font-size: 19px; font-weight: 800; color: var(--primary); letter-spacing: -0.2px; }
+    .section-subtitle { font-size: 13px; color: var(--text-light); margin-top: 2px; }
+
+    .insight-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .insight-card { background: var(--surface-alt); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; border-top: 3px solid var(--primary); }
+    .insight-card.tone-positive { border-top-color: var(--accent); }
+    .insight-card.tone-warn { border-top-color: var(--warn); }
+    .insight-card.tone-info { border-top-color: var(--info); }
+    .insight-kicker { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: var(--text-light); margin-bottom: 4px; }
+    .insight-headline { font-size: 14.5px; font-weight: 700; color: var(--text); margin-bottom: 6px; line-height: 1.3; }
+    .insight-body { font-size: 13px; color: var(--text-muted); line-height: 1.45; }
+
+    .tactical-box { background: #f8fafc; border: 1px solid var(--border); border-left: 4px solid var(--primary); border-radius: 10px; padding: 16px 18px; display: flex; flex-direction: column; gap: 10px; font-size: 14px; }
+
+    .h2h-grid { display: grid; grid-template-columns: 1fr; gap: 16px; margin-bottom: 14px; }
+    .match-card { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--surface); }
+    .match-card-head { background: var(--surface-alt); border-bottom: 1px solid var(--border); padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+    .match-card-title { font-size: 13.5px; font-weight: 700; color: var(--primary); }
+    .scoreboard-banner { display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 800; }
+    .score-pill { display: inline-flex; align-items: center; justify-content: center; min-width: 28px; padding: 2px 9px; border-radius: 6px; font-variant-numeric: tabular-nums; font-size: 14px; }
+    .score-pill.win { background: var(--accent-soft); color: var(--accent-text); }
+    .score-pill.loss { background: var(--danger-soft); color: var(--danger-text); }
+
+    .doubles-list { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .doubles-list tr { border-bottom: 1px solid var(--border); }
+    .doubles-list tr:last-child { border-bottom: none; }
+    .doubles-list td { padding: 10px 12px; vertical-align: middle; }
+    .pos-badge { display: inline-block; font-family: var(--mono); font-weight: 700; font-size: 12px; padding: 3px 8px; border-radius: 6px; background: var(--primary-soft); color: var(--primary); text-align: center; min-width: 34px; }
+    .pair-name { font-weight: 600; color: var(--text); }
+    .pair-name.winner { color: var(--accent-text); }
+    .sets-cell { font-family: var(--mono); font-weight: 700; text-align: center; white-space: nowrap; font-size: 12.5px; }
+    .set-chip { display: inline-block; background: var(--surface-alt); border: 1px solid var(--border); border-radius: 5px; padding: 2px 6px; margin: 0 2px; }
+    .set-chip.stb { background: var(--warn-soft); border-color: #fcd34d; color: var(--warn-text); }
+    .res-badge { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 6px; font-size: 11.5px; font-weight: 800; }
+    .res-badge.V { background: var(--accent-soft); color: var(--accent-text); }
+    .res-badge.D { background: var(--danger-soft); color: var(--danger-text); }
+
+    .table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 10px; }
+    table.data-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+    table.data-table th { background: var(--surface-alt); color: var(--text-muted); font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; text-align: left; padding: 11px 14px; border-bottom: 1px solid var(--border); white-space: nowrap; }
+    table.data-table th.sortable { cursor: pointer; user-select: none; }
+    table.data-table th.sortable:hover { color: var(--primary); background: var(--primary-soft); }
+    table.data-table td { padding: 11px 14px; border-bottom: 1px solid var(--border); font-variant-numeric: tabular-nums; }
+    table.data-table tr:last-child td { border-bottom: none; }
+    tr.highlight-scout td { background: #eff6ff; font-weight: 700; }
+    tr.highlight-own td { background: #f0fdf4; font-weight: 700; }
+    .num { text-align: right; }
+    .center { text-align: center; }
+
+    .tabs-bar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+    .jornada-tab { background: var(--surface-alt); border: 1px solid var(--border); border-radius: 10px; padding: 9px 13px; cursor: pointer; text-align: left; transition: all 0.15s ease; min-width: 145px; flex: 1 1 155px; max-width: 220px; }
+    .jornada-tab:hover { border-color: var(--primary); background: var(--primary-soft); }
+    .jornada-tab.active { background: var(--primary); border-color: var(--primary); color: #ffffff; box-shadow: 0 4px 12px rgba(15, 44, 89, 0.22); }
+    .jornada-tab-top { display: flex; justify-content: space-between; align-items: center; font-size: 12px; font-weight: 700; margin-bottom: 3px; }
+    .jornada-tab-opp { font-size: 12.5px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .jornada-tab-date { font-size: 11px; opacity: 0.78; margin-top: 2px; }
+    .tab-pill { font-size: 11px; font-weight: 800; padding: 1px 6px; border-radius: 5px; }
+    .tab-pill.V { background: var(--accent-soft); color: var(--accent-text); }
+    .tab-pill.D { background: var(--danger-soft); color: var(--danger-text); }
+    .jornada-tab.active .tab-pill.V { background: rgba(34, 197, 94, 0.28); color: #dcfce7; }
+    .jornada-tab.active .tab-pill.D { background: rgba(239, 68, 68, 0.28); color: #fee2e2; }
+
+    .filter-pills { display: inline-flex; gap: 6px; background: var(--surface-alt); padding: 4px; border-radius: 8px; border: 1px solid var(--border); }
+    .filter-btn { border: none; background: transparent; padding: 6px 12px; font-size: 12.5px; font-weight: 600; color: var(--text-muted); border-radius: 6px; cursor: pointer; }
+    .filter-btn.active { background: var(--primary); color: #ffffff; }
+
+    .search-bar { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 14px; }
+    .search-input { flex: 1; min-width: 220px; padding: 9px 14px; border: 1px solid var(--border-strong); border-radius: 8px; font-size: 13.5px; font-family: var(--font); outline: none; }
+    .search-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(15, 44, 89, 0.1); }
+
+    .player-row { cursor: pointer; transition: background 0.12s ease; }
+    .player-row:hover td { background: #f8fafc; }
+    .player-row.expanded td { background: var(--primary-soft); border-bottom-color: transparent; }
+    .chevron { display: inline-block; transition: transform 0.2s ease; font-weight: 800; color: var(--text-light); }
+    .player-row.expanded .chevron { transform: rotate(90deg); color: var(--primary); }
+    .player-detail-row { display: none; }
+    .player-detail-row.open { display: table-row; }
+    .player-detail-cell { background: #fafcff; padding: 0 !important; border-bottom: 2px solid var(--primary-soft) !important; }
+    .player-drawer { padding: 18px 20px; display: flex; flex-direction: column; gap: 14px; }
+    .cta-box { background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--info); border-radius: 8px; padding: 12px 14px; font-size: 13px; }
+    .cta-box.unverified { border-left-color: var(--warn); background: #fffdf7; }
+    .cta-box h4 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-light); margin-bottom: 6px; }
+    .partner-pill { display: inline-flex; align-items: center; gap: 6px; background: var(--primary-soft); color: var(--primary); font-size: 12.5px; font-weight: 700; padding: 6px 12px; border-radius: 8px; width: fit-content; }
+    .history-list { display: flex; flex-direction: column; gap: 6px; }
+    .history-item { display: grid; grid-template-columns: 30px 150px 135px 1fr auto; gap: 10px; align-items: center; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 8px 12px; font-size: 12.5px; }
+
+    .eff-bar-wrap { display: flex; align-items: center; gap: 8px; }
+    .eff-bar-track { width: 64px; height: 7px; background: #e2e8f0; border-radius: 999px; overflow: hidden; }
+    .eff-bar-fill { height: 100%; border-radius: 999px; background: var(--accent); }
+    .eff-bar-fill.mid { background: var(--warn); }
+    .eff-bar-fill.low { background: var(--danger); }
+
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .subcard { background: var(--surface-alt); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+    .subcard h3 { font-size: 14.5px; font-weight: 800; color: var(--primary); margin-bottom: 12px; }
+    .pos-bar-row { margin-bottom: 12px; }
+    .pos-bar-row:last-child { margin-bottom: 0; }
+    .pos-bar-meta { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 4px; }
+    .pos-track { height: 10px; background: #e2e8f0; border-radius: 999px; overflow: hidden; }
+    .pos-fill { height: 100%; background: linear-gradient(90deg, #1d4ed8, #16a34a); border-radius: 999px; }
+    .pos-note { font-size: 11.5px; color: var(--text-light); margin-top: 3px; }
+
+    .tag { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
+    .tag-fixed { background: var(--primary-soft); color: var(--primary); }
+    .tag-unbeaten { background: var(--accent-soft); color: var(--accent-text); }
+    .tag-rot { background: #f1f5f9; color: var(--text-muted); }
+    .tag-cta { background: var(--info-soft); color: #0369a1; }
+    .hm-cell { text-align: center; font-weight: 700; font-size: 12.5px; border-radius: 6px; }
+    .footnote { font-size: 12.5px; color: var(--text-light); margin-top: 10px; }
+    .footer { text-align: center; font-size: 12px; color: var(--text-light); margin-top: 32px; }
+
+    @media (max-width: 900px) {
+      .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+      .insight-grid { grid-template-columns: 1fr 1fr; }
+      .two-col { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .hero { padding: 20px 16px; }
+      .section { padding: 18px 14px; }
+      .insight-grid { grid-template-columns: 1fr; }
+      .history-item { grid-template-columns: 28px 1fr; gap: 6px; }
+      .doubles-list td { padding: 8px 6px; font-size: 12px; }
+    }
+    @media print { .quick-nav, .search-bar, .top-bar { display: none !important; } body { background: #fff; } .section { box-shadow: none; break-inside: avoid; } }
+  </style>
+</head>
+<body>
+  <div class="container" id="app"></div>
+
+  <script>
+    const REPORT_DATA = {"meta": {"team_name": "San Luis A", "monogram": "SL", "category": "6ta Masculino", "club": "San Luis", "our_team": "Andrew Tennis A", "current_season": "Temporada Actual", "group_name": "Grupo C", "authors": "Leonardo Machín · Scouting Andrew Tennis A", "generated_date": "23/11/2026 19:51", "version": "Auto-TOL v2.0", "next_match": "", "standings_note": "Datos actualizados automáticamente desde EpicenterSport el 23/11/2026 19:51."}, "roster_count": 18, "kpis_current": {"season": "Temporada Actual", "jornadas_w": 0, "jornadas_l": 0, "matches_w": 0, "matches_l": 0, "indiv_eff": 0.0, "sets_w": 0, "sets_l": 0, "set_ave": 0.0, "games_w": 0, "games_l": 0, "game_ave": 0.0, "stb_w": 0, "stb_l": 0, "stb_eff": 0.0, "close_w": 0, "close_l": 0}, "hero_summary": "Balance actual en Temporada Actual: 0–0 en jornadas y 0–0 en partidos de dobles (0.0%).", "insights_30s": [{"kicker": "Temporada en curso (Temporada Actual)", "headline": "3° de Grupo C (0–0 en jornadas)", "body": "Suma 52 pts con 0–0 en dobles (0.0%) y 0–0 en súper tie-breaks.", "tone": "positive"}, {"kicker": "Historial directo", "headline": "Sin cruces previos vs Andrew Tennis A", "body": "Aún no se registran partidos contra nuestro equipo en el histórico cargado.", "tone": "info"}, {"kicker": "Núcleo fuerte", "headline": "Rotación repartida en plantilla", "body": "Roster activo de 18 jugadores registrados.", "tone": "default"}, {"kicker": "Rendimiento por posición", "headline": "D1 es su punto más fuerte (0–0)", "body": "Promedia 0% en D1 (base: Sin datos). Flanco más vulnerable: D1 (0–0).", "tone": "default"}, {"kicker": "Fuerza ante el Top 4", "headline": "0–0 contra equipos de arriba", "body": "Cruces: Sin cruces ante Top 4 registrados.", "tone": "info"}, {"kicker": "Margen real vs marcador", "headline": "Diferencial total: +0 games", "body": "Efectividad real en games del 0.0%.", "tone": "default"}], "tactical_notes": ["<strong>Parejas consolidadas en Temporada Actual:<\/strong> Alta rotación de parejas; no registra duplas repetidas en 3 o más jornadas.", "<strong>Lectura por posición:<\/strong> su mejor rendimiento está en <strong>D1<\/strong> (0–0) y su punto más atacable en <strong>D1<\/strong> (0–0, 0 parejas distintas probadas)."], "h2h_matches": [], "h2h_summary": "", "standings": [{"pos": 1, "team": "Ceti", "team_id": "ce321f9d-412c-4f9a-97c0-fa015feee99f", "pts": 69, "set_ave": 0.0, "game_ave": 0.0}, {"pos": 2, "team": "Pan de Azucar A", "team_id": "b2f8c56d-0fbc-4f69-abae-ba50dbae3aba", "pts": 54, "set_ave": 0.0, "game_ave": 0.0}, {"pos": 3, "team": "San Luis A", "team_id": "1335f3f1-a3b5-4059-a495-7e7c680b0604", "pts": 52, "set_ave": 0.0, "game_ave": 0.0}, {"pos": 4, "team": "Coronado B", "team_id": "cfa1de34-872a-4fec-bf80-fa43c1ac8073", "pts": 27, "set_ave": 0.0, "game_ave": 0.0}, {"pos": 5, "team": "Andrew Tennis B", "team_id": "401ef836-c3af-472e-b4a3-4ce3ab17285b", "pts": 25, "set_ave": 0.0, "game_ave": 0.0}, {"pos": 6, "team": "Dorado Country Club B", "team_id": "f09a952e-f9ee-4d5a-acd6-157925bf909c", "pts": 23, "set_ave": 0.0, "game_ave": 0.0}, {"pos": 7, "team": "Centro de Tenis La Paz", "team_id": "21c87878-2ab2-4362-9f86-ff8bbdf82230", "pts": 2, "set_ave": 0.0, "game_ave": 0.0}], "jornadas": [], "players": [{"id": "7883621", "name": "Cesar Lamadrid", "cedula": "7883621", "elo": 0.0, "pj_all": 0, "v_all": 0, "eff_all": 0.0, "is_debutant": false, "tactical_note": "", "fixed_partner_note": "", "cta": {"verified": false}, "history": []}, {"id": "20128330", "name": "Francisco Romero", "cedula": "20128330", "elo": 0.0, "pj_all": 0, "v_all": 0, "eff_all": 0.0, "is_debutant": false, "tactical_note": "", "fixed_partner_note": "", "cta": {"verified": false}, "history": []}, {"id": "26217356", "name": "Edgar Sanchez", "cedula": "26217356", "elo": 0.0, "pj_all": 0, "v_all": 0, "eff_all": 0.0, "is_debutant": false, "tactical_note": "", "fixed_partner_note": "", "cta": {"verified": false}, "history": []}, {"id": "26818064", "name": "Jesus Genis Gonzalez", "cedula": "26818064", "elo": 0.0, "pj_all": 0, "v_all": 0, "eff_all": 0.0, "is_debutant": false, "tactical_note": "", "fixed_partner_note": "", "cta": {"verified": false}, "history": []}, {"id": "19993212", "name": "Pietro Gebran", "cedula": "19993212", "elo": 0.0, "pj_all": 0, "v_all": 0, "eff_all": 0.0, "is_debutant": false, "tactical_note": "", "fixed_partner_note": "", "cta": {"verified": false}, "history": []}, {"id": "25575186", "name": "Erick Padron", "cedula": "25575186", "elo": 0.0, "pj_all": 0, "v_all": 0, "eff_all": 0.0, "is_debutant": false, "tactical_note": "", "fixed_partner_note": "", "cta": {"verified": false}, "history": []}, {"id": "6179533", "name": "Hugo Barboza", "cedula": "6179533", "elo": 0.0, "pj_all": 0, "v_all": 0, "eff_all": 0.0, "is_debutant": false, "tactical_note": "", "fixed_partner_note": "", "cta": {"verified": false}, "history": []}, {"id": "15305388", "name": "Arturo Guevara", "cedula": "15305388", "elo": 0.0, "pj_all": 0, "v_all": 0, "eff_all": 0.0, "is_debutant": false, "tactical_note": "", "fixed_partner_note": "", "cta": {"verified": false}, "history": []}, {"id": "17751511", "name": "Carlos Molina", "cedula": "17751511", "elo": 0.0, "pj_all": 0, "v_all": 0, "eff_all": 0.0, "is_debutant": false, "tactical_note": "", "fixed_partner_note": "", "cta": {"verified": false}, "history": []}, {"id": "20174990", "name": "Daniel Muro", "cedula": "20174990", "elo": 0.0, "pj_all": 0, "v_all": 0, "eff_all": 0.0, "is_debutant": false, "tactical_note": "", "fixed_partner_note": "", "cta": {"verified": false}, "history": []}, {"id": "11029305", "name": "Hector Montero", "cedula": "11029305", "elo": 0.0, "pj_all": 0, "v_all": 0, "eff_all": 0.0, "is_debutant": false, "tactical_note": "", "fixed_partner_note": "", "cta": {"verified": false}, "history": []}, {"id": "6430393", "name": "Edgar Daniel Sanchez", "cedula": "6430393", "elo": 0.0, "pj_all": 0, "v_all": 0, "eff_all": 0.0, "is_debutant": false, "tactical_note": "", "fixed_partner_note": "", "cta": {"verified": false}, "history": []}, {"id": "15527589", "name": "Ricardo Aray", "cedula": "15527589", "elo": 0.0, "pj_all": 0, "v_all": 0, "eff_all": 0.0, "is_debutant": false, "tactical_note": "", "fixed_partner_note": "", "cta": {"verified": false}, "history": []}, {"id": "21250468", "name": "Andres Lares", "cedula": "21250468", "elo": 0.0, "pj_all": 0, "v_all": 0, "eff_all": 0.0, "is_debutant": false, "tactical_note": "", "fixed_partner_note": "", "cta": {"verified": false}, "history": []}, {"id": "11231028", "name": "Carlos Bermudez", "cedula": "11231028", "elo": 0.0, "pj_all": 0, "v_all": 0, "eff_all": 0.0, "is_debutant": false, "tactical_note": "", "fixed_partner_note": "", "cta": {"verified": false}, "history": []}, {"id": "15747963", "name": "Jesus Dinardo", "cedula": "15747963", "elo": 0.0, "pj_all": 0, "v_all": 0, "eff_all": 0.0, "is_debutant": false, "tactical_note": "", "fixed_partner_note": "", "cta": {"verified": false}, "history": []}, {"id": "20937709", "name": "Eddy Martinez", "cedula": "20937709", "elo": 0.0, "pj_all": 0, "v_all": 0, "eff_all": 0.0, "is_debutant": false, "tactical_note": "", "fixed_partner_note": "", "cta": {"verified": false}, "history": []}, {"id": "27670871", "name": "Juan Francisco Perez", "cedula": "27670871", "elo": 0.0, "pj_all": 0, "v_all": 0, "eff_all": 0.0, "is_debutant": false, "tactical_note": "", "fixed_partner_note": "", "cta": {"verified": false}, "history": []}], "position_stats": [{"pos": "D1", "w": 0, "l": 0, "eff": 0.0, "unique_pairs": 0, "top_pair": "Sin datos", "top_pair_record": "0–0"}, {"pos": "D2", "w": 0, "l": 0, "eff": 0.0, "unique_pairs": 0, "top_pair": "Sin datos", "top_pair_record": "0–0"}, {"pos": "D3", "w": 0, "l": 0, "eff": 0.0, "unique_pairs": 0, "top_pair": "Sin datos", "top_pair_record": "0–0"}, {"pos": "D4", "w": 0, "l": 0, "eff": 0.0, "unique_pairs": 0, "top_pair": "Sin datos", "top_pair_record": "0–0"}, {"pos": "D5", "w": 0, "l": 0, "eff": 0.0, "unique_pairs": 0, "top_pair": "Sin datos", "top_pair_record": "0–0"}], "season_comparison": [{"season": "Temporada Actual", "jornadas_w": 0, "jornadas_l": 0, "matches_w": 0, "matches_l": 0, "indiv_eff": 0.0, "sets_w": 0, "sets_l": 0, "set_ave": 0.0, "games_w": 0, "games_l": 0, "game_ave": 0.0, "stb_w": 0, "stb_l": 0, "stb_eff": 0.0, "close_w": 0, "close_l": 0}], "pairs_current": [], "pairs_all": [], "position_heatmap": []};
+
+    (function renderReport(data) {
+      const app = document.getElementById("app");
+      const esc = (s) => String(s ?? "").replace(/[&<>"']/g, m => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+      const pctClass = (p) => p >= 65 ? "" : (p >= 45 ? "mid" : "low");
+
+      function renderSetsChips(sets, walkover) {
+        if (walkover) return `<span class="set-chip">W/O</span>`;
+        if (!sets || !sets.length) return `<span class="set-chip">—</span>`;
+        return sets.map((st, idx) => {
+          const isStb = idx === 2 && (Math.max(st[0], st[1]) >= 10);
+          return `<span class="set-chip ${isStb ? "stb" : ""}">${st[0]}–${st[1]}</span>`;
+        }).join("");
+      }
+
+      function renderMatchCard(match, scoutTeam) {
+        const isWin = match.result === "V";
+        const marginTxt = match.game_diff !== null && match.game_diff !== undefined
+          ? ` · Games: ${match.games_for}–${match.games_against} (${match.game_diff >= 0 ? "+" : ""}${match.game_diff})`
+          : "";
+        const rows = (match.doubles || []).map(d => {
+          const scoutWin = d.result === "V";
+          return `
+            <tr>
+              <td style="width:46px"><span class="pos-badge">${esc(d.pos)}</span></td>
+              <td class="pair-name ${scoutWin ? "winner" : ""}">${esc(d.team_pair)}</td>
+              <td class="sets-cell">${renderSetsChips(d.sets, d.walkover)}</td>
+              <td class="pair-name ${!scoutWin ? "winner" : ""}" style="text-align:right">${esc(d.opp_pair)}</td>
+              <td style="width:40px;text-align:center"><span class="res-badge ${d.result}">${d.result}</span></td>
+            </tr>
+          `;
+        }).join("");
+
+        return `
+          <div class="match-card">
+            <div class="match-card-head">
+              <div>
+                <div class="match-card-title">${esc(match.season)} · ${esc(match.round)} · ${esc(match.date)} ${match.venue ? `(${esc(match.venue)})` : ""}</div>
+                <div class="section-subtitle">${esc(match.phase || "")}${marginTxt}</div>
+              </div>
+              <div class="scoreboard-banner">
+                <span>${esc(scoutTeam)}</span>
+                <span class="score-pill ${isWin ? "win" : "loss"}">${match.score_for}–${match.score_against}</span>
+                <span>${esc(match.opponent)}</span>
+              </div>
+            </div>
+            <table class="doubles-list"><tbody>${rows || '<tr><td colspan="5" style="text-align:center;color:var(--text-light)">Sin detalle de dobles registrado</td></tr>'}</tbody></table>
+          </div>
+        `;
+      }
+
+      const m = data.meta;
+      const k = data.kpis_current;
+
+      app.innerHTML = `
+        <div class="top-bar">
+          <a class="back-link" href="../index.html">← Todos los equipos (${esc(m.category)})</a>
+          <span style="color:var(--text-light)">Actualizado: ${esc(m.generated_date)}</span>
+        </div>
+
+        <header class="hero">
+          <div class="hero-top">
+            <div class="monogram">${esc(m.monogram)}</div>
+            <div>
+              <div class="hero-meta-top">${esc(m.authors)}</div>
+              <h1>${esc(m.team_name)} — ${esc(m.category)}</h1>
+              <div class="hero-sub">${esc(m.club)} · ${data.roster_count} jugadores en roster · ${esc(m.version)}</div>
+            </div>
+          </div>
+          <div class="kpi-grid">
+            <div class="kpi-card"><div class="kpi-value">${k.jornadas_w}–${k.jornadas_l}</div><div class="kpi-label">${esc(m.current_season)} · Récord de jornadas</div></div>
+            <div class="kpi-card"><div class="kpi-value">${k.indiv_eff.toFixed(1)}%</div><div class="kpi-label">${esc(m.current_season)} · Efectividad individual (${k.matches_w}–${k.matches_l})</div></div>
+            <div class="kpi-card"><div class="kpi-value">${k.sets_w}–${k.sets_l}</div><div class="kpi-label">${esc(m.current_season)} · Sets G–P (${k.set_ave.toFixed(1)}%)</div></div>
+            <div class="kpi-card"><div class="kpi-value">${k.games_w}–${k.games_l}</div><div class="kpi-label">${esc(m.current_season)} · Games G–P (${k.game_ave.toFixed(1)}%)</div></div>
+          </div>
+          ${data.hero_summary ? `<div class="hero-summary">${esc(data.hero_summary)}</div>` : ""}
+        </header>
+
+        <nav class="quick-nav">
+          <a href="#sec-esencial">En 30 segundos</a>
+          <a href="#sec-tactica">Qué esperar</a>
+          <a href="#sec-h2h">Enfrentamientos Directos</a>
+          <a href="#sec-tabla">Tabla</a>
+          <a href="#sec-jornadas">Historial por Jornada</a>
+          <a href="#sec-jugadores">Estadísticas Individuales</a>
+          <a href="#sec-detallado">Análisis Detallado</a>
+          <a href="#sec-parejas">Parejas y Rotaciones</a>
+        </nav>
+
+        <section class="section" id="sec-esencial">
+          <div class="section-header"><div><h2>Lo esencial en 30 segundos</h2><div class="section-subtitle">Claves ejecutivas para preparar la alineación D1–D5</div></div></div>
+          <div class="insight-grid">
+            ${data.insights_30s.map(card => `
+              <div class="insight-card tone-${esc(card.tone || "default")}">
+                <div class="insight-kicker">${esc(card.kicker)}</div>
+                <div class="insight-headline">${esc(card.headline)}</div>
+                <div class="insight-body">${esc(card.body)}</div>
+              </div>
+            `).join("")}
+          </div>
+        </section>
+
+        <section class="section" id="sec-tactica">
+          <div class="section-header"><div><h2>Qué esperar de ${esc(m.team_name)}</h2><div class="section-subtitle">Patrones de alineación, parejas fijas y movimientos recientes</div></div></div>
+          <div class="tactical-box">${data.tactical_notes.map(p => `<p>${p}</p>`).join("")}</div>
+        </section>
+
+        <section class="section" id="sec-h2h">
+          <div class="section-header"><div><h2>Enfrentamientos Directos</h2><div class="section-subtitle">vs ${esc(m.our_team)} (${esc(m.category)})${m.next_match ? ` · Próximo cruce: ${esc(m.next_match)}` : ""}</div></div></div>
+          <div class="h2h-grid">
+            ${data.h2h_matches.length ? data.h2h_matches.map(hm => renderMatchCard(hm, m.team_name)).join("") : `<p class="footnote">No se registran enfrentamientos directos previos contra ${esc(m.our_team)}.</p>`}
+          </div>
+          ${data.h2h_summary ? `<p class="footnote">${esc(data.h2h_summary)}</p>` : ""}
+        </section>
+
+        <section class="section" id="sec-tabla">
+          <div class="section-header"><div><h2>Tabla de posiciones — ${esc(m.current_season)}</h2><div class="section-subtitle">${esc(m.group_name)} · ${data.standings.length} equipos</div></div></div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead><tr><th class="center">Pos</th><th>Equipo</th><th class="num">Pts</th><th class="num">Set Ave.</th><th class="num">Game Ave.</th></tr></thead>
+              <tbody>
+                ${data.standings.map(row => {
+                  const cls = row.team === m.team_name ? "highlight-scout" : (row.team === m.our_team ? "highlight-own" : "");
+                  return `<tr class="${cls}"><td class="center">${row.pos}</td><td>${esc(row.team)}${row.team === m.our_team ? ' <span class="tag tag-unbeaten">Nuestro equipo</span>' : ""}</td><td class="num">${row.pts}</td><td class="num">${row.set_ave.toFixed(1)}%</td><td class="num">${row.game_ave.toFixed(1)}%</td></tr>`;
+                }).join("")}
+              </tbody>
+            </table>
+          </div>
+          ${m.standings_note ? `<p class="footnote">${esc(m.standings_note)}</p>` : ""}
+        </section>
+
+        <section class="section" id="sec-jornadas">
+          <div class="section-header">
+            <div><h2>Historial por Jornada — ${esc(m.current_season)}</h2><div class="section-subtitle">Selecciona una jornada o playoff para ver la alineación D1–D5 y el marcador</div></div>
+            <div class="filter-pills" id="jornada-season-filter"></div>
+          </div>
+          <div class="tabs-bar" id="jornada-tabs"></div>
+          <div id="jornada-detail"></div>
+        </section>
+
+        <section class="section" id="sec-jugadores">
+          <div class="section-header"><div><h2>Estadísticas individuales</h2><div class="section-subtitle">TOL = Tennis Open League · CTA = Competencias de Tenis Amateur · Haz clic sobre un jugador para ver su ficha</div></div></div>
+          <div class="search-bar">
+            <input type="text" id="player-search" class="search-input" placeholder="Buscar por nombre, cédula, club CTA o compañero..." />
+            <div class="filter-pills" id="player-season-filter">
+              <button class="filter-btn active" data-season="ALL">Todas las temporadas</button>
+              <button class="filter-btn" data-season="${esc(m.current_season)}">Solo ${esc(m.current_season)}</button>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th class="sortable" data-sort="name">Jugador ⇅</th>
+                  <th>Cédula</th>
+                  <th>CTA</th>
+                  <th class="num sortable" data-sort="pj">PJ ⇅</th>
+                  <th class="num sortable" data-sort="v">V ⇅</th>
+                  <th class="sortable" data-sort="eff">Efectividad ⇅</th>
+                  <th class="num sortable" data-sort="elo">ELO ⇅</th>
+                  <th class="center"></th>
+                </tr>
+              </thead>
+              <tbody id="players-tbody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="section" id="sec-detallado">
+          <div class="section-header"><div><h2>Análisis Detallado</h2><div class="section-subtitle">Rendimiento por posición D1–D5 y comparativa entre temporadas</div></div></div>
+          <div class="two-col">
+            <div class="subcard">
+              <h3>Rendimiento por posición (${esc(m.current_season)})</h3>
+              ${data.position_stats.map(ps => `
+                <div class="pos-bar-row">
+                  <div class="pos-bar-meta">
+                    <span><span class="pos-badge">${ps.pos}</span> <strong>${ps.w}–${ps.l}</strong> (${ps.eff.toFixed(1)}%)</span>
+                    <span style="color:var(--text-light);font-size:12px">${ps.unique_pairs} pareja(s)</span>
+                  </div>
+                  <div class="pos-track"><div class="pos-fill" style="width:${ps.eff.toFixed(1)}%"></div></div>
+                  <div class="pos-note">Pareja más usada: <strong>${esc(ps.top_pair)}</strong> (${ps.top_pair_record})</div>
+                </div>
+              `).join("")}
+            </div>
+            <div class="subcard">
+              <h3>Comparativa por temporada (TOL)</h3>
+              <div class="table-wrap">
+                <table class="data-table">
+                  <thead><tr><th>Métrica</th>${data.season_comparison.map(sc => `<th class="num">${esc(sc.season)}</th>`).join("")}</tr></thead>
+                  <tbody>
+                    <tr><td>Jornadas (G–P)</td>${data.season_comparison.map(sc => `<td class="num"><strong>${sc.jornadas_w}–${sc.jornadas_l}</strong></td>`).join("")}</tr>
+                    <tr><td>Dobles (G–P)</td>${data.season_comparison.map(sc => `<td class="num">${sc.matches_w}–${sc.matches_l}</td>`).join("")}</tr>
+                    <tr><td>Efectividad</td>${data.season_comparison.map(sc => `<td class="num"><strong>${sc.indiv_eff.toFixed(1)}%</strong></td>`).join("")}</tr>
+                    <tr><td>Sets (G–P · %)</td>${data.season_comparison.map(sc => `<td class="num">${sc.sets_w}–${sc.sets_l} (${sc.set_ave.toFixed(1)}%)</td>`).join("")}</tr>
+                    <tr><td>Games (G–P · %)</td>${data.season_comparison.map(sc => `<td class="num">${sc.games_w}–${sc.games_l} (${sc.game_ave.toFixed(1)}%)</td>`).join("")}</tr>
+                    <tr><td>Súper Tie-Breaks</td>${data.season_comparison.map(sc => `<td class="num">${sc.stb_w}–${sc.stb_l} (${sc.stb_eff.toFixed(0)}%)</td>`).join("")}</tr>
+                    <tr><td>Jornadas 3–2 (G–P)</td>${data.season_comparison.map(sc => `<td class="num">${sc.close_w}–${sc.close_l}</td>`).join("")}</tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="sec-parejas">
+          <div class="section-header">
+            <div><h2>Parejas y Rotaciones</h2><div class="section-subtitle">Química de duplas y mapa de calor de posiciones por jugador</div></div>
+            <div class="filter-pills" id="pairs-season-filter">
+              <button class="filter-btn active" data-season="${esc(m.current_season)}">${esc(m.current_season)}</button>
+              <button class="filter-btn" data-season="ALL">Todas</button>
+            </div>
+          </div>
+          <div class="table-wrap" style="margin-bottom:20px">
+            <table class="data-table">
+              <thead><tr><th>Pareja</th><th>Posiciones</th><th class="num">PJ</th><th class="num">G–P</th><th>Efectividad</th><th class="num">Dif. Games</th><th>Perfil</th></tr></thead>
+              <tbody id="pairs-tbody"></tbody>
+            </table>
+          </div>
+          <h3 style="font-size:15px;font-weight:800;color:var(--primary);margin-bottom:10px">Mapa de posiciones por jugador (${esc(m.current_season)})</h3>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead><tr><th>Jugador</th><th class="center">D1</th><th class="center">D2</th><th class="center">D3</th><th class="center">D4</th><th class="center">D5</th><th class="num">Total</th></tr></thead>
+              <tbody>
+                ${data.position_heatmap.map(row => {
+                  const cell = (val) => {
+                    if (!val) return `<td class="center" style="color:#cbd5e1">—</td>`;
+                    const alpha = Math.min(0.15 + val * 0.16, 0.85);
+                    const color = alpha > 0.48 ? "#ffffff" : "#0f2c59";
+                    return `<td class="center"><span class="hm-cell" style="display:inline-block;min-width:30px;padding:3px 7px;background:rgba(15,44,89,${alpha.toFixed(2)});color:${color}">${val}</span></td>`;
+                  };
+                  return `<tr><td><strong>${esc(row.name)}</strong></td>${cell(row.D1)}${cell(row.D2)}${cell(row.D3)}${cell(row.D4)}${cell(row.D5)}<td class="num"><strong>${row.total}</strong></td></tr>`;
+                }).join("")}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <footer class="footer">Reporte standalone generado automáticamente · Fuentes: TOL (EpicenterSport) &amp; CTA</footer>
+      `;
+
+      // Interactivity 1: Jornadas Tabs
+      const allSeasons = [...new Set(data.jornadas.map(j => j.season))];
+      let activeJornadaSeason = allSeasons.includes(m.current_season) ? m.current_season : (allSeasons[0] || "");
+      let activeJornadaIdx = 0;
+
+      const jFilterEl = document.getElementById("jornada-season-filter");
+      jFilterEl.innerHTML = allSeasons.map(s => `<button class="filter-btn ${s === activeJornadaSeason ? "active" : ""}" data-season="${esc(s)}">${esc(s)}</button>`).join("");
+
+      function renderJornadasUI() {
+        const filtered = data.jornadas.filter(j => j.season === activeJornadaSeason);
+        if (activeJornadaIdx >= filtered.length) activeJornadaIdx = 0;
+        const tabsEl = document.getElementById("jornada-tabs");
+        tabsEl.innerHTML = filtered.map((j, idx) => `
+          <button class="jornada-tab ${idx === activeJornadaIdx ? "active" : ""}" data-idx="${idx}">
+            <div class="jornada-tab-top"><span>${esc(j.round)}</span><span class="tab-pill ${j.result}">${j.result} ${j.score_for}–${j.score_against}</span></div>
+            <div class="jornada-tab-opp">vs ${esc(j.opponent)}</div>
+            <div class="jornada-tab-date">${esc(j.date)}</div>
+          </button>
+        `).join("");
+        tabsEl.querySelectorAll(".jornada-tab").forEach(btn => btn.addEventListener("click", () => { activeJornadaIdx = Number(btn.dataset.idx); renderJornadasUI(); }));
+        const detailEl = document.getElementById("jornada-detail");
+        detailEl.innerHTML = filtered[activeJornadaIdx] ? renderMatchCard(filtered[activeJornadaIdx], m.team_name) : `<p class="footnote">No hay jornadas registradas.</p>`;
+      }
+      jFilterEl.querySelectorAll(".filter-btn").forEach(btn => btn.addEventListener("click", () => {
+        activeJornadaSeason = btn.dataset.season; activeJornadaIdx = 0;
+        jFilterEl.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active"); renderJornadasUI();
+      }));
+      renderJornadasUI();
+
+      // Interactivity 2: Players Accordion + Search + Sort
+      let playerSeasonMode = "ALL", playerSearchText = "", playerSortField = "eff", playerSortAsc = false;
+      const expandedPlayers = new Set();
+
+      function getPlayerMetrics(p) {
+        if (playerSeasonMode === "ALL") return { pj: p.pj_all, v: p.v_all, eff: p.eff_all, history: p.history };
+        const h = p.history.filter(x => x.season === playerSeasonMode);
+        const pj = h.length, v = h.filter(x => x.result === "V").length;
+        return { pj, v, eff: pj ? (v / pj) * 100 : 0, history: h };
+      }
+
+      function renderPlayersTable() {
+        const tbody = document.getElementById("players-tbody");
+        const q = playerSearchText.trim().toLowerCase();
+        let rows = data.players.map(p => ({ p, st: getPlayerMetrics(p) }));
+        if (playerSeasonMode !== "ALL") rows = rows.filter(x => x.st.pj > 0);
+        if (q) {
+          rows = rows.filter(({ p }) => [p.name, p.cedula, p.cta ? `${p.cta.club} ${p.cta.category}` : "", p.fixed_partner_note || "", p.tactical_note || ""].join(" ").toLowerCase().includes(q));
+        }
+        rows.sort((a, b) => {
+          let va, vb;
+          if (playerSortField === "name") { va = a.p.name; vb = b.p.name; }
+          else if (playerSortField === "pj") { va = a.st.pj; vb = b.st.pj; }
+          else if (playerSortField === "v") { va = a.st.v; vb = b.st.v; }
+          else if (playerSortField === "elo") { va = a.p.elo || 0; vb = b.p.elo || 0; }
+          else { va = a.st.eff; vb = b.st.eff; }
+          if (va === vb) return (b.p.elo || 0) - (a.p.elo || 0);
+          if (typeof va === "string") return playerSortAsc ? va.localeCompare(vb) : vb.localeCompare(va);
+          return playerSortAsc ? va - vb : vb - va;
+        });
+
+        tbody.innerHTML = rows.map(({ p, st }) => {
+          const isOpen = expandedPlayers.has(p.id);
+          const ctaBadge = p.cta && p.cta.verified ? `<span class="tag tag-cta">${esc(p.cta.category)} · #${p.cta.ranking}</span>` : `<span class="tag tag-rot">Sin cruce</span>`;
+          const ctaDetail = p.cta && p.cta.verified
+            ? `<div class="cta-box"><h4>CTA · Perfil verificado (${esc(p.cta.match_method)})</h4><div><strong>Club:</strong> ${esc(p.cta.club)} · <strong>Categoría:</strong> ${esc(p.cta.category)} · <strong>Ranking CTA:</strong> #${p.cta.ranking} (${p.cta.points} pts)</div>${p.tactical_note ? `<div style="margin-top:6px;color:var(--text-muted)">${esc(p.tactical_note)}</div>` : ""}</div>`
+            : `<div class="cta-box unverified"><h4>CTA · Club actual</h4><div>Cruce con CTA no verificado para este jugador.${p.tactical_note ? " " + esc(p.tactical_note) : ""}</div></div>`;
+          const historyHtml = st.history.map(h => `
+            <div class="history-item">
+              <span class="res-badge ${h.result}">${h.result}</span>
+              <div><strong>${esc(h.round)}</strong><br><span style="color:var(--text-light)">${esc(h.date)} · ${esc(h.season)}</span></div>
+              <div style="font-family:var(--mono);font-weight:700">${esc(h.score_str)}</div>
+              <div><strong>vs ${esc(h.opp_pair)}</strong><div style="color:var(--text-light)">Compañero: <strong>${esc(h.partner)}</strong> · Rival: ${esc(h.rival_team)}</div></div>
+              <span class="pos-badge">${esc(h.pos)}</span>
+            </div>
+          `).join("");
+
+          return `
+            <tr class="player-row ${isOpen ? "expanded" : ""}" data-pid="${esc(p.id)}">
+              <td><strong>${esc(p.name)}</strong>${p.is_debutant ? ' <span class="tag tag-fixed">Debut</span>' : ""}</td>
+              <td style="font-family:var(--mono);color:var(--text-muted)">${esc(p.cedula)}</td>
+              <td>${ctaBadge}</td>
+              <td class="num">${st.pj}</td>
+              <td class="num">${st.v}</td>
+              <td><div class="eff-bar-wrap"><div class="eff-bar-track"><div class="eff-bar-fill ${pctClass(st.eff)}" style="width:${st.eff.toFixed(0)}%"></div></div><strong>${st.eff.toFixed(0)}%</strong></div></td>
+              <td class="num"><strong>${p.elo ? p.elo.toFixed(2) : "—"}</strong></td>
+              <td class="center"><span class="chevron">›</span></td>
+            </tr>
+            <tr class="player-detail-row ${isOpen ? "open" : ""}">
+              <td colspan="8" class="player-detail-cell">
+                <div class="player-drawer">
+                  ${ctaDetail}
+                  ${p.fixed_partner_note ? `<div class="partner-pill">🤝 ${esc(p.fixed_partner_note)}</div>` : ""}
+                  <div>
+                    <h4 style="font-size:12px;text-transform:uppercase;letter-spacing:0.5px;color:var(--text-light);margin-bottom:8px">TOL — Historial de partidos (${st.history.length})</h4>
+                    <div class="history-list">${historyHtml || '<p class="footnote">Sin partidos registrados.</p>'}</div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          `;
+        }).join("");
+
+        tbody.querySelectorAll(".player-row").forEach(tr => tr.addEventListener("click", () => {
+          const pid = tr.dataset.pid;
+          if (expandedPlayers.has(pid)) expandedPlayers.delete(pid); else expandedPlayers.add(pid);
+          renderPlayersTable();
+        }));
+      }
+
+      document.getElementById("player-search").addEventListener("input", (e) => { playerSearchText = e.target.value; renderPlayersTable(); });
+      document.querySelectorAll("#player-season-filter .filter-btn").forEach(btn => btn.addEventListener("click", () => {
+        playerSeasonMode = btn.dataset.season;
+        document.querySelectorAll("#player-season-filter .filter-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active"); renderPlayersTable();
+      }));
+      document.querySelectorAll("th.sortable").forEach(th => th.addEventListener("click", () => {
+        const f = th.dataset.sort;
+        if (playerSortField === f) playerSortAsc = !playerSortAsc; else { playerSortField = f; playerSortAsc = (f === "name"); }
+        renderPlayersTable();
+      }));
+      renderPlayersTable();
+
+      // Interactivity 3: Pairs
+      let pairsSeasonMode = m.current_season;
+      function renderPairsTable() {
+        const list = pairsSeasonMode === "ALL" ? data.pairs_all : data.pairs_current;
+        const tbody = document.getElementById("pairs-tbody");
+        tbody.innerHTML = list.map(pr => {
+          const tags = [];
+          if (pr.pj >= 3) tags.push(`<span class="tag tag-fixed">Pareja Fija</span>`);
+          if (pr.pj >= 2 && pr.l === 0) tags.push(`<span class="tag tag-unbeaten">Invicta</span>`);
+          if (!tags.length) tags.push(`<span class="tag tag-rot">Rotación</span>`);
+          const gd = pr.game_diff >= 0 ? `+${pr.game_diff}` : `${pr.game_diff}`;
+          return `<tr><td><strong>${esc(pr.pair_name)}</strong></td><td>${pr.positions.map(pos => `<span class="pos-badge" style="margin-right:4px">${esc(pos)}</span>`).join("")}</td><td class="num">${pr.pj}</td><td class="num"><strong>${pr.w}–${pr.l}</strong></td><td><div class="eff-bar-wrap"><div class="eff-bar-track"><div class="eff-bar-fill ${pctClass(pr.eff)}" style="width:${pr.eff.toFixed(0)}%"></div></div><strong>${pr.eff.toFixed(0)}%</strong></div></td><td class="num" style="color:${pr.game_diff >= 0 ? "var(--accent-text)" : "var(--danger-text)"};font-weight:700">${gd}</td><td>${tags.join(" ")}</td></tr>`;
+        }).join("") || `<tr><td colspan="7" class="center" style="color:var(--text-light)">Sin datos de parejas.</td></tr>`;
+      }
+      document.querySelectorAll("#pairs-season-filter .filter-btn").forEach(btn => btn.addEventListener("click", () => {
+        pairsSeasonMode = btn.dataset.season;
+        document.querySelectorAll("#pairs-season-filter .filter-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active"); renderPairsTable();
+      }));
+      renderPairsTable();
+    })(REPORT_DATA);
+  </script>
+</body>
+</html>

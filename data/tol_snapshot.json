@@ -1,0 +1,2587 @@
+{
+  "extracted_at": "23/11/2026 19:51",
+  "current_season": "Temporada Actual",
+  "category_name": "6ta Masculino",
+  "teams_meta": {
+    "Orus": {
+      "id": "01a06e9f-c1bd-70e4-badd-652ba97cd29a",
+      "name": "Orus",
+      "club": "El Laguito"
+    },
+    "Academia Grand Slam": {
+      "id": "0c7c0f98-b0ab-48a5-a707-cac4329dc2f6",
+      "name": "Academia Grand Slam",
+      "club": "La Cinta"
+    },
+    "San Luis A": {
+      "id": "1335f3f1-a3b5-4059-a495-7e7c680b0604",
+      "name": "San Luis A",
+      "club": "San Luis"
+    },
+    "Andrew Tennis A": {
+      "id": "20cb9518-fc3c-4808-a737-09240b8dfdb6",
+      "name": "Andrew Tennis A",
+      "club": "El Laguito"
+    },
+    "Centro de Tenis La Paz": {
+      "id": "21c87878-2ab2-4362-9f86-ff8bbdf82230",
+      "name": "Centro de Tenis La Paz",
+      "club": "Centro De Tenis La Paz"
+    },
+    "Andrew Tennis B": {
+      "id": "401ef836-c3af-472e-b4a3-4ce3ab17285b",
+      "name": "Andrew Tennis B",
+      "club": "El Laguito"
+    },
+    "Cumbres B": {
+      "id": "4a245e68-665a-47c8-b09b-732cbbeb861f",
+      "name": "Cumbres B",
+      "club": "Cumbres"
+    },
+    "Mampote": {
+      "id": "6a9889c4-3305-4b2d-ae25-992cec673bbb",
+      "name": "Mampote",
+      "club": "Mampote"
+    },
+    "Pan de Azucar C": {
+      "id": "72a2b064-3c21-4456-87d1-9f1feca8fb13",
+      "name": "Pan de Azucar C",
+      "club": "Pan de Azucar"
+    },
+    "Monteclaro": {
+      "id": "8293e3a4-c020-4620-8e10-01e3468f4315",
+      "name": "Monteclaro",
+      "club": "Monteclaro"
+    },
+    "Cumbres A": {
+      "id": "9aaf38b0-1464-43c6-b433-5a666ec01588",
+      "name": "Cumbres A",
+      "club": "Cumbres"
+    },
+    "Pan de Azucar A": {
+      "id": "b2f8c56d-0fbc-4f69-abae-ba50dbae3aba",
+      "name": "Pan de Azucar A",
+      "club": "Pan de Azucar"
+    },
+    "Coronado A": {
+      "id": "bcfd396e-cfa0-4b27-9e21-3150bcc84bd0",
+      "name": "Coronado A",
+      "club": "Coronado"
+    },
+    "Dorado Country Club A": {
+      "id": "be91fecf-ce2d-4d2e-9c90-cabe92e35f76",
+      "name": "Dorado Country Club A",
+      "club": "El Dorado"
+    },
+    "Banana Splits": {
+      "id": "c1b358bc-e468-4028-bbc6-d3d689366aed",
+      "name": "Banana Splits",
+      "club": "Playa Azul"
+    },
+    "Ceti": {
+      "id": "ce321f9d-412c-4f9a-97c0-fa015feee99f",
+      "name": "Ceti",
+      "club": "Federacion"
+    },
+    "Coronado B": {
+      "id": "cfa1de34-872a-4fec-bf80-fa43c1ac8073",
+      "name": "Coronado B",
+      "club": "Coronado"
+    },
+    "Club Tanaguarena": {
+      "id": "daf9f98a-08c9-4abf-85f6-09ba7701b0ce",
+      "name": "Club Tanaguarena",
+      "club": "Tanaguarena"
+    },
+    "Dorado Country Club B": {
+      "id": "f09a952e-f9ee-4d5a-acd6-157925bf909c",
+      "name": "Dorado Country Club B",
+      "club": "El Dorado"
+    },
+    "FVT - ENT": {
+      "id": "f292a358-7fb7-4fea-98f2-76dbf44f384b",
+      "name": "FVT - ENT",
+      "club": "El Laguito"
+    },
+    "Pan de Azucar B": {
+      "id": "f2e00627-1072-4009-889d-9f2048792b74",
+      "name": "Pan de Azucar B",
+      "club": "Pan de Azucar"
+    }
+  },
+  "rosters_by_team": {
+    "Orus": [
+      {
+        "id": "01a0835e-4ddf-71ad-968d-378bb275df3b",
+        "name": "Daniel Lokpez",
+        "cedula": "32336734",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "28c2a678-a8d8-49e7-be89-475413b8f410",
+        "name": "Douglas Vasquez",
+        "cedula": "12086982",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "01a08361-2ec5-739e-9380-57094cc86b7b",
+        "name": "Enmanuel Luis",
+        "cedula": "20913355",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "01a08362-584a-734e-b8e7-7d31c3fbd721",
+        "name": "Guillermo Garcia",
+        "cedula": "29893523",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "01a0835a-f3dc-71d8-b20f-1fb19f37f956",
+        "name": "Jesus Castro",
+        "cedula": "29896650",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "01a0835d-20c1-71c3-b5f5-8c2c50792f7a",
+        "name": "Johan Parra",
+        "cedula": "26691102",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "87a1cd6a-0b0a-4fde-9880-e6a19fb2574f",
+        "name": "Jose Vasquez",
+        "cedula": "26497498",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "01a06e9d-c4e1-7116-95b8-f708d81bd461",
+        "name": "Juan Carlos Zabala Leon",
+        "cedula": "25019028",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "01a0825c-ba06-71d1-bb9d-c20c16764512",
+        "name": "Luis Quintana",
+        "cedula": "9788472",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "01a08255-5e71-7046-b255-c6e73d627cb0",
+        "name": "Raul Espinel",
+        "cedula": "12357131",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "01a0824f-bbd0-735a-a70d-3a23a34cfa05",
+        "name": "Raul Antonio Espinel",
+        "cedula": "29611929",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "01a0835f-c196-7319-aa18-473f7d692577",
+        "name": "Robert Guillen",
+        "cedula": "20142708",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "01a08363-4669-7247-999c-d95e7bb71b47",
+        "name": "Sebastian Urdaneta",
+        "cedula": "32272482",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "01a0825f-7787-709a-94e7-832b77721671",
+        "name": "Wolfgang Ledezma",
+        "cedula": "15084967",
+        "elo": 0.0,
+        "tactical_note": ""
+      }
+    ],
+    "Academia Grand Slam": [
+      {
+        "id": "ce4f4a13-5a1c-42c3-9974-e4129caf9f00",
+        "name": "Ramon Fuenmayor",
+        "cedula": "19678001",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "15bd6c93-21fa-4d77-ac1f-4965dad4cdc4",
+        "name": "Alejandro Obadia",
+        "cedula": "25216081",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "a0c8632a-fdeb-478f-b6de-0055517e6f13",
+        "name": "Aquiles Arellan",
+        "cedula": "12113300",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "f03fc0e4-a13c-430d-9332-259f41979391",
+        "name": "David Alejandro Cavalieri",
+        "cedula": "15394189",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "67af76d4-ee5f-4ce6-9fb4-96767a5108af",
+        "name": "Edgar Rodriguez",
+        "cedula": "17140812",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "7021ee9f-220e-447b-851d-c42a1eb46ba6",
+        "name": "Enmanuel Barreto",
+        "cedula": "11562933",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "56569a04-4118-4946-90b7-5e7400899795",
+        "name": "Enrique Bastidas",
+        "cedula": "5700788",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "244882a4-7d9f-45d4-88b0-534e1dd06809",
+        "name": "Freddy Marrero",
+        "cedula": "20613066",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "54ab481e-3382-4006-a71b-92fa0b7059fa",
+        "name": "Gerardo Rosas",
+        "cedula": "13083754",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "7f677fd4-39df-499e-afab-35cc2964d008",
+        "name": "Isrrael Vergara",
+        "cedula": "16034163",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "61c204df-fd55-4d7d-bcf9-6dc415892b59",
+        "name": "Jose Guiñan",
+        "cedula": "6107856",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "c357da74-e4b1-45d3-a4ac-c0ad387ccac8",
+        "name": "José Chacón",
+        "cedula": "17268847",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "e07beaed-9db6-49b0-8b5d-059e4ad99658",
+        "name": "Kenneth Sanchez",
+        "cedula": "15204437",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "9c2c3924-1bc1-4075-aa50-4df08926ab8a",
+        "name": "Leonel Acevedo",
+        "cedula": "17926342",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "e7c08488-4f84-4c9f-a9d6-91c5308513df",
+        "name": "Leonell Roque",
+        "cedula": "6851620",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "aef9c3d8-9a44-432e-922c-f18f84cd77a5",
+        "name": "Regino Manzano",
+        "cedula": "15140072",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "01a07d4a-4d46-73ce-80ed-5f5595fa84c3",
+        "name": "Victor Garcia",
+        "cedula": "24470554",
+        "elo": 0.0,
+        "tactical_note": ""
+      }
+    ],
+    "San Luis A": [
+      {
+        "id": "01a08350-7e55-723a-ae05-f9fb3494d888",
+        "name": "Andres Lares",
+        "cedula": "21250468",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "3116cd86-f2c9-4128-bbd5-bbbb0002368f",
+        "name": "Arturo Guevara",
+        "cedula": "15305388",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "5dd51e99-86f2-4f65-a46c-ba198e752768",
+        "name": "Carlos Bermudez",
+        "cedula": "11231028",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "42298ca3-7ad5-40a8-b573-bf31fcc8f7b3",
+        "name": "Carlos Molina",
+        "cedula": "17751511",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "b81e0fd1-e3ce-4c03-8386-08b0da20582c",
+        "name": "Cesar Lamadrid",
+        "cedula": "7883621",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "0d66f988-5ec4-4c21-806c-33aef5c706ff",
+        "name": "Daniel Muro",
+        "cedula": "20174990",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "44600b0b-12ed-4fcd-a23c-2a7c32bdb145",
+        "name": "Eddy Martinez",
+        "cedula": "20937709",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "4eea6d3d-c777-4830-8f8a-02c277704720",
+        "name": "Edgar Daniel Sanchez",
+        "cedula": "6430393",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "9c65db47-d234-4759-8430-dc056beb6da9",
+        "name": "Edgar Sanchez",
+        "cedula": "26217356",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "061d32b0-b949-4351-9027-5416924013d5",
+        "name": "Erick Padron",
+        "cedula": "25575186",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "874482d4-0ee4-4703-8bbd-3d3c20e96fab",
+        "name": "Francisco Romero",
+        "cedula": "20128330",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "68dc78d0-15f4-4397-9050-4e31bbc06cae",
+        "name": "Hector Montero",
+        "cedula": "11029305",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "4c9b2b82-0640-4779-94dc-646a589fa454",
+        "name": "Hugo Barboza",
+        "cedula": "6179533",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "1d9e93a7-9bb2-472c-8adf-0aecb2b3d2a5",
+        "name": "Jesus Genis Gonzalez",
+        "cedula": "26818064",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "f1225380-d022-4841-bbf4-1b7201b00cfa",
+        "name": "Jesus Dinardo",
+        "cedula": "15747963",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "438f9b48-7853-40b3-8eba-2251f3c87094",
+        "name": "Juan Francisco Perez",
+        "cedula": "27670871",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "0184a666-c074-4c54-9e15-cab6c6347e50",
+        "name": "Pietro Gebran",
+        "cedula": "19993212",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "01a08351-f5a9-710c-84ac-d6efec7ea115",
+        "name": "Ricardo Aray",
+        "cedula": "15527589",
+        "elo": 0.0,
+        "tactical_note": ""
+      }
+    ],
+    "Andrew Tennis A": [
+      {
+        "id": "4de24c04-3e3d-4bec-9303-8d9b438db694",
+        "name": "Angel Tarazona",
+        "cedula": "12950054",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "25cc350e-192e-4ec3-900e-4ab25e0fa975",
+        "name": "Dany Contreras",
+        "cedula": "16611147",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "a53df952-ed8b-43cb-8f03-f8e39679bf08",
+        "name": "Dino Digeovachino",
+        "cedula": "16673356",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "3d89f9b4-9ee8-435a-b61a-6283ec059f10",
+        "name": "Efrain Cerrada",
+        "cedula": "13515645",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "aa274e73-c15d-441e-8941-67a446102c62",
+        "name": "Fernando Alvarez",
+        "cedula": "11734725",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "61112ca1-5956-4c10-b359-780f5ae59643",
+        "name": "Humberto Garcia",
+        "cedula": "12624416",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "7f4c0e0d-f0c9-4297-8e56-af47d9e3db6a",
+        "name": "Isaac Gonzalez",
+        "cedula": "24210193",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "dd5f0f58-12fa-4d95-859f-25086a696da4",
+        "name": "Ivan Soto",
+        "cedula": "14351611",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "cac5055e-c1f3-4243-b474-228053274491",
+        "name": "Jesus Melchor",
+        "cedula": "25268133",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "c5c39306-98fb-49a3-8239-ffbb060f446a",
+        "name": "Juan Diego Garcia",
+        "cedula": "24760405",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "3031e6bf-b3e8-4d96-bc01-0aa14a3b0def",
+        "name": "Leonardo Machin",
+        "cedula": "18836968",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "18edba1c-5800-40b8-a4b0-ee2ea487a5d1",
+        "name": "Marco Parra",
+        "cedula": "12163263",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "baa20731-9c14-4fbf-9eda-2bb0a59581e8",
+        "name": "Oscar Suinaga",
+        "cedula": "6847614",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "4497542f-14b5-41c2-b90b-acffeef33a16",
+        "name": "Paul Leiva",
+        "cedula": "16813034",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "777e4f57-6b11-4071-9e41-28051a8e7b2f",
+        "name": "Pedro Garcia",
+        "cedula": "25925201",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "e92164e3-f9f9-43b3-aa02-fa9791447ba7",
+        "name": "Rafael Coronado",
+        "cedula": "12421591",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "01a08640-a887-7358-850e-13134291ca29",
+        "name": "Ruben Gonzalez",
+        "cedula": "18738254",
+        "elo": 0.0,
+        "tactical_note": ""
+      }
+    ],
+    "Centro de Tenis La Paz": [
+      {
+        "id": "c76d8bb2-d3c2-478c-9d2c-de5a28fefeb6",
+        "name": "Antonio Rosamilia",
+        "cedula": "27127059",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "01a07c99-7b42-707d-80cf-7f42bdbc95f9",
+        "name": "Carlos Amaya",
+        "cedula": "16901332",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "01a08618-2550-7221-bdcf-025de051322b",
+        "name": "Douglas Baez",
+        "cedula": "10170469",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "01a07c97-794a-7261-aab1-0b4fbe232d93",
+        "name": "Ediber Gabriel Vazquez Araujo",
+        "cedula": "17604415",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "01a08604-0f26-7177-bc08-2a11114a0236",
+        "name": "Guillermo Colmenares",
+        "cedula": "16554011",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "01a07c98-a2c7-7174-afcb-8843d2389a6e",
+        "name": "Jesus Rivero",
+        "cedula": "24717148",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "01a07cfc-126f-702c-8844-6befe46b8c8c",
+        "name": "Luis Ruiz",
+        "cedula": "25964598",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "2bab038a-84cd-42c3-9874-4c0de35a1e9a",
+        "name": "Luis Tortabu",
+        "cedula": "12835419",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "01a07c96-5c8f-73a7-8db8-ed337f3d8935",
+        "name": "Newman Mieres",
+        "cedula": "13847347",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "01a07c9d-7dcb-7207-b3c9-c19041c2b94a",
+        "name": "Nico Urrea",
+        "cedula": "24151286",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "01a07c9b-18fd-7168-9f48-091998542e37",
+        "name": "Orlando Pinto",
+        "cedula": "17158319",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "01a0834f-a4ff-7008-9f75-e7d7e3bf4c30",
+        "name": "Yerson Mujica",
+        "cedula": "17141035",
+        "elo": 0.0,
+        "tactical_note": ""
+      }
+    ],
+    "Andrew Tennis B": [
+      {
+        "id": "9664043c-d897-4219-aef5-50d4e6897dc2",
+        "name": "Alejandro Lizarralde",
+        "cedula": "23707083",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "0614ca13-c9f8-4f3c-8308-83385ae10f75",
+        "name": "Angel Nuñez",
+        "cedula": "6187488",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "8e685db6-72cd-444a-971c-30bca3f0f8fe",
+        "name": "Angel Ponceleon",
+        "cedula": "6500387",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "db004d37-8fe3-49ac-829d-3bad07a03f01",
+        "name": "Arsenio Zambrano",
+        "cedula": "6750878",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "01a0877e-520f-72cf-8711-99f799c88756",
+        "name": "Diego Nuñez",
+        "cedula": "32357705",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "a83d79bd-c5df-4931-bdd7-8e9eda659b38",
+        "name": "Enrique Conde",
+        "cedula": "16704901",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "6fe915ee-806e-4979-8ce8-2ef140dbc391",
+        "name": "Francisco Lucena",
+        "cedula": "18591020",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "0bf1e9e9-5cd8-422d-921b-4b67e96e9c58",
+        "name": "Jaime Garcia",
+        "cedula": "14367818",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "01a0877f-3825-71d4-83cb-f093215239cb",
+        "name": "Jose Rodriguez",
+        "cedula": "28313376",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "01a08780-9907-7219-8a77-5a70f6b8247b",
+        "name": "Luis Valdes",
+        "cedula": "21413677",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "75da8766-b1a3-4588-9942-5e075eb7e726",
+        "name": "Luis Chacon",
+        "cedula": "84406212",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "bc7bbadc-85d6-4934-afe5-0764b03951ee",
+        "name": "Luis Enrique Perez",
+        "cedula": "17982531",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "cce1639b-5fb5-4f4a-a844-b0ac240c54b0",
+        "name": "Pablo Morales",
+        "cedula": "9483387",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "6ce0347e-13cd-4a9b-82e6-93ae8d85a54a",
+        "name": "Vicente Onorato",
+        "cedula": "19032762",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "fa24a11e-3918-4571-80ef-91264915fbc3",
+        "name": "Yofran Malave",
+        "cedula": "19734534",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "f3ca5cf3-33b1-4364-a05d-7de83619496f",
+        "name": "Yofrank Sanchez",
+        "cedula": "11197328",
+        "elo": 0.0,
+        "tactical_note": ""
+      }
+    ],
+    "Cumbres B": [
+      {
+        "id": "93feee94-0035-4eee-ac86-14a7bbdd2044",
+        "name": "Christian Hernandez",
+        "cedula": "24317880",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "198f6997-25a4-461b-9acc-60b9d443c64e",
+        "name": "Eduardo Garcia",
+        "cedula": "19692512",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "25a52018-7654-4409-bbfb-fec6366b3a81",
+        "name": "Gian Occhino",
+        "cedula": "16891771",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "2d2e9bba-a8d7-4ad5-916c-67d93df3d51f",
+        "name": "Jorge Palacios",
+        "cedula": "14471150",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "cffe6ba8-f06e-4424-9d8d-2eea89e4563d",
+        "name": "Jorge El Zelah",
+        "cedula": "8049244",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "ea1b2408-cfe3-4fcb-b683-1827bdc1a4e3",
+        "name": "Jose Moreno",
+        "cedula": "10375713",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "f6cef6f1-8df3-42eb-8361-3c4fe1fdbaa8",
+        "name": "Jose Leon",
+        "cedula": "26747675",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "01a08787-7207-72f7-8860-4cc44073c2ad",
+        "name": "Jose Gregorio Gonzalez",
+        "cedula": "28492366",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "e0959251-bbf9-4c49-8275-bd1f0ecac3ff",
+        "name": "Leonel Silvera",
+        "cedula": "19806873",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "fcff41cc-8924-4b04-969f-fb3bcfb2834d",
+        "name": "Mario Matos",
+        "cedula": "13556854",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "3e3ce8f6-5760-4c13-a734-1b826679f258",
+        "name": "Nehomar Torres",
+        "cedula": "17974697",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "143028bc-b7ec-4d77-b588-dda1bca52e42",
+        "name": "Nicolas Cabrera",
+        "cedula": "18271024",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "c8c44136-7b21-4335-ac58-77d28351114b",
+        "name": "Pedro Da Costa",
+        "cedula": "25831810",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "01a08387-6415-709c-97ac-cf87a2fedf49",
+        "name": "Ricardo Hernandez",
+        "cedula": "18359430",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "01a08386-22ab-729d-84a9-146602bc502a",
+        "name": "Yeicker Yantis",
+        "cedula": "14385119",
+        "elo": 0.0,
+        "tactical_note": ""
+      }
+    ],
+    "Mampote": [
+      {
+        "id": "ecda1443-0659-4cb1-ad71-56dee4838ba9",
+        "name": "Anecto Paredes",
+        "cedula": "12971443",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "70204382-90cb-4833-9127-6195eae119a4",
+        "name": "Carlos Vargas",
+        "cedula": "11667322",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "705ee85c-e409-4972-ba4b-d6df9e4d6fcf",
+        "name": "Cesar Diaz",
+        "cedula": "13894988",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "01a08783-ae40-72c5-8940-62527385d7b4",
+        "name": "Edicson Becerra",
+        "cedula": "15133625",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "f453c62c-8b6a-40fa-a75d-5f9c3fcb8049",
+        "name": "Fernando Plaza",
+        "cedula": "20211694",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "d9be9b77-927d-461c-8930-d926d9e431ac",
+        "name": "Freddy Gonzalez",
+        "cedula": "11034541",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "b0d3d156-d872-42ee-897e-d925d162ae68",
+        "name": "Gabriel Escalona",
+        "cedula": "8222131",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "5fd4123a-606f-4c8a-b10f-03b05b85cb6c",
+        "name": "Gerardo Villarroel",
+        "cedula": "11204372",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "ab334a50-5c32-4629-b469-2788cd58cc2f",
+        "name": "Gerardo Labrador",
+        "cedula": "23623828",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "01a08376-a14f-7361-ab7a-a08f3dff8e1b",
+        "name": "Ivan Rondon",
+        "cedula": "11409012",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "79ffc6d0-35ae-40fc-90e6-712d76aa78d4",
+        "name": "Jose Luis Guerrero",
+        "cedula": "14691964",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "3eec3f6c-2645-433a-aee7-a784a9c927f0",
+        "name": "Luis Carvallo",
+        "cedula": "16370582",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "f9bcdb05-2d0b-46e7-bb8d-9e0b1fda35b5",
+        "name": "Nestor Blanco",
+        "cedula": "15578407",
+        "elo": 0.0,
+        "tactical_note": ""
+      }
+    ],
+    "Pan de Azucar C": [
+      {
+        "id": "7fcafcdf-42e2-415b-adbd-d4126fa473d7",
+        "name": "Amaru Araujo",
+        "cedula": "14363241",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "aa52bc97-4b50-427f-86db-54ccf95bdd43",
+        "name": "Carlos Azocar",
+        "cedula": "13128330",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "bdd9972b-b414-4d9b-9fa2-4743e4b8d5b2",
+        "name": "Cesar Brito",
+        "cedula": "12094539",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "2282f961-e2da-4c7a-8164-3db91cab8eda",
+        "name": "Duwaldo Merchan",
+        "cedula": "18182187",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "93b9067f-45a3-4ba6-bfa8-b224198bd2f4",
+        "name": "Grenluis Calderon",
+        "cedula": "14675364",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "429103eb-b901-44cd-996d-ac59a99ce268",
+        "name": "Guillermo Haddad",
+        "cedula": "12159555",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "e3f3533c-9d93-4022-9f7f-b3db7de03707",
+        "name": "Javier Hernandez",
+        "cedula": "18537337",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "ed142291-aa3a-41d1-a29f-ce696d686340",
+        "name": "Jonathan Marini",
+        "cedula": "13585971",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "7334fea9-f655-4fec-bc89-2e62fd02bd92",
+        "name": "Jose Camara",
+        "cedula": "6484423",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "22a957ce-8a3b-467e-b66a-6dc61c96b6ab",
+        "name": "Jose Goncalvez",
+        "cedula": "81089083",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "db32e68f-9ba8-43d2-ae05-cef5be239d5e",
+        "name": "Jose Antonio Zambrano",
+        "cedula": "11821785",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "6013f68f-71ef-43e6-a436-6d2f77d2c263",
+        "name": "Leonardo Rangel",
+        "cedula": "33267092",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "c53b25d1-3624-440d-854b-bc1f924dbf0b",
+        "name": "Luis Caraballo",
+        "cedula": "10277143",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "bdc5731d-a0aa-4e03-8180-2ad3a10a9c35",
+        "name": "Michael Sosa",
+        "cedula": "16096639",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "67c735ad-0bb4-4f44-85e6-1379dd159c18",
+        "name": "Miguel La Rosa",
+        "cedula": "24591336",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "97b80454-39b9-4287-8c33-424dac42fc0a",
+        "name": "Pablo Tovar",
+        "cedula": "32432824",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "01a08347-cbd7-717c-a364-e88b6f5a8ceb",
+        "name": "Ronald Agosti",
+        "cedula": "14674524",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "c6e235b5-da5f-4f4d-ad9a-4ed26f5a915b",
+        "name": "Sebastian Vera",
+        "cedula": "23626568",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "01a08633-6ad0-723e-8c33-0550a145fbfa",
+        "name": "wilmer Chacon",
+        "cedula": "6343471",
+        "elo": 0.0,
+        "tactical_note": ""
+      }
+    ],
+    "Monteclaro": [
+      {
+        "id": "7156d06e-9b54-4020-8fb0-edac2d4ca66f",
+        "name": "Alex Di Geronimo",
+        "cedula": "4774895",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "dad462d8-a26d-4d8f-a241-cbde89e9d283",
+        "name": "Alfonso Pinate",
+        "cedula": "15440274",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "3f90cb7b-e44a-4060-8185-da45627ea9b5",
+        "name": "Anderson Partidas",
+        "cedula": "23642205",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "01a07d4b-726f-721d-bc6c-bcee5fade1b3",
+        "name": "Angel San Juan",
+        "cedula": "7664459",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "51cf9e86-cc88-4542-b400-4ca13bc9b0de",
+        "name": "Arturo Ornes",
+        "cedula": "18465050",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "8693f038-a233-4dab-bcac-075745bd1470",
+        "name": "Donaldo Arenas",
+        "cedula": "21271442",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "2edc0022-4c83-4e8d-9943-daacdbcf1fea",
+        "name": "Gabriel Pachon",
+        "cedula": "16579027",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "c0562934-6cd3-4cc2-a381-fed3566a5bf1",
+        "name": "Jesús Lossada",
+        "cedula": "13465981",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "d810762c-9ce9-423b-baad-8d4003de4806",
+        "name": "Joao Figueira",
+        "cedula": "13637584",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "f2abb12c-7841-4154-adee-cccc9bbe58a7",
+        "name": "Juancarlos Lares",
+        "cedula": "16028922",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "70721edf-3c24-4861-8e58-bdac52c604a0",
+        "name": "Julián Brito",
+        "cedula": "6435043",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "71da49dc-ee79-4045-8212-d273e07f93fc",
+        "name": "Ruben Rojas",
+        "cedula": "12378803",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "01a07c61-4103-72a0-a51a-3ddd26c65b62",
+        "name": "Victor Masso",
+        "cedula": "4355918",
+        "elo": 0.0,
+        "tactical_note": ""
+      }
+    ],
+    "Cumbres A": [
+      {
+        "id": "7f2dd6d9-ca81-4ab7-a572-83c4910af0d2",
+        "name": "Antonio Romero",
+        "cedula": "82015519",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "46d70041-6690-4785-8238-e9bf1a668213",
+        "name": "Eduardo Baquero",
+        "cedula": "12626856",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "5c8c7c88-2692-480b-aafa-ae1e38ea9e22",
+        "name": "Enrique Henriquez",
+        "cedula": "12389974",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "65dd335d-fa75-4b86-a033-21221b24e0d9",
+        "name": "Hans Sahmkow",
+        "cedula": "12357854",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "9a5ca908-14ad-4dbe-b49c-73a518f063e1",
+        "name": "Hector Oliva",
+        "cedula": "13307515",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "c73ffdb6-97b9-402c-af5d-5dc6657efc48",
+        "name": "Leonel Garcia",
+        "cedula": "6551186",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "0b5c7860-525a-490f-ab8b-77b3540d0a5e",
+        "name": "Luis Da Silva",
+        "cedula": "27006903",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "4110da11-05ba-452a-b4f2-c3b46bd65ece",
+        "name": "Luis Tagliaferro",
+        "cedula": "6972444",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "bd1ada46-bc5b-40b0-9e3a-491509955919",
+        "name": "Luis Felipe Cabrera",
+        "cedula": "6278120",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "4e20fe28-7a77-4e8a-8cf5-6ce4d95c9937",
+        "name": "Mario Bersani",
+        "cedula": "13535358",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "122c901c-3701-4092-bedc-4e5b4ff65a1c",
+        "name": "Petter Alvarez",
+        "cedula": "18779328",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "03f43638-25d8-44fa-a820-15e33755029a",
+        "name": "Rodrigo Valdebenito",
+        "cedula": "82025431",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "0d6595e1-d450-4cdd-afd6-453fd00aad24",
+        "name": "Veiker Herrera",
+        "cedula": "17166435",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "7d2792f8-d6da-4311-a831-a0226b09bd84",
+        "name": "Victor Garofalo",
+        "cedula": "31112810",
+        "elo": 0.0,
+        "tactical_note": ""
+      }
+    ],
+    "Pan de Azucar A": [
+      {
+        "id": "4745ab84-fc3a-4080-9e5e-ea34d6783efd",
+        "name": "Alejandro Davis",
+        "cedula": "24463270",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "01a08348-a851-73d4-bfcd-f95ea799ca15",
+        "name": "Alexis Graterol",
+        "cedula": "13476527",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "3d6ef333-593b-4fe1-8dbd-3f6fdf941b6c",
+        "name": "Andres Acevedo",
+        "cedula": "18539317",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "94c4bfc3-911b-478f-a489-e898f591edc0",
+        "name": "Arnaldo Fortino",
+        "cedula": "15914393",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "26de36d1-7094-4684-807e-6f0745adf75b",
+        "name": "Carlos Isturiz",
+        "cedula": "14214300",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "eceb0e81-6e5a-40f6-8a8c-358c842b9012",
+        "name": "Derwuin Coello",
+        "cedula": "11036170",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "77cf197a-c504-416f-8950-e860f19fc7ce",
+        "name": "Francesco Fazzino",
+        "cedula": "26323101",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "435e8a6d-c5bd-492e-b2d4-54939eaa968a",
+        "name": "Gabriel Acevedo",
+        "cedula": "26725428",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "22a23bce-2060-46a4-87ba-613a1cb9f9b6",
+        "name": "Jean Herrera",
+        "cedula": "19368326",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "33dfdffc-14a7-45ee-a11a-9da16cdde6ce",
+        "name": "Jesus Delgado",
+        "cedula": "12166671",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "74e22629-701e-47b0-bb38-c97fde200f83",
+        "name": "Jonas Perez",
+        "cedula": "21470195",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "efdb5fe5-e0b5-4cd8-abb6-ec5195be7d05",
+        "name": "Jose Mujica",
+        "cedula": "14675247",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "41ca0522-5a1f-42fd-b8cc-907f46f5efe8",
+        "name": "Juan Montes de Oca",
+        "cedula": "4842800",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "68423565-2803-4aa5-af27-99c02e773a14",
+        "name": "Juan Delgado",
+        "cedula": "17534086",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "b8121f2d-6b52-47f3-aa74-aa3b48fda429",
+        "name": "Marcus Mendez",
+        "cedula": "16924414",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "26df3ac6-a091-405a-86c2-c9b4b44c6321",
+        "name": "Raul Sanchez",
+        "cedula": "19310581",
+        "elo": 0.0,
+        "tactical_note": ""
+      }
+    ],
+    "Coronado A": [
+      {
+        "id": "83f9bcd5-6841-4ce2-9590-beeb5020a124",
+        "name": "Andres Hernandez",
+        "cedula": "16413969",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "04d2545c-aded-4f12-87aa-314c4d659f6e",
+        "name": "Daniel López",
+        "cedula": "17147554",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "941b2fa2-c683-4b23-9eb5-8df35f48a3c8",
+        "name": "Ernesto Giannattasio",
+        "cedula": "26254406",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "c903fe93-e879-41ef-b96f-4849a54bbfed",
+        "name": "Francisco Gonzalez",
+        "cedula": "16412084",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "01a0737b-171e-731e-b8d1-fb2112657db3",
+        "name": "Giovanni Belli",
+        "cedula": "14890481",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "01a0737d-58de-70c3-b78a-a0ef72c82ac4",
+        "name": "Gustavo Basalo",
+        "cedula": "26478180",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "4ac084e7-26f2-4deb-a6a3-8f14926204cd",
+        "name": "Jeff. José Perez cristancho",
+        "cedula": "17127266",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "88f9070d-bb58-45bf-bf9b-bbdafd6a5f34",
+        "name": "Jesus Rodriguez",
+        "cedula": "11230457",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "7a1ae8a1-c7ee-439c-b060-4c55b0c90be5",
+        "name": "Jose Daniel Guilarte",
+        "cedula": "32358510",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "cb3bc694-6f2a-4f62-8b70-8362528f893d",
+        "name": "Pedro Garcia",
+        "cedula": "17476696",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "5048c00c-84db-436b-8996-864f64aec538",
+        "name": "Rafael Rodriguez",
+        "cedula": "10523224",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "b8f1e00d-56fd-4e31-8ac0-2ffce8a50628",
+        "name": "Rafael Crespo",
+        "cedula": "13885296",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "da1b9e72-93a9-4657-a6d5-ef2bd6d54786",
+        "name": "Tomas Montana",
+        "cedula": "16971890",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "717b4dc7-4935-4f45-af98-e05a102e5690",
+        "name": "Udon Yepes",
+        "cedula": "11738592",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "274b9689-30a2-4985-8206-2cd133937357",
+        "name": "Wilmer Valera",
+        "cedula": "11201763",
+        "elo": 0.0,
+        "tactical_note": ""
+      }
+    ],
+    "Dorado Country Club A": [
+      {
+        "id": "01a0878c-a6d7-70be-a4da-12274b646071",
+        "name": "Andres Hernandez",
+        "cedula": "11142887",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "2571f683-816e-4237-b46b-6442dcb7fb34",
+        "name": "Andres Rivas",
+        "cedula": "25847667",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "35a54586-95ad-4d5c-9fe5-75d1e1cbfb96",
+        "name": "Anthony Sanchez",
+        "cedula": "18392055",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "9fefee8a-5fae-49ac-8b80-920f8da89282",
+        "name": "Antonio Maiorano",
+        "cedula": "25872398",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "11921d62-764e-4caf-a57e-2b1249bb7ed3",
+        "name": "Carlos Grillet",
+        "cedula": "10375940",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "cb754fc6-8d0b-4cce-9fdd-f87151cded87",
+        "name": "Carlos Rincon",
+        "cedula": "15842880",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "01a0878b-a6a1-7058-9e49-adc8c5a8b31f",
+        "name": "Eduardo Barbosa",
+        "cedula": "15457364",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "25f01bad-3c38-48c5-b403-3f851b17aa0b",
+        "name": "Eliezer Martinez",
+        "cedula": "28024146",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "527e87a5-f1e2-4c9b-b9dd-feae0873cde6",
+        "name": "Giovanni Sutera",
+        "cedula": "10338380",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "911bffd9-0c5a-40f7-a2b3-5ac8af9f144a",
+        "name": "Jesus Camacho",
+        "cedula": "27840793",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "ce13b45d-cb9d-46d5-8dc8-9b926f8978a5",
+        "name": "Jose Ribeiro",
+        "cedula": "30750972",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "1700cb7c-db8d-4e7d-b4cc-bb15381f45d4",
+        "name": "Luis Jr Tortabu",
+        "cedula": "30115866",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "efdb2117-75e4-4967-b78b-6ad179a0ca2b",
+        "name": "Orangel Perez",
+        "cedula": "33259769",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "73d765c5-5d0f-4542-98c8-fd7c46f7e333",
+        "name": "Ronald Mesa",
+        "cedula": "25847545",
+        "elo": 0.0,
+        "tactical_note": ""
+      }
+    ],
+    "Banana Splits": [
+      {
+        "id": "f540b9d6-1c02-4d4d-93f9-82df49b57b14",
+        "name": "Alejandro Chumaceiro",
+        "cedula": "9759758",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "40543623-6e85-4d9b-b4f1-832455286c24",
+        "name": "Alfredo Vetancourt",
+        "cedula": "9878576",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "b31dfa49-3823-4a86-b910-7b4c06199cf4",
+        "name": "Aureliano Fernandez",
+        "cedula": "13137870",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "738b2882-cd20-4d55-85e1-c15746576359",
+        "name": "Camilo Iribarren",
+        "cedula": "9967048",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "59b893f4-07b3-4bd2-a888-58afb60307b1",
+        "name": "Charles Morrison",
+        "cedula": "11310309",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "a2f4144c-936f-4b6e-b88d-cf92cd36c93f",
+        "name": "Enrique Salas",
+        "cedula": "9413116",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "2c413579-b5b8-46dd-b284-58cfe890db0e",
+        "name": "German Parra",
+        "cedula": "9953567",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "8474f9ab-4b61-4895-ae3e-42ebaa4fbb8a",
+        "name": "Gonzalo Vegas",
+        "cedula": "6914235",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "a5cdb2a5-2311-4887-90ed-e9c01da78ea1",
+        "name": "Gonzalo Machado",
+        "cedula": "6976416",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "1d2360fc-32f4-444c-b5ef-49a63596992a",
+        "name": "Guillermo Delfino",
+        "cedula": "6979511",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "af565230-1e5d-416f-8587-35d349449808",
+        "name": "Gustavo Rubio",
+        "cedula": "17302291",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "c8ceaa61-9781-42ff-8079-104580b7ab89",
+        "name": "Ibrahim Garcia",
+        "cedula": "10841544",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "0bf70115-7530-4c2b-8097-ee64595e9a5f",
+        "name": "Jorge Jr Jraige",
+        "cedula": "27578923",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "b26a8062-81db-4c09-8b85-95871c108716",
+        "name": "Jorge Jraige",
+        "cedula": "13099442",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "234541ef-54df-49a2-a0ff-04ed6b754f49",
+        "name": "Jose A Cabrera",
+        "cedula": "9878521",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "33108b32-4ff5-49e3-aca6-78cf18e8232c",
+        "name": "Juan Ignacio Terrero",
+        "cedula": "6844533",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "30439ce9-754d-4a80-9517-97ee09d54482",
+        "name": "Juan C Montenegro",
+        "cedula": "10348326",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "a9391adc-4398-4c65-8724-84d855b07d4b",
+        "name": "Julio Molina",
+        "cedula": "9879361",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "de2e202d-f30c-4fa7-8eba-672e330a6301",
+        "name": "Luis A Gomez",
+        "cedula": "9721785",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "01a0878e-4fe0-731f-99d1-5913dd267db5",
+        "name": "Oswaldo Este",
+        "cedula": "12072972",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "42582a2b-6b11-4988-96c1-9c50cfdd6de5",
+        "name": "Raul Soules",
+        "cedula": "17868745",
+        "elo": 0.0,
+        "tactical_note": ""
+      }
+    ],
+    "Ceti": [
+      {
+        "id": "b0690307-faa8-4ad1-bd5b-652db38cab8b",
+        "name": "Alejandro Echeverria",
+        "cedula": "20704089",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "7a358a42-c72d-40c2-af42-39336655bb9b",
+        "name": "Anders Corujo",
+        "cedula": "18596473",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "53b95e90-6b31-43a8-a044-02002ab652f5",
+        "name": "Federico Briceno",
+        "cedula": "19203237",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "446a3b1b-3e0d-4142-bfb8-42b0fa3f5f0e",
+        "name": "Felix Golindano",
+        "cedula": "17583111",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "003ca627-dd04-4a0d-b100-fe355b9ff9e1",
+        "name": "Fernando Ruisanchez",
+        "cedula": "23707462",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "3d9b6008-2e85-4318-8c45-df500cc69758",
+        "name": "Gabriel Peñaloza",
+        "cedula": "18304121",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "053be889-aa77-4e11-b3f7-a133ac7e5a90",
+        "name": "Gerardo Ortega",
+        "cedula": "20652738",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "93c82a0c-99b6-4414-99c8-6022875dfb0c",
+        "name": "Haiguang Ren",
+        "cedula": "3529834",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "6e6df2e9-3035-4fc6-9d31-dc261f3323b8",
+        "name": "Jose Farfan",
+        "cedula": "29583045",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "60e81cc8-df02-4bf9-a000-e50f8802b29a",
+        "name": "Luis Yepez",
+        "cedula": "17977640",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "c180e6a2-0313-4905-b365-3e9b7bd3a5f7",
+        "name": "Luis Estupiñan",
+        "cedula": "16085807",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "8be7c874-1bc5-4fc0-af96-156e85a2245b",
+        "name": "Manuel Gomez",
+        "cedula": "16178932",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "5397c66e-e10e-4065-89df-a58bd78687bd",
+        "name": "Ricardo Ramirez",
+        "cedula": "23997727",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "02fb5ce6-7e58-477a-b864-6967fbbc7279",
+        "name": "Victor Nadal",
+        "cedula": "14892782",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "1037858b-bf15-4cd0-adc5-ac4eb56d40a5",
+        "name": "Victor Querales",
+        "cedula": "17348938",
+        "elo": 0.0,
+        "tactical_note": ""
+      }
+    ],
+    "Coronado B": [
+      {
+        "id": "1e93faa6-8b83-4678-82b1-1e31a774a168",
+        "name": "Alfonso Vasquez",
+        "cedula": "10511672",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "20a97ffa-20c1-47ec-8773-d56126a08496",
+        "name": "Carlos Montero",
+        "cedula": "7195905",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "3327481a-164e-4a3f-94d1-6ec3e39dcf49",
+        "name": "Carlos Natera",
+        "cedula": "20220471",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "97220d99-d672-4b37-bf85-bd46a33d4246",
+        "name": "Carlos Hernandez",
+        "cedula": "13992439",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "01a08723-8727-730d-b7a3-d85958a2e04e",
+        "name": "Emil Calles",
+        "cedula": "16004175",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "d6c0b271-4151-465e-b44b-8e9fbb80312d",
+        "name": "Gonzalo Escobar",
+        "cedula": "18338332",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "583ee004-fc01-46e1-bdd0-fa7a0e69c46a",
+        "name": "Jose Capuano",
+        "cedula": "14202834",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "fea3036f-cce5-4eeb-8d69-813df3eacb33",
+        "name": "Julio Tovar",
+        "cedula": "6097821",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "adafff60-1add-47ea-b1e7-1bddecf80dbc",
+        "name": "Kheder Ali",
+        "cedula": "31909426",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "01a08725-9ff3-70fe-ba0f-ddd3861c9ff7",
+        "name": "Liu Junling",
+        "cedula": "6063832",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "01a08728-3191-70bb-9c52-b169f77eca0c",
+        "name": "Lu Qiqinjg",
+        "cedula": "6077814",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "e0427a16-8362-4b3d-9045-c87c93895c2a",
+        "name": "Victor Peña",
+        "cedula": "9970954",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "01a08722-7e52-707d-ad5c-d19612419ddc",
+        "name": "William Ruiz",
+        "cedula": "11604656",
+        "elo": 0.0,
+        "tactical_note": ""
+      }
+    ],
+    "Club Tanaguarena": [
+      {
+        "id": "06ac6e50-01a8-42f4-adb9-ad6016daa6cf",
+        "name": "Alcides Sardiña",
+        "cedula": "6597250",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "3a4aa45f-0bfc-4e29-9bbf-9de6797b37eb",
+        "name": "Alexander Hernandez",
+        "cedula": "11638816",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "ec0c3ad1-970d-4b64-ad33-ae809b0a108b",
+        "name": "Alexis Estevez",
+        "cedula": "13338773",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "f1f4b485-bd20-4bea-80c0-d5031bcb359d",
+        "name": "Angelo De Girolamo",
+        "cedula": "13247719",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "41576adb-ed2f-49fe-aebe-843aa5d30dc6",
+        "name": "Cesar Rodriguez",
+        "cedula": "5423698",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "743d2db8-4e05-485d-a98a-78dbfc053215",
+        "name": "Enrique Calzadilla",
+        "cedula": "13992452",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "1ebd66ed-df62-43f9-a1fe-4505119861ef",
+        "name": "Felix Miranda",
+        "cedula": "8754886",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "a9f59d23-2025-417d-b397-4df90272471d",
+        "name": "Franco Esposito",
+        "cedula": "6979985",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "31e49683-51f6-4c27-966b-9018714f9192",
+        "name": "Jose Francisco del Castillo",
+        "cedula": "6917848",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "c1c580fb-8e87-4692-bc51-3bf555ce528e",
+        "name": "Jose Fernandez",
+        "cedula": "5092394",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "01a07cff-ccb1-71f2-a352-f503eaa0da80",
+        "name": "Jose Luis Ramirez",
+        "cedula": "6492882",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "645a6758-e894-489b-9eb1-b98349aba465",
+        "name": "Marcos Rojas",
+        "cedula": "19334043",
+        "elo": 0.0,
+        "tactical_note": ""
+      }
+    ],
+    "Dorado Country Club B": [
+      {
+        "id": "1a1a3582-55cd-4141-aec0-d266636230f9",
+        "name": "Camilo Torres",
+        "cedula": "13944100",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "b6217f76-fc7d-4270-ba13-cb3af64b860c",
+        "name": "Edgar Suarez",
+        "cedula": "15153912",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "50f8e889-ab7c-42fb-83d9-17114207bf23",
+        "name": "Ernesto Marques",
+        "cedula": "6162657",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "8c189c62-aae3-472d-83b9-7454e14abb99",
+        "name": "Freddy Este",
+        "cedula": "4351342",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "a71ded5a-749d-4f18-8244-878250cf32a9",
+        "name": "Henry Perez",
+        "cedula": "6210700",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "0494678a-8b21-4d18-bba0-0a4bcf2b990c",
+        "name": "Hugo Novelli",
+        "cedula": "6810425",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "96620230-d4f1-46e5-869b-9eef089d256a",
+        "name": "Jesus Aristimuño",
+        "cedula": "8684461",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "1b931ead-0106-4d40-bf78-5d2f5962e24c",
+        "name": "Jose Araujo",
+        "cedula": "9174313",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "0e3323d7-72ff-40b2-b1af-8c8fd3f0aef2",
+        "name": "Luis Boada",
+        "cedula": "23597804",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "58dedf2f-824f-41e2-acf0-1fbb50bef48a",
+        "name": "Luis Carlos Mejias",
+        "cedula": "19583992",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "e324af77-0eac-4224-aed0-ee441856077c",
+        "name": "Victor Salas",
+        "cedula": "81712721",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "500435c3-73f1-4006-a2a5-3f95f6bea63f",
+        "name": "William Ramón Tellez",
+        "cedula": "10811341",
+        "elo": 0.0,
+        "tactical_note": ""
+      }
+    ],
+    "FVT - ENT": [
+      {
+        "id": "bd012d46-fbf3-4041-9b1b-74ae82b2a108",
+        "name": "Alben Francisquez",
+        "cedula": "15931818",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "3fcc75e8-5cb8-4734-ace2-f3929191c0c5",
+        "name": "Alberto Sonnessa",
+        "cedula": "11234612",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "2997dae2-67a4-4a53-ab55-3e31d302bd4e",
+        "name": "Alexander Marquez",
+        "cedula": "10517779",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "d5428f9a-5f3d-4c92-a33b-72d6aece10e1",
+        "name": "Arturo Jimenez",
+        "cedula": "21116871",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "a5e7faea-4fe2-402d-80e9-793e19e64aef",
+        "name": "Carlos Mercado",
+        "cedula": "17977593",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "94c8bc3c-6232-42c2-a569-14ae101b99df",
+        "name": "Eduardo Michelena",
+        "cedula": "23682403",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "ced23597-60e1-4e07-a37c-2be686bccc1d",
+        "name": "Fernando Yibirin",
+        "cedula": "16460119",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "5a45f183-9fe7-403f-9f02-7c140e5c0456",
+        "name": "Guido Lamanna",
+        "cedula": "6326289",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "f2b6116c-9252-438d-99aa-b1b9f3f9ad6f",
+        "name": "Gustavo Bergstrom",
+        "cedula": "17123177",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "fa0ff78a-fa16-4ccd-b08e-9614501bdd59",
+        "name": "Gustavo Segovia",
+        "cedula": "13126586",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "600ecd37-72fb-4b1b-a13d-ba50925b79d8",
+        "name": "Hengell Blanco",
+        "cedula": "13086851",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "aadc4087-5c9f-4aa0-884c-46122eab613a",
+        "name": "Jorge Puerta",
+        "cedula": "16890370",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "e7b293b6-7de4-4804-9526-c0ea89d0bd11",
+        "name": "Jose Miguel Vera",
+        "cedula": "17110236",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "01a08903-a874-706f-9e21-9d23588b48d0",
+        "name": "Luis Barranco",
+        "cedula": "6513800",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "bc623774-55f8-4380-8f50-a59ea108d443",
+        "name": "Luis Manuel Garcia",
+        "cedula": "14889953",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "5661b4a8-7c51-4433-b642-50eb937d0998",
+        "name": "Yosandel Guanare",
+        "cedula": "32723203",
+        "elo": 0.0,
+        "tactical_note": ""
+      }
+    ],
+    "Pan de Azucar B": [
+      {
+        "id": "bd4ee359-b8b5-4799-ada2-793eb410ae2a",
+        "name": "Alejandro Muñoz",
+        "cedula": "15519590",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "55c16a7b-9887-41f7-926c-6287d1cc2052",
+        "name": "Alfredo Cardona",
+        "cedula": "9878128",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "892d6198-f3ae-437a-a568-481385833cff",
+        "name": "Diego Higuera",
+        "cedula": "17443990",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "cd9c5380-798f-4814-a235-e9133ddae837",
+        "name": "Eduardo Castillo",
+        "cedula": "14312183",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "95e9bcc7-7cc1-4d94-9155-4becc7494780",
+        "name": "Felian Pereira",
+        "cedula": "13748555",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "4f02a349-33b9-4650-9ea8-e5693ef733c3",
+        "name": "Francisco De Nobrega",
+        "cedula": "18740996",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "bb7de6f8-38a9-4bb8-b355-2383c102b4ef",
+        "name": "Franco Guerrera",
+        "cedula": "6874987",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "0c4ed277-0736-4800-9481-685ec2759fb6",
+        "name": "Humberto Pisapia",
+        "cedula": "8679694",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "3a6d83e8-eb36-4cce-8ab5-ab147ff50673",
+        "name": "Jesus Medina",
+        "cedula": "12955741",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "b2e4909c-4845-4d0f-939e-8e1200fbd372",
+        "name": "Jesus Andrade",
+        "cedula": "6457384",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "1dd3ebb5-dcfa-4622-a6d0-9c12b0339ad8",
+        "name": "Jhon Cisnero",
+        "cedula": "19819031",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "7b5083eb-6492-4346-98ce-c3e9952ea10f",
+        "name": "Jose Montenegro",
+        "cedula": "9747409",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "01a08794-4b0b-7036-90e3-a24cd0838328",
+        "name": "Jose Alvarado",
+        "cedula": "17125271",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "01a08381-f7ba-70e7-91b7-ffa78379ae2b",
+        "name": "Leonardo Graterol",
+        "cedula": "96897299",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "a09c5136-eeea-4f5e-a1ff-fd9eab9ecf1e",
+        "name": "Leonardo Izturiz",
+        "cedula": "14216438",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "77473b8b-2a6c-4f03-b673-016496b3b204",
+        "name": "Oswald Winnen",
+        "cedula": "30411537",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "bd24a828-4ceb-4823-886f-77fc60ffb984",
+        "name": "Otto Winnen",
+        "cedula": "11817561",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "4cd8b47a-d631-4dc6-86e9-2d88503eb38c",
+        "name": "Rafael Rangel",
+        "cedula": "6515651",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "18109cf6-fcbb-4a5e-9b3e-49616a3b87c7",
+        "name": "Reinaldo Ortiz",
+        "cedula": "14772962",
+        "elo": 0.0,
+        "tactical_note": ""
+      },
+      {
+        "id": "8c0ce646-f912-43d1-a72f-ad193e0b2a7e",
+        "name": "Sari Raniolo",
+        "cedula": "14215909",
+        "elo": 0.0,
+        "tactical_note": ""
+      }
+    ]
+  },
+  "standings_by_group": {
+    "Grupo A": [
+      {
+        "pos": 1,
+        "team": "Coronado A",
+        "team_id": "bcfd396e-cfa0-4b27-9e21-3150bcc84bd0",
+        "pts": 68,
+        "set_ave": 0.0,
+        "game_ave": 0.0
+      },
+      {
+        "pos": 2,
+        "team": "Banana Splits",
+        "team_id": "c1b358bc-e468-4028-bbc6-d3d689366aed",
+        "pts": 45,
+        "set_ave": 0.0,
+        "game_ave": 0.0
+      },
+      {
+        "pos": 3,
+        "team": "Mampote",
+        "team_id": "6a9889c4-3305-4b2d-ae25-992cec673bbb",
+        "pts": 44,
+        "set_ave": 0.0,
+        "game_ave": 0.0
+      },
+      {
+        "pos": 4,
+        "team": "Cumbres B",
+        "team_id": "4a245e68-665a-47c8-b09b-732cbbeb861f",
+        "pts": 38,
+        "set_ave": 0.0,
+        "game_ave": 0.0
+      },
+      {
+        "pos": 5,
+        "team": "Pan de Azucar B",
+        "team_id": "f2e00627-1072-4009-889d-9f2048792b74",
+        "pts": 30,
+        "set_ave": 0.0,
+        "game_ave": 0.0
+      },
+      {
+        "pos": 6,
+        "team": "Academia Grand Slam",
+        "team_id": "0c7c0f98-b0ab-48a5-a707-cac4329dc2f6",
+        "pts": 26,
+        "set_ave": 0.0,
+        "game_ave": 0.0
+      },
+      {
+        "pos": 7,
+        "team": "Orus",
+        "team_id": "01a06e9f-c1bd-70e4-badd-652ba97cd29a",
+        "pts": 1,
+        "set_ave": 0.0,
+        "game_ave": 0.0
+      }
+    ],
+    "Grupo B": [
+      {
+        "pos": 1,
+        "team": "Pan de Azucar C",
+        "team_id": "72a2b064-3c21-4456-87d1-9f1feca8fb13",
+        "pts": 57,
+        "set_ave": 0.0,
+        "game_ave": 0.0
+      },
+      {
+        "pos": 2,
+        "team": "Andrew Tennis A",
+        "team_id": "20cb9518-fc3c-4808-a737-09240b8dfdb6",
+        "pts": 49,
+        "set_ave": 0.0,
+        "game_ave": 0.0
+      },
+      {
+        "pos": 3,
+        "team": "Monteclaro",
+        "team_id": "8293e3a4-c020-4620-8e10-01e3468f4315",
+        "pts": 47,
+        "set_ave": 0.0,
+        "game_ave": 0.0
+      },
+      {
+        "pos": 4,
+        "team": "Dorado Country Club A",
+        "team_id": "be91fecf-ce2d-4d2e-9c90-cabe92e35f76",
+        "pts": 39,
+        "set_ave": 0.0,
+        "game_ave": 0.0
+      },
+      {
+        "pos": 5,
+        "team": "FVT - ENT",
+        "team_id": "f292a358-7fb7-4fea-98f2-76dbf44f384b",
+        "pts": 27,
+        "set_ave": 0.0,
+        "game_ave": 0.0
+      },
+      {
+        "pos": 6,
+        "team": "Club Tanaguarena",
+        "team_id": "daf9f98a-08c9-4abf-85f6-09ba7701b0ce",
+        "pts": 19,
+        "set_ave": 0.0,
+        "game_ave": 0.0
+      },
+      {
+        "pos": 7,
+        "team": "Cumbres A",
+        "team_id": "9aaf38b0-1464-43c6-b433-5a666ec01588",
+        "pts": 14,
+        "set_ave": 0.0,
+        "game_ave": 0.0
+      }
+    ],
+    "Grupo C": [
+      {
+        "pos": 1,
+        "team": "Ceti",
+        "team_id": "ce321f9d-412c-4f9a-97c0-fa015feee99f",
+        "pts": 69,
+        "set_ave": 0.0,
+        "game_ave": 0.0
+      },
+      {
+        "pos": 2,
+        "team": "Pan de Azucar A",
+        "team_id": "b2f8c56d-0fbc-4f69-abae-ba50dbae3aba",
+        "pts": 54,
+        "set_ave": 0.0,
+        "game_ave": 0.0
+      },
+      {
+        "pos": 3,
+        "team": "San Luis A",
+        "team_id": "1335f3f1-a3b5-4059-a495-7e7c680b0604",
+        "pts": 52,
+        "set_ave": 0.0,
+        "game_ave": 0.0
+      },
+      {
+        "pos": 4,
+        "team": "Coronado B",
+        "team_id": "cfa1de34-872a-4fec-bf80-fa43c1ac8073",
+        "pts": 27,
+        "set_ave": 0.0,
+        "game_ave": 0.0
+      },
+      {
+        "pos": 5,
+        "team": "Andrew Tennis B",
+        "team_id": "401ef836-c3af-472e-b4a3-4ce3ab17285b",
+        "pts": 25,
+        "set_ave": 0.0,
+        "game_ave": 0.0
+      },
+      {
+        "pos": 6,
+        "team": "Dorado Country Club B",
+        "team_id": "f09a952e-f9ee-4d5a-acd6-157925bf909c",
+        "pts": 23,
+        "set_ave": 0.0,
+        "game_ave": 0.0
+      },
+      {
+        "pos": 7,
+        "team": "Centro de Tenis La Paz",
+        "team_id": "21c87878-2ab2-4362-9f86-ff8bbdf82230",
+        "pts": 2,
+        "set_ave": 0.0,
+        "game_ave": 0.0
+      }
+    ]
+  },
+  "matches": []
+}
